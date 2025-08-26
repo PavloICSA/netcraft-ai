@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "name": "Documentation Sync",
+  "description": "Monitors all TypeScript source files, React components, configuration files, and other relevant project files for changes and triggers documentation updates in README.md or docs folder when modifications are detected.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "src/**/*.tsx",
+      "src/**/*.ts",
+      "src/**/*.css",
+      "*.ts",
+      "*.js",
+      "*.json",
+      "*.md",
+      "*.html",
+      "tailwind.config.js",
+      "vite.config.ts",
+      "jest.config.js",
+      "postcss.config.js"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Source files have been modified in this React TypeScript project. Please review the changes and update the documentation accordingly. Focus on updating the README.md file or create/update documentation in a docs folder if one exists. Ensure the documentation reflects any new features, API changes, component updates, configuration changes, or architectural modifications. Pay special attention to the neural network predictor, clustering analysis features, data management capabilities, and any changes to the build configuration or development workflow."
+  }
+}
