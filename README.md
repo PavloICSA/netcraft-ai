@@ -5,6 +5,8 @@ A comprehensive, client-side machine learning web application that combines neur
 
 > **🔒 Privacy-First Design**: All data processing happens entirely in your browser. Your data never leaves your device, ensuring complete privacy and security.
 
+### Try It Now! [https://netcraft-ai-aa274.web.app/] 
+
 ## Features
 
 ### 🧠 Neural Network Predictor
