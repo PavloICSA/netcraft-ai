@@ -7,10 +7,10 @@ A comprehensive, client-side machine learning web application that combines neur
 > **🔒 Privacy-First Design**: All data processing happens entirely in your browser. Your data never leaves your device, ensuring complete privacy and security.
 
 ## Quick Start
-git clone https://github.com/PavloICSA/netcraft-ai.git
-cd netcraft-ai
-npm install
-npm run dev
+- git clone https://github.com/PavloICSA/netcraft-ai.git
+- cd netcraft-ai
+- npm install
+- npm run dev
 
 ## Features
 
