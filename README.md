@@ -2,7 +2,6 @@
 
 A comprehensive, client-side machine learning web application that combines neural network prediction, random forest classification, clustering analysis, and time series forecasting with a modern, accessible UI. Crafting artificial neural networks, ensemble methods, clustering, and forecasts entirely in the browser. Built with React 18, TypeScript 5.2+, Tailwind CSS 3.3+, and comprehensive internationalization support.
 
-![NetCraft AI](https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=NetCraft+AI+Dashboard)
 
 > **🔒 Privacy-First Design**: All data processing happens entirely in your browser. Your data never leaves your device, ensuring complete privacy and security.
 
