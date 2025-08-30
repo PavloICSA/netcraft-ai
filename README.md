@@ -711,7 +711,7 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - [x] **Advanced translation tooling** with coverage analysis and validation
 - [x] **Image export capabilities** for charts and visualizations
 
-### Version 1.2 (Planned - Q2 2025)
+### Version 1.2 (Planned - Q3 2025)
 - [ ] **Additional forecasting algorithms** (ARIMA, Seasonal ARIMA, Prophet)
 - [ ] **More clustering algorithms** (DBSCAN, Hierarchical clustering, Gaussian Mixture)
 - [ ] **Advanced neural network architectures** (CNN for image data, RNN/LSTM for sequences)
