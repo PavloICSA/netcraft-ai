@@ -1,0 +1,28 @@
+{
+  "title": "Analysis Results",
+  "noResults": "No analysis results available",
+  "export": {
+    "title": "Export Results",
+    "exportProject": "Export Project (JSON)",
+    "exportData": "Export Data (CSV)",
+    "exportResults": "Export Results",
+    "exportOptions": "Export Options",
+    "format": "Format",
+    "json": "JSON",
+    "csv": "CSV"
+  },
+  "summary": {
+    "title": "Results Summary",
+    "modelType": "Model Type",
+    "accuracy": "Accuracy",
+    "performance": "Performance",
+    "dataPoints": "Data Points",
+    "features": "Features"
+  },
+  "visualization": {
+    "title": "Results Visualization",
+    "chart": "Chart",
+    "table": "Table",
+    "metrics": "Metrics"
+  }
+}

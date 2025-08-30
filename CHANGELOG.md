@@ -5,6 +5,80 @@ All notable changes to NetCraft AI will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-01-30
+
+### Added
+
+#### New Machine Learning Algorithms
+- **Random Forest Classifier**: Complete ensemble learning implementation with bootstrap aggregating
+- **Time Series Forecasting**: Moving Average, Exponential Smoothing, and Linear Trend algorithms
+- **Feature Importance Analysis**: Mean decrease in impurity calculation for Random Forest
+- **Out-of-Bag (OOB) Scoring**: Model validation without separate test set
+- **Confidence Intervals**: Uncertainty quantification for forecasting predictions
+
+#### Advanced Internationalization
+- **Comprehensive i18n System**: Full bilingual support (English/Ukrainian) with 100% coverage
+- **Translation Management Tools**: Coverage analysis, validation, and CSV export for translators
+- **Technical Term Preservation**: Algorithm names and metrics remain consistent across languages
+- **Bundle Optimization**: Automatic optimization and compression of translation files
+- **Accessibility Integration**: Screen reader announcements for language changes
+
+#### Theme System
+- **Dark/Light/System Theme Support**: Complete theme system with automatic detection
+- **Theme Persistence**: User preferences saved across sessions
+- **System Theme Detection**: Automatic adaptation to OS theme preferences
+- **Smooth Transitions**: Animated theme switching with Framer Motion
+
+#### Data Migration System
+- **Automatic Migration**: Seamless upgrade from legacy localStorage keys (neuroxl-* to netcraft-*)
+- **Backward Compatibility**: Graceful fallback to legacy data when needed
+- **Safe Cleanup**: Removal of old keys only after successful migration
+- **Error Handling**: Comprehensive error recovery and logging
+- **Verification Tools**: Testing utilities for migration functionality
+
+#### Enhanced Data Processing
+- **Time Series Preprocessing**: Automatic frequency detection and missing value handling
+- **Advanced CSV Processing**: Enhanced column type inference and validation
+- **Batch Prediction**: Efficient processing of multiple predictions
+- **Data Export**: Comprehensive CSV export for all results and models
+
+### Improved
+
+#### Neural Networks
+- **Enhanced Training Progress**: Real-time loss curves and epoch tracking
+- **Better Evaluation Metrics**: Comprehensive metrics for both regression and classification
+- **Improved Serialization**: More robust model persistence and loading
+
+#### Clustering
+- **SOM Enhancements**: Support for both rectangular and hexagonal topologies
+- **Quality Metrics**: Silhouette score, inertia, and topographic error calculations
+- **Visualization Improvements**: U-Matrix and component plane visualization
+
+#### User Interface
+- **Professional Dashboard**: Enhanced layout with sidebar navigation
+- **Responsive Design**: Better mobile and tablet support
+- **Loading States**: Improved feedback during long operations
+- **Error Boundaries**: Graceful error handling throughout the application
+
+#### Performance
+- **Bundle Optimization**: Reduced bundle size and improved loading times
+- **Memory Management**: Better handling of large datasets
+- **Lazy Loading**: Optimized component and translation loading
+
+### Technical Improvements
+
+#### Development Experience
+- **Enhanced TypeScript**: Stricter type checking and better type definitions
+- **Translation Tooling**: Comprehensive tools for managing translations
+- **Build Optimization**: Improved Vite configuration and build process
+- **Code Quality**: Enhanced ESLint rules and Prettier configuration
+
+#### Architecture
+- **Context Management**: Improved state management with React Context
+- **Component Organization**: Better separation of concerns and reusability
+- **Error Handling**: Comprehensive error boundaries and recovery mechanisms
+- **Testing Infrastructure**: Enhanced testing setup and utilities
+
 ## [1.0.0] - 2025-01-01
 
 ### Added
@@ -14,7 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Clustering Analysis**: K-means clustering and Self-Organizing Maps (SOM) with quality metrics
 - **Data Management**: CSV upload with drag-and-drop, automatic type inference, and demo datasets
 - **Modern UI/UX**: Responsive design with Framer Motion animations and accessibility support
-- **Export & Persistence**: Model serialization, CSV export, and local storage with migration
+- **Export & Persistence**: Model serialization, CSV export, and local storage
 
 #### Neural Networks
 - Custom TypeScript implementation with gradient descent and backpropagation
@@ -67,7 +141,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Developer Experience
 - TypeScript 5.2+ with strict mode configuration
-- Comprehensive test suite with Jest and React Testing Library
 - ESLint with TypeScript and React hooks plugins
 - Prettier for consistent code formatting
 - Vite 4.5+ for fast development and building
@@ -92,14 +165,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Development server on port 3000 with auto-open
 - Production build to `dist/` directory
 
-#### Testing
-- Jest with jsdom environment
-- React Testing Library for component testing
-- Comprehensive test coverage for ML algorithms
-- Migration system testing
+#### Code Quality
 - Type checking with TypeScript compiler
 
-#### Code Quality
+#### Development Tools
 - ESLint with TypeScript rules and React hooks
 - Prettier with single quotes and 2-space indentation
 - Strict TypeScript configuration

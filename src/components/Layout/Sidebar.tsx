@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import ThemeToggle from '../Common/ThemeToggle';
 
 /**
  * Navigation sidebar for the dashboard layout
  */
 const Sidebar: React.FC = () => {
+  const { t } = useTranslation('common');
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(true); // Start collapsed to test
 
   const navigationItems = [
     {
-      name: 'Data',
+      nameKey: 'navigation.data',
       path: '/data',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -20,7 +23,7 @@ const Sidebar: React.FC = () => {
       )
     },
     {
-      name: 'Predictor',
+      nameKey: 'navigation.predictor',
       path: '/predictor',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -29,7 +32,7 @@ const Sidebar: React.FC = () => {
       )
     },
     {
-      name: 'Clusterizer',
+      nameKey: 'navigation.clusterizer',
       path: '/clusterizer',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -38,7 +41,16 @@ const Sidebar: React.FC = () => {
       )
     },
     {
-      name: 'Results',
+      nameKey: 'navigation.forecasting',
+      path: '/forecasting',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      )
+    },
+    {
+      nameKey: 'navigation.results',
       path: '/results',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +62,7 @@ const Sidebar: React.FC = () => {
 
   const infoItems = [
     { 
-      name: 'Guidelines', 
+      nameKey: 'navigation.guidelines', 
       path: '/guidelines',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +71,7 @@ const Sidebar: React.FC = () => {
       )
     },
     { 
-      name: 'About', 
+      nameKey: 'navigation.about', 
       path: '/about',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +80,7 @@ const Sidebar: React.FC = () => {
       )
     },
     { 
-      name: 'Contact', 
+      nameKey: 'navigation.contact', 
       path: '/contact',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +92,7 @@ const Sidebar: React.FC = () => {
 
   const legalItems = [
     { 
-      name: 'Terms', 
+      nameKey: 'navigation.terms', 
       path: '/terms',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,7 +101,7 @@ const Sidebar: React.FC = () => {
       )
     },
     { 
-      name: 'Privacy', 
+      nameKey: 'navigation.privacy', 
       path: '/privacy',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -106,16 +118,16 @@ const Sidebar: React.FC = () => {
       initial={{ x: -250 }}
       animate={{ x: 0, width: isCollapsed ? 64 : 256 }}
       transition={{ duration: 0.3 }}
-      className={`${isCollapsed ? 'w-16' : 'w-64'} bg-white border-r border-secondary-200 flex flex-col h-screen`}
+      className={`${isCollapsed ? 'w-16' : 'w-64'} bg-white dark:bg-gray-800 border-r border-secondary-200 dark:border-gray-700 flex flex-col h-screen`}
     >
       {/* Logo and Toggle */}
-      <div className={`${isCollapsed ? 'p-3' : 'p-6'} border-b border-secondary-200 flex items-center ${isCollapsed ? 'flex-col space-y-2' : 'justify-between'}`}>
+      <div className={`${isCollapsed ? 'p-3' : 'p-6'} border-b border-secondary-200 dark:border-gray-700 flex items-center ${isCollapsed ? 'flex-col space-y-2' : 'justify-between'}`}>
         {!isCollapsed && (
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xs">NC</span>
             </div>
-            <span className="text-xl font-bold text-secondary-900">NetCraft AI</span>
+            <span className="text-xl font-bold text-secondary-900 dark:text-gray-100">NetCraft AI</span>
           </Link>
         )}
         {isCollapsed && (
@@ -127,10 +139,10 @@ const Sidebar: React.FC = () => {
         )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-1 rounded-lg hover:bg-secondary-100 transition-colors duration-200 flex-shrink-0"
-          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          className="p-1 rounded-lg hover:bg-secondary-100 dark:hover:bg-gray-700 transition-colors duration-200 flex-shrink-0"
+          aria-label={isCollapsed ? t('actions.expandSidebar') : t('actions.collapseSidebar')}
         >
-          <svg className="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 text-secondary-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isCollapsed ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             ) : (
@@ -144,8 +156,8 @@ const Sidebar: React.FC = () => {
       <nav className={`flex-1 ${isCollapsed ? 'p-2' : 'p-4'} space-y-1 overflow-y-auto`}>
         <div className={isCollapsed ? 'space-y-1' : 'mb-6'}>
           {!isCollapsed && (
-            <h3 className="text-xs font-semibold text-secondary-500 uppercase tracking-wider mb-3">
-              Analysis
+            <h3 className="text-xs font-semibold text-secondary-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              {t('navigation.analysis')}
             </h3>
           )}
           {navigationItems.map((item) => (
@@ -154,21 +166,21 @@ const Sidebar: React.FC = () => {
               to={item.path}
               className={`flex items-center ${isCollapsed ? 'justify-center p-2' : 'space-x-3 px-3 py-2'} rounded-lg text-sm font-medium transition-colors duration-200 ${
                 isActive(item.path)
-                  ? 'bg-primary-100 text-primary-700 border-r-2 border-primary-500'
-                  : 'text-secondary-600 hover:bg-secondary-100 hover:text-secondary-900'
+                  ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 border-r-2 border-primary-500'
+                  : 'text-secondary-600 dark:text-gray-400 hover:bg-secondary-100 dark:hover:bg-gray-700 hover:text-secondary-900 dark:hover:text-gray-100'
               }`}
-              title={isCollapsed ? item.name : undefined}
+              title={isCollapsed ? t(item.nameKey) : undefined}
             >
               {item.icon}
-              {!isCollapsed && <span>{item.name}</span>}
+              {!isCollapsed && <span>{t(item.nameKey)}</span>}
             </Link>
           ))}
         </div>
 
         <div className={isCollapsed ? 'space-y-1' : 'mb-6'}>
           {!isCollapsed && (
-            <h3 className="text-xs font-semibold text-secondary-500 uppercase tracking-wider mb-3">
-              Information
+            <h3 className="text-xs font-semibold text-secondary-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              {t('navigation.information')}
             </h3>
           )}
           {infoItems.map((item) => (
@@ -177,21 +189,21 @@ const Sidebar: React.FC = () => {
               to={item.path}
               className={`flex items-center ${isCollapsed ? 'justify-center p-2' : 'space-x-3 px-3 py-2'} rounded-lg text-sm font-medium transition-colors duration-200 ${
                 isActive(item.path)
-                  ? 'bg-primary-100 text-primary-700 border-r-2 border-primary-500'
-                  : 'text-secondary-600 hover:bg-secondary-100 hover:text-secondary-900'
+                  ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 border-r-2 border-primary-500'
+                  : 'text-secondary-600 dark:text-gray-400 hover:bg-secondary-100 dark:hover:bg-gray-700 hover:text-secondary-900 dark:hover:text-gray-100'
               }`}
-              title={isCollapsed ? item.name : undefined}
+              title={isCollapsed ? t(item.nameKey) : undefined}
             >
               {item.icon}
-              {!isCollapsed && <span>{item.name}</span>}
+              {!isCollapsed && <span>{t(item.nameKey)}</span>}
             </Link>
           ))}
         </div>
 
         <div className={isCollapsed ? 'space-y-1' : ''}>
           {!isCollapsed && (
-            <h3 className="text-xs font-semibold text-secondary-500 uppercase tracking-wider mb-3">
-              Legal
+            <h3 className="text-xs font-semibold text-secondary-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              {t('navigation.legal')}
             </h3>
           )}
           {legalItems.map((item) => (
@@ -200,13 +212,13 @@ const Sidebar: React.FC = () => {
               to={item.path}
               className={`flex items-center ${isCollapsed ? 'justify-center p-2' : 'space-x-3 px-3 py-2'} rounded-lg text-sm font-medium transition-colors duration-200 ${
                 isActive(item.path)
-                  ? 'bg-primary-100 text-primary-700 border-r-2 border-primary-500'
-                  : 'text-secondary-600 hover:bg-secondary-100 hover:text-secondary-900'
+                  ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 border-r-2 border-primary-500'
+                  : 'text-secondary-600 dark:text-gray-400 hover:bg-secondary-100 dark:hover:bg-gray-700 hover:text-secondary-900 dark:hover:text-gray-100'
               }`}
-              title={isCollapsed ? item.name : undefined}
+              title={isCollapsed ? t(item.nameKey) : undefined}
             >
               {item.icon}
-              {!isCollapsed && <span>{item.name}</span>}
+              {!isCollapsed && <span>{t(item.nameKey)}</span>}
             </Link>
           ))}
         </div>
@@ -214,10 +226,15 @@ const Sidebar: React.FC = () => {
 
       {/* Footer */}
       {!isCollapsed && (
-        <div className="p-4 border-t border-secondary-200">
-          <div className="text-xs text-secondary-500 text-center">
+        <div className="p-4 border-t border-secondary-200 dark:border-gray-700">
+          {!isCollapsed && (
+            <div className="mb-3 flex justify-center">
+              <ThemeToggle variant="sidebar" />
+            </div>
+          )}
+          <div className="text-xs text-secondary-500 dark:text-gray-400 text-center">
             <p>NetCraft AI v1.0</p>
-            <p className="mt-1">© 2025 All rights reserved</p>
+            <p className="mt-1">{t('layout.footer.copyright')}</p>
           </div>
         </div>
       )}

@@ -1,10 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { useScrollToTop } from '../utils/useScrollToTop';
 
 /**
  * Guidelines page with usage instructions and best practices
  */
 const GuidelinesPage: React.FC = () => {
+  const { t } = useTranslation(['pages', 'guides']);
+  
+  // Ensure page starts from top
+  useScrollToTop();
+
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Header */}
@@ -13,11 +20,11 @@ const GuidelinesPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center"
       >
-        <h1 className="text-4xl font-bold text-secondary-900 mb-4">
-          Usage Guidelines
+        <h1 className="text-4xl font-bold text-secondary-900 dark:text-gray-100 mb-4">
+          {t('guides:title')}
         </h1>
-        <p className="text-xl text-secondary-600">
-          Best practices for effective machine learning with NetCraft AI
+        <p className="text-xl text-secondary-600 dark:text-gray-400">
+          {t('guides:subtitle')}
         </p>
       </motion.div>
 
@@ -28,17 +35,16 @@ const GuidelinesPage: React.FC = () => {
         transition={{ delay: 0.1 }}
         className="card"
       >
-        <h2 className="text-2xl font-semibold text-secondary-900 mb-4">Getting Started</h2>
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-4">{t('guides:gettingStarted.title')}</h2>
         <div className="space-y-4">
           <div className="flex items-start">
             <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center mr-4 mt-1">
               <span className="text-primary-600 font-bold text-sm">1</span>
             </div>
             <div>
-              <h3 className="font-medium text-secondary-900 mb-1">Upload Your Data</h3>
-              <p className="text-secondary-600">
-                Start by uploading a CSV file with your dataset. The system will automatically 
-                detect column types and provide data statistics.
+              <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-1">{t('guides:gettingStarted.steps.uploadData.title')}</h3>
+              <p className="text-secondary-600 dark:text-gray-400">
+                {t('guides:gettingStarted.steps.uploadData.description')}
               </p>
             </div>
           </div>
@@ -48,10 +54,9 @@ const GuidelinesPage: React.FC = () => {
               <span className="text-primary-600 font-bold text-sm">2</span>
             </div>
             <div>
-              <h3 className="font-medium text-secondary-900 mb-1">Explore Your Data</h3>
-              <p className="text-secondary-600">
-                Review the data preview, column statistics, and select relevant features 
-                for your analysis.
+              <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-1">{t('guides:gettingStarted.steps.exploreData.title')}</h3>
+              <p className="text-secondary-600 dark:text-gray-400">
+                {t('guides:gettingStarted.steps.exploreData.description')}
               </p>
             </div>
           </div>
@@ -61,10 +66,9 @@ const GuidelinesPage: React.FC = () => {
               <span className="text-primary-600 font-bold text-sm">3</span>
             </div>
             <div>
-              <h3 className="font-medium text-secondary-900 mb-1">Choose Your Analysis</h3>
-              <p className="text-secondary-600">
-                Decide between neural network prediction or clustering analysis based 
-                on your goals.
+              <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-1">{t('guides:gettingStarted.steps.chooseAnalysis.title')}</h3>
+              <p className="text-secondary-600 dark:text-gray-400">
+                {t('guides:gettingStarted.steps.chooseAnalysis.description')}
               </p>
             </div>
           </div>
@@ -78,36 +82,78 @@ const GuidelinesPage: React.FC = () => {
         transition={{ delay: 0.2 }}
         className="card"
       >
-        <h2 className="text-2xl font-semibold text-secondary-900 mb-6">Neural Network Best Practices</h2>
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">{t('guides:neuralNetwork.title')}</h2>
         
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Data Preparation</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• <strong>Clean Data:</strong> Remove or handle missing values before upload</li>
-              <li>• <strong>Numeric Features:</strong> Ensure input features are numeric for best results</li>
-              <li>• <strong>Scale Consideration:</strong> Features with similar scales often work better</li>
-              <li>• <strong>Sample Size:</strong> Aim for at least 100+ samples for reliable training</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:neuralNetwork.dataPreparation.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:neuralNetwork.dataPreparation.cleanData')}</li>
+              <li>• {t('guides:neuralNetwork.dataPreparation.numericFeatures')}</li>
+              <li>• {t('guides:neuralNetwork.dataPreparation.scaleConsideration')}</li>
+              <li>• {t('guides:neuralNetwork.dataPreparation.sampleSize')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Architecture Selection</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• <strong>Start Simple:</strong> Begin with 1-2 hidden layers</li>
-              <li>• <strong>Layer Size:</strong> Use 5-50 neurons per layer initially</li>
-              <li>• <strong>Activation Functions:</strong> ReLU works well for most cases</li>
-              <li>• <strong>Output Layer:</strong> 1 neuron for regression, multiple for classification</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:neuralNetwork.architectureSelection.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:neuralNetwork.architectureSelection.startSimple')}</li>
+              <li>• {t('guides:neuralNetwork.architectureSelection.layerSize')}</li>
+              <li>• {t('guides:neuralNetwork.architectureSelection.activationFunctions')}</li>
+              <li>• {t('guides:neuralNetwork.architectureSelection.outputLayer')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Training Parameters</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• <strong>Learning Rate:</strong> Start with 0.01, adjust if needed (0.001-0.1)</li>
-              <li>• <strong>Epochs:</strong> Begin with 100-500 epochs</li>
-              <li>• <strong>Batch Size:</strong> Use 16-64 for small datasets, 32 is often good</li>
-              <li>• <strong>Monitor Training:</strong> Watch for overfitting in loss curves</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:neuralNetwork.trainingParameters.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:neuralNetwork.trainingParameters.learningRate')}</li>
+              <li>• {t('guides:neuralNetwork.trainingParameters.epochs')}</li>
+              <li>• {t('guides:neuralNetwork.trainingParameters.batchSize')}</li>
+              <li>• {t('guides:neuralNetwork.trainingParameters.monitorTraining')}</li>
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Random Forest Guidelines */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="card"
+      >
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">{t('guides:randomForest.title')}</h2>
+        
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:randomForest.dataPreparation.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:randomForest.dataPreparation.mixedDataTypes')}</li>
+              <li>• {t('guides:randomForest.dataPreparation.missingValues')}</li>
+              <li>• {t('guides:randomForest.dataPreparation.featureSelection')}</li>
+              <li>• {t('guides:randomForest.dataPreparation.sampleSize')}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:randomForest.modelConfiguration.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:randomForest.modelConfiguration.numberOfTrees')}</li>
+              <li>• {t('guides:randomForest.modelConfiguration.maxDepth')}</li>
+              <li>• {t('guides:randomForest.modelConfiguration.minSamplesSplit')}</li>
+              <li>• {t('guides:randomForest.modelConfiguration.featureSampling')}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:randomForest.performanceOptimization.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:randomForest.performanceOptimization.featureImportance')}</li>
+              <li>• {t('guides:randomForest.performanceOptimization.crossValidation')}</li>
+              <li>• {t('guides:randomForest.performanceOptimization.ensembleSize')}</li>
+              <li>• {t('guides:randomForest.performanceOptimization.interpretability')}</li>
             </ul>
           </div>
         </div>
@@ -117,39 +163,81 @@ const GuidelinesPage: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.4 }}
         className="card"
       >
-        <h2 className="text-2xl font-semibold text-secondary-900 mb-6">Clustering Best Practices</h2>
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">{t('guides:clustering.title')}</h2>
         
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Feature Selection</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• <strong>Relevant Features:</strong> Choose features that define similarity</li>
-              <li>• <strong>Numeric Only:</strong> Use numeric features for distance calculations</li>
-              <li>• <strong>Feature Scaling:</strong> Consider if features have very different scales</li>
-              <li>• <strong>Dimensionality:</strong> 2-10 features often work well for visualization</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:clustering.featureSelection.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:clustering.featureSelection.relevantFeatures')}</li>
+              <li>• {t('guides:clustering.featureSelection.numericOnly')}</li>
+              <li>• {t('guides:clustering.featureSelection.featureScaling')}</li>
+              <li>• {t('guides:clustering.featureSelection.dimensionality')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">K-Means Guidelines</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• <strong>Number of Clusters:</strong> Start with 2-5 clusters</li>
-              <li>• <strong>Data Shape:</strong> Works best with spherical cluster shapes</li>
-              <li>• <strong>Initialization:</strong> K-means++ initialization is recommended</li>
-              <li>• <strong>Evaluation:</strong> Lower inertia generally indicates better clustering</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:clustering.kmeansGuidelines.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:clustering.kmeansGuidelines.numberOfClusters')}</li>
+              <li>• {t('guides:clustering.kmeansGuidelines.dataShape')}</li>
+              <li>• {t('guides:clustering.kmeansGuidelines.initialization')}</li>
+              <li>• {t('guides:clustering.kmeansGuidelines.evaluation')}</li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Self-Organizing Maps</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• <strong>Grid Size:</strong> Start with 5x5 or 10x10 grids</li>
-              <li>• <strong>Training Epochs:</strong> Use 100-1000 epochs for convergence</li>
-              <li>• <strong>Learning Rate:</strong> 0.1-0.5 works well for most cases</li>
-              <li>• <strong>Topology:</strong> Rectangular topology is simpler to interpret</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:clustering.som.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:clustering.som.gridSize')}</li>
+              <li>• {t('guides:clustering.som.trainingEpochs')}</li>
+              <li>• {t('guides:clustering.som.learningRate')}</li>
+              <li>• {t('guides:clustering.som.topology')}</li>
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Time Series Forecasting Guidelines */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="card"
+      >
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">{t('guides:timeSeries.title')}</h2>
+        
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:timeSeries.dataRequirements.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:timeSeries.dataRequirements.timeColumn')}</li>
+              <li>• {t('guides:timeSeries.dataRequirements.regularIntervals')}</li>
+              <li>• {t('guides:timeSeries.dataRequirements.sufficientHistory')}</li>
+              <li>• {t('guides:timeSeries.dataRequirements.dataQuality')}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:timeSeries.algorithmSelection.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:timeSeries.algorithmSelection.movingAverage')}</li>
+              <li>• {t('guides:timeSeries.algorithmSelection.exponentialSmoothing')}</li>
+              <li>• {t('guides:timeSeries.algorithmSelection.linearTrend')}</li>
+              <li>• {t('guides:timeSeries.algorithmSelection.combination')}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:timeSeries.validationAndTuning.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:timeSeries.validationAndTuning.trainTestSplit')}</li>
+              <li>• {t('guides:timeSeries.validationAndTuning.forecastHorizon')}</li>
+              <li>• {t('guides:timeSeries.validationAndTuning.errorMetrics')}</li>
+              <li>• {t('guides:timeSeries.validationAndTuning.seasonality')}</li>
             </ul>
           </div>
         </div>
@@ -159,27 +247,27 @@ const GuidelinesPage: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        className="card bg-blue-50 border-blue-200"
+        transition={{ delay: 0.6 }}
+        className="card bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800"
       >
-        <h2 className="text-2xl font-semibold text-secondary-900 mb-4">Data Requirements</h2>
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-4">{t('guides:dataRequirements.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">File Format</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• CSV files with headers</li>
-              <li>• UTF-8 encoding recommended</li>
-              <li>• Comma-separated values</li>
-              <li>• Maximum file size: 10MB</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:dataRequirements.fileFormat.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:dataRequirements.fileFormat.csvWithHeaders')}</li>
+              <li>• {t('guides:dataRequirements.fileFormat.utf8Encoding')}</li>
+              <li>• {t('guides:dataRequirements.fileFormat.commaSeparated')}</li>
+              <li>• {t('guides:dataRequirements.fileFormat.maxFileSize')}</li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Data Quality</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• Consistent data types per column</li>
-              <li>• Minimal missing values</li>
-              <li>• Meaningful column names</li>
-              <li>• Sufficient sample size</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:dataRequirements.dataQuality.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:dataRequirements.dataQuality.consistentDataTypes')}</li>
+              <li>• {t('guides:dataRequirements.dataQuality.minimalMissingValues')}</li>
+              <li>• {t('guides:dataRequirements.dataQuality.meaningfulColumnNames')}</li>
+              <li>• {t('guides:dataRequirements.dataQuality.sufficientSampleSize')}</li>
             </ul>
           </div>
         </div>
@@ -189,35 +277,53 @@ const GuidelinesPage: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.7 }}
         className="card"
       >
-        <h2 className="text-2xl font-semibold text-secondary-900 mb-4">Troubleshooting</h2>
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-4">{t('guides:troubleshooting.title')}</h2>
         <div className="space-y-4">
           <div>
-            <h3 className="font-medium text-secondary-900 mb-2">Training Issues</h3>
-            <ul className="space-y-1 text-sm text-secondary-700">
-              <li>• <strong>Loss not decreasing:</strong> Try lower learning rate or more epochs</li>
-              <li>• <strong>Training too slow:</strong> Reduce network size or batch size</li>
-              <li>• <strong>Poor accuracy:</strong> Check data quality and feature selection</li>
+            <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('guides:troubleshooting.trainingIssues.title')}</h3>
+            <ul className="space-y-1 text-sm text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:troubleshooting.trainingIssues.lossNotDecreasing')}</li>
+              <li>• {t('guides:troubleshooting.trainingIssues.trainingTooSlow')}</li>
+              <li>• {t('guides:troubleshooting.trainingIssues.poorAccuracy')}</li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-medium text-secondary-900 mb-2">Clustering Issues</h3>
-            <ul className="space-y-1 text-sm text-secondary-700">
-              <li>• <strong>Poor clusters:</strong> Try different number of clusters or features</li>
-              <li>• <strong>No clear patterns:</strong> Data might not have natural clusters</li>
-              <li>• <strong>SOM not converging:</strong> Increase epochs or adjust learning rate</li>
+            <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('guides:troubleshooting.randomForestIssues.title')}</h3>
+            <ul className="space-y-1 text-sm text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:troubleshooting.randomForestIssues.overfitting')}</li>
+              <li>• {t('guides:troubleshooting.randomForestIssues.poorPerformance')}</li>
+              <li>• {t('guides:troubleshooting.randomForestIssues.slowTraining')}</li>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-medium text-secondary-900 mb-2">Data Issues</h3>
-            <ul className="space-y-1 text-sm text-secondary-700">
-              <li>• <strong>Upload fails:</strong> Check file format and size</li>
-              <li>• <strong>Wrong data types:</strong> Manually verify column types</li>
-              <li>• <strong>Missing values:</strong> Clean data before upload</li>
+            <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('guides:troubleshooting.clusteringIssues.title')}</h3>
+            <ul className="space-y-1 text-sm text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:troubleshooting.clusteringIssues.poorClusters')}</li>
+              <li>• {t('guides:troubleshooting.clusteringIssues.noClearPatterns')}</li>
+              <li>• {t('guides:troubleshooting.clusteringIssues.somNotConverging')}</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('guides:troubleshooting.forecastingIssues.title')}</h3>
+            <ul className="space-y-1 text-sm text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:troubleshooting.forecastingIssues.poorAccuracy')}</li>
+              <li>• {t('guides:troubleshooting.forecastingIssues.unstableForecasts')}</li>
+              <li>• {t('guides:troubleshooting.forecastingIssues.noTrendCaptured')}</li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('guides:troubleshooting.dataIssues.title')}</h3>
+            <ul className="space-y-1 text-sm text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:troubleshooting.dataIssues.uploadFails')}</li>
+              <li>• {t('guides:troubleshooting.dataIssues.wrongDataTypes')}</li>
+              <li>• {t('guides:troubleshooting.dataIssues.missingValues')}</li>
             </ul>
           </div>
         </div>
@@ -227,27 +333,27 @@ const GuidelinesPage: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="card bg-green-50 border-green-200"
+        transition={{ delay: 0.8 }}
+        className="card bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800"
       >
-        <h2 className="text-2xl font-semibold text-secondary-900 mb-4">Performance Tips</h2>
+        <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-4">{t('guides:performanceTips.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Browser Performance</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• Use modern browsers (Chrome, Firefox, Safari)</li>
-              <li>• Close unnecessary tabs</li>
-              <li>• Ensure sufficient RAM available</li>
-              <li>• Use desktop for large datasets</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:performanceTips.browserPerformance.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:performanceTips.browserPerformance.modernBrowsers')}</li>
+              <li>• {t('guides:performanceTips.browserPerformance.closeUnnecessaryTabs')}</li>
+              <li>• {t('guides:performanceTips.browserPerformance.sufficientRAM')}</li>
+              <li>• {t('guides:performanceTips.browserPerformance.useDesktop')}</li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-medium text-secondary-900 mb-3">Model Optimization</h3>
-            <ul className="space-y-2 text-secondary-700">
-              <li>• Start with smaller models</li>
-              <li>• Use appropriate batch sizes</li>
-              <li>• Monitor training progress</li>
-              <li>• Save models regularly</li>
+            <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-3">{t('guides:performanceTips.modelOptimization.title')}</h3>
+            <ul className="space-y-2 text-secondary-700 dark:text-gray-300">
+              <li>• {t('guides:performanceTips.modelOptimization.startSmaller')}</li>
+              <li>• {t('guides:performanceTips.modelOptimization.appropriateBatchSizes')}</li>
+              <li>• {t('guides:performanceTips.modelOptimization.monitorProgress')}</li>
+              <li>• {t('guides:performanceTips.modelOptimization.saveRegularly')}</li>
             </ul>
           </div>
         </div>

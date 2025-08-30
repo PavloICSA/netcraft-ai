@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Hero from '../components/Landing/Hero';
 import Features from '../components/Landing/Features';
 import DemoCarousel from '../components/Landing/DemoCarousel';
@@ -9,11 +10,13 @@ import DemoCarousel from '../components/Landing/DemoCarousel';
  * Landing page with hero section, features, and demo showcase
  */
 const LandingPage: React.FC = () => {
+  const { t } = useTranslation('landing');
+  const { t: tCommon } = useTranslation('common');
   return (
     <div className="min-h-screen">
       {/* Beautiful Header */}
       <header className="absolute top-0 left-0 right-0 z-50 p-6">
-        <div className="max-w-7xl mx-auto flex justify-center items-center">
+        <div className="max-w-7xl mx-auto flex justify-center items-center relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -63,7 +66,7 @@ const LandingPage: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-center text-xs md:text-sm text-secondary-600 font-medium mt-2 overflow-hidden"
+                className="text-center text-xs md:text-sm text-secondary-600 dark:text-gray-400 font-medium mt-2 overflow-hidden"
                 style={{ height: '24px', lineHeight: '24px' }}
               >
                 <motion.p
@@ -78,7 +81,7 @@ const LandingPage: React.FC = () => {
                   }}
                   className="whitespace-nowrap"
                 >
-                  AI-powered data analysis platform combining neural network prediction and advanced clustering
+                  {t('subtitle')}
                 </motion.p>
               </motion.div>
             </motion.div>
@@ -116,7 +119,7 @@ const LandingPage: React.FC = () => {
       <Features />
 
       {/* Demo Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -125,10 +128,10 @@ const LandingPage: React.FC = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl mb-4">
-              <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent font-bold">See It In Action</span>
+              <span className="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent font-bold">{t('seeItInAction.title')}</span>
             </h2>
-            <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-              Explore interactive demos showcasing neural network prediction and clustering analysis
+            <p className="text-xl text-secondary-600 dark:text-gray-400 max-w-3xl mx-auto">
+              {t('seeItInAction.description')}
             </p>
           </motion.div>
           
@@ -145,10 +148,10 @@ const LandingPage: React.FC = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Analyze Your Data?
+              {t('readyToAnalyze.title')}
             </h2>
             <p className="text-xl text-primary-100 mb-8">
-              Upload your dataset and start building predictive models in minutes
+              {t('readyToAnalyze.description')}
             </p>
             <div className="flex gap-6 justify-center">
               {/* Upload Data Button - Primary Style */}
@@ -156,7 +159,7 @@ const LandingPage: React.FC = () => {
                 to="/data"
                 className="relative bg-gradient-to-r from-white to-primary-50 hover:from-primary-50 hover:to-white text-primary-600 hover:text-primary-700 font-bold py-5 px-12 rounded-xl text-xl transition-all duration-300 shadow-2xl hover:shadow-white/25 hover:shadow-2xl transform hover:scale-105 hover:brightness-110 group overflow-hidden"
               >
-                <span className="relative z-10">Upload Data</span>
+                <span className="relative z-10">{t('readyToAnalyze.uploadData')}</span>
                 {/* Glowing overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-100 to-white opacity-0 group-hover:opacity-30 transition-opacity duration-300 rounded-xl blur-sm"></div>
                 {/* Shimmer effect */}
@@ -168,7 +171,7 @@ const LandingPage: React.FC = () => {
                 to="/guidelines"
                 className="relative bg-gradient-to-r from-white/10 to-white/5 hover:from-white/20 hover:to-white/10 border-2 border-white hover:border-white/80 text-white font-bold py-5 px-12 rounded-xl text-xl transition-all duration-300 shadow-2xl hover:shadow-white/20 hover:shadow-2xl transform hover:scale-105 hover:brightness-110 group overflow-hidden backdrop-blur-sm"
               >
-                <span className="relative z-10">View Guidelines</span>
+                <span className="relative z-10">{t('readyToAnalyze.viewGuidelines')}</span>
                 {/* Glowing overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded-xl blur-sm"></div>
                 {/* Shimmer effect */}
@@ -180,45 +183,48 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-secondary-900 text-secondary-300 py-12">
+      <footer className="bg-secondary-900 dark:bg-gray-950 text-secondary-300 dark:text-gray-400 py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-white font-semibold mb-4">NetCraft AI</h3>
               <p className="text-sm">
-                Crafting artificial neural networks, clustering, and forecasts in the browser
+                {t('footer.description')}
               </p>
             </div>
             
             <div>
-              <h4 className="text-white font-medium mb-4">Features</h4>
+              <h4 className="text-white font-medium mb-4">{t('footer.features')}</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/predictor" className="hover:text-white">Neural Networks</Link></li>
-                <li><Link to="/clusterizer" className="hover:text-white">Clustering</Link></li>
-                <li><Link to="/data" className="hover:text-white">Data Analysis</Link></li>
+                <li><Link to="/neural-networks" className="hover:text-white">{t('hero.features.neuralNetworks.title')}</Link></li>
+                <li><Link to="/random-forest" className="hover:text-white">{t('hero.features.randomForest.title')}</Link></li>
+                <li><Link to="/clustering" className="hover:text-white">{t('hero.features.clustering.title')}</Link></li>
+                <li><Link to="/time-series-forecasting" className="hover:text-white">{t('hero.features.timeSeries.title')}</Link></li>
+                <li><Link to="/data-analysis" className="hover:text-white">{tCommon('navigation.dataAnalysis')}</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-white font-medium mb-4">Resources</h4>
+              <h4 className="text-white font-medium mb-4">{t('footer.resources')}</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/guidelines" className="hover:text-white">Guidelines</Link></li>
-                <li><Link to="/about" className="hover:text-white">About</Link></li>
-                <li><Link to="/contact" className="hover:text-white">Contact</Link></li>
+                <li><Link to="/guidelines" className="hover:text-white">{tCommon('navigation.guidelines')}</Link></li>
+                <li><Link to="/about" className="hover:text-white">{tCommon('navigation.about')}</Link></li>
+                <li><Link to="/contact" className="hover:text-white">{tCommon('navigation.contact')}</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-white font-medium mb-4">Legal</h4>
+              <h4 className="text-white font-medium mb-4">{t('footer.legal')}</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/terms" className="hover:text-white">Terms of Use</Link></li>
-                <li><Link to="/privacy" className="hover:text-white">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-white">{tCommon('navigation.termsOfUse')}</Link></li>
+                <li><Link to="/privacy" className="hover:text-white">{tCommon('navigation.privacyPolicy')}</Link></li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-secondary-700 mt-8 pt-8 text-center text-sm">
-            <p>&copy; 2025 NetCraft AI. All rights reserved.</p>
+            <p>{t('footer.copyright')}</p>
+            <p className="text-xs mt-2 text-secondary-400">{t('footer.developedBy')}</p>
           </div>
         </div>
       </footer>

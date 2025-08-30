@@ -5,6 +5,8 @@ This document provides comprehensive API documentation for NetCraft AI's machine
 ## Table of Contents
 
 - [Neural Networks](#neural-networks)
+- [Random Forest](#random-forest)
+- [Time Series Forecasting](#time-series-forecasting)
 - [Clustering](#clustering)
 - [Data Processing](#data-processing)
 - [Storage & Migration](#storage--migration)
@@ -144,6 +146,296 @@ activationFunctions.tanh(x);
 activationFunctions.reluDerivative(x);
 activationFunctions.sigmoidDerivative(x);
 activationFunctions.tanhDerivative(x);
+```
+
+## Random Forest
+
+### Core Functions
+
+#### `RandomForest` Class
+
+Main class for Random Forest ensemble learning.
+
+```typescript
+import { RandomForest } from './lib/random-forest/RandomForest';
+
+const config: RandomForestConfig = {
+  numTrees: 100,
+  maxDepth: 10,
+  minSamplesLeaf: 1,
+  featureSamplingRatio: 'sqrt',
+  taskType: 'classification',
+  bootstrapSampleRatio: 1.0,
+  randomSeed: 42
+};
+
+const rf = new RandomForest(config);
+```
+
+#### `train(features: number[][], targets: number[], featureNames: string[], onProgress?: ProgressCallback): Promise<RandomForestModel>`
+
+Trains the Random Forest model with bootstrap aggregating.
+
+```typescript
+const model = await rf.train(
+  features,
+  targets,
+  featureNames,
+  (progress, treesCompleted) => {
+    console.log(`Progress: ${progress}%, Trees: ${treesCompleted}/${config.numTrees}`);
+  }
+);
+
+console.log(model.oobScore); // Out-of-bag score
+console.log(model.featureImportance); // Feature importance scores
+```
+
+**Parameters:**
+- `features`: Training feature data (2D array)
+- `targets`: Training target data (1D array)
+- `featureNames`: Names of features for importance analysis
+- `onProgress`: Optional callback for training progress
+
+**Returns:**
+- `Promise<RandomForestModel>`: Trained model with trees and metadata
+
+#### `predict(features: number[]): RandomForestPrediction`
+
+Makes a single prediction with confidence score.
+
+```typescript
+const prediction = rf.predict([1.5, 2.3, 0.8, 1.2]);
+console.log(prediction.prediction); // Predicted class/value
+console.log(prediction.confidence); // Confidence score (0-1)
+console.log(prediction.treeVotes); // Individual tree votes (classification)
+```
+
+**Parameters:**
+- `features`: Input features for prediction
+
+**Returns:**
+- `RandomForestPrediction`: Prediction with confidence and tree votes
+
+#### `predictBatch(features: number[][]): RandomForestPrediction[]`
+
+Makes batch predictions for multiple samples.
+
+```typescript
+const predictions = rf.predictBatch(testFeatures);
+predictions.forEach((pred, i) => {
+  console.log(`Sample ${i}: ${pred.prediction} (${(pred.confidence * 100).toFixed(1)}%)`);
+});
+```
+
+#### `serialize(): RandomForestModel`
+
+Serializes the trained model for storage.
+
+```typescript
+const serializedModel = rf.serialize();
+const modelJson = JSON.stringify(serializedModel);
+localStorage.setItem('rf-model', modelJson);
+```
+
+#### `RandomForest.deserialize(model: RandomForestModel): RandomForest`
+
+Deserializes a model from storage.
+
+```typescript
+const modelJson = localStorage.getItem('rf-model');
+const modelData = JSON.parse(modelJson);
+const rf = RandomForest.deserialize(modelData);
+```
+
+### Feature Importance
+
+#### `calculateFeatureImportance(importanceScores: number[], featureNames: string[]): FeatureImportance[]`
+
+Calculates and ranks feature importance.
+
+```typescript
+import { calculateFeatureImportance } from './lib/random-forest/feature-importance';
+
+const importance = calculateFeatureImportance(model.featureImportance, featureNames);
+importance.forEach(feature => {
+  console.log(`${feature.featureName}: ${(feature.importance * 100).toFixed(2)}% (rank ${feature.rank})`);
+});
+```
+
+### Random Forest Utilities
+
+#### `prepareTrainingData(data: Record<string, any>[], targetColumn: string, inputColumns: string[])`
+
+Prepares data for Random Forest training.
+
+```typescript
+import { prepareTrainingData } from './lib/random-forest/rf-utils';
+
+const trainingData = prepareTrainingData(dataset, 'target', ['feature1', 'feature2']);
+console.log(trainingData.taskType); // 'classification' or 'regression'
+```
+
+#### `validateRandomForestConfig(config: RandomForestConfig): string[]`
+
+Validates Random Forest configuration.
+
+```typescript
+import { validateRandomForestConfig } from './lib/random-forest/rf-utils';
+
+const errors = validateRandomForestConfig(config);
+if (errors.length > 0) {
+  console.error('Configuration errors:', errors);
+}
+```
+
+## Time Series Forecasting
+
+### Base Forecaster Interface
+
+All forecasting algorithms implement the `IForecaster` interface:
+
+```typescript
+interface IForecaster {
+  fit(data: TimeSeriesData, config: ForecastConfig): void;
+  predict(horizon: number): ForecastResult;
+  isTrained(): boolean;
+  getMethodName(): string;
+}
+```
+
+### Moving Average Forecaster
+
+#### `MovingAverageForecaster` Class
+
+Simple moving average forecasting.
+
+```typescript
+import { MovingAverageForecaster } from './lib/forecasting/algorithms/moving-average';
+
+const forecaster = new MovingAverageForecaster();
+const config: ForecastConfig = {
+  method: 'moving-average',
+  parameters: { windowSize: 5 },
+  forecastHorizon: 10,
+  trainTestSplit: 0.8,
+  confidenceLevel: 0.95
+};
+
+forecaster.fit(timeSeriesData, config);
+const result = forecaster.predict(10);
+```
+
+### Exponential Smoothing Forecaster
+
+#### `ExponentialSmoothingForecaster` Class
+
+Exponential smoothing with optional trend (Holt's method).
+
+```typescript
+import { ExponentialSmoothingForecaster } from './lib/forecasting/algorithms/exponential-smoothing';
+
+const forecaster = new ExponentialSmoothingForecaster();
+
+// Simple exponential smoothing
+const simpleConfig: ForecastConfig = {
+  method: 'exponential-smoothing',
+  parameters: { alpha: 0.3 },
+  forecastHorizon: 10,
+  trainTestSplit: 0.8,
+  confidenceLevel: 0.95
+};
+
+// Double exponential smoothing (with trend)
+const doubleConfig: ForecastConfig = {
+  method: 'exponential-smoothing',
+  parameters: { alpha: 0.3, beta: 0.2 },
+  forecastHorizon: 10,
+  trainTestSplit: 0.8,
+  confidenceLevel: 0.95
+};
+
+forecaster.fit(timeSeriesData, doubleConfig);
+const result = forecaster.predict(10);
+```
+
+### Linear Trend Forecaster
+
+#### `LinearTrendForecaster` Class
+
+Linear regression-based trend forecasting.
+
+```typescript
+import { LinearTrendForecaster } from './lib/forecasting/algorithms/linear-trend';
+
+const forecaster = new LinearTrendForecaster();
+const config: ForecastConfig = {
+  method: 'linear-trend',
+  parameters: { polynomialDegree: 1 },
+  forecastHorizon: 10,
+  trainTestSplit: 0.8,
+  confidenceLevel: 0.95
+};
+
+forecaster.fit(timeSeriesData, config);
+const result = forecaster.predict(10);
+
+// Access trend parameters
+console.log(forecaster.getSlope());
+console.log(forecaster.getIntercept());
+```
+
+### Forecast Metrics
+
+#### Forecast Accuracy Metrics
+
+```typescript
+import { 
+  calculateMAE, 
+  calculateRMSE, 
+  calculateMAPE, 
+  calculateAllMetrics,
+  formatMetrics 
+} from './lib/forecasting/metrics/forecast-metrics';
+
+// Individual metrics
+const mae = calculateMAE(actual, predicted);
+const rmse = calculateRMSE(actual, predicted);
+const mape = calculateMAPE(actual, predicted);
+
+// All metrics at once
+const metrics = calculateAllMetrics(actual, predicted);
+
+// Formatted for display
+const formatted = formatMetrics(metrics);
+console.log(formatted.MAE, formatted.RMSE, formatted.MAPE);
+```
+
+### Time Series Data Processing
+
+#### `createTimeSeriesData(timestamps: Date[], values: number[], options?: TimeSeriesOptions): TimeSeriesData`
+
+Creates time series data structure with metadata.
+
+```typescript
+import { createTimeSeriesData } from './lib/data/csv-utils';
+
+const timeSeriesData = createTimeSeriesData(timestamps, values, {
+  handleMissing: 'forward-fill'
+});
+
+console.log(timeSeriesData.metadata.frequency); // 'daily', 'weekly', etc.
+console.log(timeSeriesData.metadata.hasGaps); // boolean
+```
+
+#### `detectTimeSeriesFrequency(timestamps: Date[]): string`
+
+Automatically detects time series frequency.
+
+```typescript
+import { detectTimeSeriesFrequency } from './lib/data/csv-utils';
+
+const frequency = detectTimeSeriesFrequency(timestamps);
+// Returns: 'daily', 'weekly', 'monthly', or 'irregular'
 ```
 
 ## Clustering
@@ -317,6 +609,32 @@ const stats = calculateNumericStats(numericValues);
 console.log(stats.mean, stats.std, stats.min, stats.max);
 ```
 
+#### `normalizeData(data: number[][]): { normalizedData: number[][]; normalizationStats: { mean: number; std: number }[] }`
+
+Normalizes data for machine learning algorithms.
+
+```typescript
+import { normalizeData } from './lib/data/csv-utils';
+
+const { normalizedData, normalizationStats } = normalizeData(features);
+```
+
+#### Time Series Utilities
+
+```typescript
+// Validate datetime strings
+const isValid = isValidDateTime('2023-01-01');
+
+// Parse datetime with fallback
+const date = parseDateTime('2023-01-01T10:30:00');
+
+// Handle missing values in time series
+const { values, removedIndices } = handleMissingValues(values, 'forward-fill');
+
+// Handle missing timestamps
+const { timestamps, values } = handleMissingTimestamps(timestamps, values);
+```
+
 ## Storage & Migration
 
 ### Storage Utilities
@@ -408,6 +726,101 @@ interface PredictionResult {
 }
 ```
 
+### Random Forest Types
+
+```typescript
+interface RandomForestConfig {
+  numTrees: number;
+  maxDepth: number | 'auto';
+  minSamplesLeaf: number;
+  featureSamplingRatio: 'sqrt' | 'log2' | 'all' | number;
+  taskType: 'regression' | 'classification';
+  bootstrapSampleRatio: number;
+  randomSeed?: number;
+}
+
+interface RandomForestModel {
+  config: RandomForestConfig;
+  trees: DecisionTree[];
+  featureImportance: number[];
+  oobScore: number;
+  trained: boolean;
+  trainingHistory: {
+    treesCompleted: number[];
+    oobScores: number[];
+    trainingTime: number;
+  };
+}
+
+interface RandomForestPrediction {
+  prediction: number | number[];
+  confidence?: number;
+  treeVotes?: number[];
+}
+
+interface FeatureImportance {
+  featureIndex: number;
+  featureName: string;
+  importance: number;
+  rank: number;
+}
+```
+
+### Time Series Forecasting Types
+
+```typescript
+interface TimeSeriesData {
+  timestamps: Date[];
+  values: number[];
+  metadata: {
+    frequency: 'daily' | 'weekly' | 'monthly' | 'irregular';
+    hasGaps: boolean;
+    totalPoints: number;
+  };
+}
+
+interface ForecastConfig {
+  method: 'moving-average' | 'exponential-smoothing' | 'linear-trend';
+  parameters: {
+    windowSize?: number;
+    alpha?: number;
+    beta?: number;
+    polynomialDegree?: number;
+  };
+  forecastHorizon: number;
+  trainTestSplit: number;
+  confidenceLevel: number;
+}
+
+interface ForecastResult {
+  method: string;
+  fittedValues: number[];
+  predictions: number[];
+  confidenceIntervals: {
+    lower: number[];
+    upper: number[];
+  };
+  metrics: {
+    mae: number;
+    rmse: number;
+    mape: number;
+    r2?: number;
+  };
+  timestamps: {
+    historical: Date[];
+    forecast: Date[];
+  };
+}
+
+interface ForecastModel {
+  config: ForecastConfig;
+  result: ForecastResult;
+  trained: boolean;
+  trainingData: TimeSeriesData;
+  createdAt: Date;
+}
+```
+
 ### Clustering Types
 
 ```typescript
@@ -471,10 +884,14 @@ interface ProjectState {
   currentDataset?: Dataset;
   models: {
     ann?: ANNModel;
+    randomForest?: RandomForestModel;
+    forecast?: ForecastModel;
     cluster?: ClusterResult;
   };
   results: {
     predictions?: PredictionResult;
+    randomForest?: RandomForestPrediction[];
+    forecast?: ForecastResult;
     clusters?: ClusterResult;
   };
 }
@@ -499,23 +916,30 @@ Common error scenarios:
 - Numerical instability
 - Storage quota exceeded
 - Migration failures
+- Time series data validation errors
+- Feature/target dimension mismatches
 
 ## Performance Considerations
 
 ### Memory Usage
 - Large datasets (>10,000 rows) may require significant RAM
+- Random Forest with many trees can be memory-intensive
+- Time series with long histories may impact performance
 - Consider data sampling for initial exploration
 - Use batch processing for large-scale operations
 
 ### Training Performance
-- Smaller batch sizes may improve convergence but slow training
-- Larger learning rates speed training but may cause instability
-- Monitor loss curves to detect overfitting
+- **Neural Networks**: Smaller batch sizes may improve convergence but slow training
+- **Random Forest**: More trees improve accuracy but increase training time
+- **Time Series**: Longer series require more computation for trend analysis
+- Monitor training progress with callbacks
+- Consider using Web Workers for heavy computations (future enhancement)
 
 ### Browser Limitations
 - localStorage has size limits (~5-10MB)
 - Web Workers not currently used (single-threaded)
 - Consider IndexedDB for very large datasets
+- Some browsers may limit computation time for long-running scripts
 
 ## Best Practices
 
@@ -526,3 +950,10 @@ Common error scenarios:
 5. **Test with small datasets** before scaling up
 6. **Handle errors gracefully** in production code
 7. **Use TypeScript types** for better development experience
+8. **Choose appropriate algorithms** for your data characteristics:
+   - Neural Networks: Complex non-linear relationships
+   - Random Forest: Tabular data with mixed types
+   - Time Series: Temporal data with trends/seasonality
+   - Clustering: Exploratory data analysis
+9. **Validate time series data** for gaps and irregular frequencies
+10. **Use confidence intervals** for uncertainty quantification

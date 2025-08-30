@@ -1,0 +1,1126 @@
+{
+  "about": {
+    "title": "About NetCraft AI",
+    "subtitle": "AI-powered data analysis platform for neural networks, ensemble methods, clustering, and forecasting",
+    "mission": {
+      "title": "Our Mission",
+      "description": "NetCraft AI democratizes machine learning by providing an intuitive browser-based platform for neural network prediction, ensemble methods, cluster analysis, and time series forecasting. We believe that powerful AI tools should be accessible to everyone, regardless of their technical background or computational resources."
+    },
+    "features": {
+      "title": "Key Features",
+      "neuralNetworks": {
+        "title": "Neural Networks",
+        "items": [
+          "Custom multilayer perceptron architecture",
+          "Support for regression and classification",
+          "Real-time training visualization",
+          "Comprehensive performance metrics"
+        ]
+      },
+      "randomForest": {
+        "title": "Random Forest",
+        "items": [
+          "Ensemble learning with decision trees",
+          "Feature importance analysis",
+          "Robust classification predictions",
+          "Out-of-bag error estimation"
+        ]
+      },
+      "clustering": {
+        "title": "Cluster Analysis",
+        "items": [
+          "K-means clustering with k-means++",
+          "Self-Organizing Maps (SOM)",
+          "Interactive cluster visualization",
+          "Quality assessment metrics"
+        ]
+      },
+      "timeSeries": {
+        "title": "Time Series Forecasting",
+        "items": [
+          "Moving average algorithms",
+          "Exponential smoothing methods",
+          "Linear trend analysis",
+          "Forecast accuracy metrics"
+        ]
+      }
+    },
+    "technology": {
+      "title": "Technology Stack",
+      "frontend": {
+        "title": "Frontend",
+        "description": "React 18, TypeScript, Tailwind CSS"
+      },
+      "machineLearning": {
+        "title": "Machine Learning",
+        "description": "Pure TypeScript implementation"
+      },
+      "design": {
+        "title": "Design",
+        "description": "Framer Motion, Responsive UI"
+      }
+    },
+    "privacy": {
+      "title": "Privacy & Security",
+      "clientSide": {
+        "title": "100% Client-Side Processing:",
+        "description": "All data processing happens in your browser, ensuring complete privacy and security. Your data never leaves your device, providing maximum protection for sensitive information."
+      },
+      "noServer": {
+        "title": "No Server Dependencies:",
+        "description": "The application runs entirely in your browser without requiring external servers or cloud services. This eliminates latency concerns and ensures consistent performance across all environments."
+      },
+      "localStorage": {
+        "title": "Local Storage Only:",
+        "description": "Models and results are stored locally on your device with full user control. You can export your data at any time and maintain complete ownership of your work."
+      }
+    },
+    "openSource": {
+      "title": "Open Source",
+      "description": "NetCraft AI is built with transparency and community collaboration in mind, fostering an open development environment. The source code is available for review, contribution, and learning to support the broader developer community.",
+      "viewOnGitHub": "View on GitHub",
+      "contributionGuidelines": "Contribution Guidelines"
+    },
+    "development": {
+      "title": "Development",
+      "description": "NetCraft AI is developed using modern web technologies and best practices, focusing on performance, accessibility, and user experience. The project follows strict TypeScript typing, comprehensive testing, and clean architecture principles."
+    },
+    "contributing": {
+      "title": "Contributing Guidelines",
+      "subtitle": "How to contribute to NetCraft AI development",
+      "gettingStarted": {
+        "title": "Getting Started",
+        "description": "We welcome contributions from the community! Follow these steps to get started:",
+        "steps": [
+          "Fork the repository",
+          "Create a feature branch: `git checkout -b feature-name`",
+          "Make changes and add tests",
+          "Run linting and tests: `npm run lint && npm test`",
+          "Commit changes: `git commit -m \"Add feature\"`",
+          "Push to branch: `git push origin feature-name`",
+          "Create a Pull Request"
+        ]
+      },
+      "developmentGuidelines": {
+        "title": "Development Guidelines",
+        "codeStandards": {
+          "title": "Code Standards",
+          "items": [
+            "Follow TypeScript strict mode conventions",
+            "Write comprehensive tests for new features",
+            "Update documentation for API changes",
+            "Use semantic commit messages",
+            "Ensure backward compatibility when possible",
+            "Follow internationalization guidelines for new UI text"
+          ]
+        },
+        "testingRequirements": {
+          "title": "Testing Requirements",
+          "items": [
+            "All new features must have corresponding tests",
+            "Maintain 80%+ test coverage",
+            "Include both unit and integration tests",
+            "Test accessibility for UI components",
+            "Verify cross-browser compatibility"
+          ]
+        },
+        "codeReview": {
+          "title": "Code Review Process",
+          "items": [
+            "All PRs require review by at least one maintainer",
+            "Ensure all CI checks pass",
+            "Address comments and suggestions",
+            "Update PR based on feedback",
+            "Follow PR description template"
+          ]
+        }
+      },
+      "contributionTypes": {
+        "title": "Types of Contributions",
+        "bugReports": {
+          "title": "Bug Reports",
+          "description": "Help us improve quality by reporting bugs",
+          "items": [
+            "Use the issue template for bug reports",
+            "Include steps to reproduce",
+            "Provide browser and OS information",
+            "Add screenshots when relevant"
+          ]
+        },
+        "featureRequests": {
+          "title": "Feature Requests",
+          "description": "Suggest new features and improvements",
+          "items": [
+            "Describe the problem the feature solves",
+            "Provide detailed description of proposed solution",
+            "Consider alternative approaches",
+            "Discuss potential impact on existing features"
+          ]
+        },
+        "documentation": {
+          "title": "Documentation",
+          "description": "Improve documentation and guides",
+          "items": [
+            "Fix grammar and spelling errors",
+            "Add examples and explanations",
+            "Update outdated information",
+            "Translate documentation to other languages"
+          ]
+        },
+        "codeContributions": {
+          "title": "Code Contributions",
+          "description": "Add new features and fix bugs",
+          "items": [
+            "Follow project architectural patterns",
+            "Write clean, readable code",
+            "Add appropriate comments and documentation",
+            "Optimize for performance and accessibility"
+          ]
+        }
+      },
+      "internationalization": {
+        "title": "Internationalization",
+        "description": "Help make NetCraft AI accessible to more users",
+        "translationGuidelines": {
+          "title": "Translation Guidelines",
+          "items": [
+            "Preserve technical terms in English (K-means, SOM, MSE, etc.)",
+            "Adapt UI labels and descriptions to target language",
+            "Follow target language pluralization rules",
+            "Preserve interpolation variables {{variable}} exactly",
+            "Consider cultural context when adapting"
+          ]
+        },
+        "supportedLanguages": {
+          "title": "Supported Languages",
+          "current": [
+            "English (en) - default language",
+            "Ukrainian (uk) - full translation support"
+          ],
+          "wanted": [
+            "Spanish (es)",
+            "French (fr)",
+            "German (de)",
+            "Chinese (zh)",
+            "Japanese (ja)"
+          ]
+        }
+      },
+      "communityGuidelines": {
+        "title": "Community Guidelines",
+        "codeOfConduct": {
+          "title": "Code of Conduct",
+          "items": [
+            "Be respectful and inclusive",
+            "Provide constructive criticism of ideas, not people",
+            "Help newcomers and less experienced contributors",
+            "Maintain professional behavior",
+            "Report inappropriate behavior to maintainers"
+          ]
+        },
+        "communication": {
+          "title": "Communication",
+          "items": [
+            "Use GitHub Issues for bug reports and feature requests",
+            "Use GitHub Discussions for general questions",
+            "Be patient when waiting for responses",
+            "Provide clear context in your messages",
+            "Use English for primary communication"
+          ]
+        }
+      },
+      "recognition": {
+        "title": "Contributor Recognition",
+        "description": "We value all contributions to the project and recognize contributors through:",
+        "methods": [
+          "Mentions in CHANGELOG.md for significant contributions",
+          "Addition to contributors list in README",
+          "Recognition in release notes",
+          "Special thanks for outstanding contributions"
+        ]
+      },
+      "resources": {
+        "title": "Helpful Resources",
+        "links": [
+          {
+            "title": "API Documentation",
+            "url": "docs/API.md",
+            "description": "Complete API reference for all libraries"
+          },
+          {
+            "title": "Migration Guide",
+            "url": "docs/MIGRATION.md",
+            "description": "Data migration system documentation"
+          },
+          {
+            "title": "Deployment Guide",
+            "url": "docs/DEPLOYMENT.md",
+            "description": "Production deployment instructions"
+          },
+          {
+            "title": "Translation Tooling",
+            "url": "docs/TRANSLATION_TOOLING.md",
+            "description": "Tools and processes for translators"
+          }
+        ]
+      }
+    }
+  },
+  "guidelines": {
+    "title": "Usage Guidelines",
+    "subtitle": "Best practices for effective machine learning with NetCraft AI",
+    "gettingStarted": {
+      "title": "Getting Started",
+      "step1": {
+        "title": "Upload Your Data",
+        "description": "Start by uploading a CSV file with your dataset. The system will automatically detect column types and provide data statistics."
+      },
+      "step2": {
+        "title": "Explore Your Data",
+        "description": "Review the data preview, column statistics, and select relevant features for your analysis."
+      },
+      "step3": {
+        "title": "Choose Your Analysis",
+        "description": "Select from neural networks, random forest, clustering, or time series forecasting based on your data and objectives."
+      }
+    }
+  },
+  "neuralNetworksInfo": {
+    "title": "Neural Networks",
+    "subtitle": "Artificial neural networks for prediction and pattern recognition",
+    "whatAre": {
+      "title": "What are Neural Networks?",
+      "description1": "Artificial Neural Networks (ANNs) are computational models inspired by the human brain's neural structure. They consist of interconnected nodes (neurons) organized in layers that can learn complex patterns from data through training. Neural networks excel at tasks like prediction, classification, and pattern recognition.",
+      "description2": "In NetCraft AI, we implement multilayer perceptrons (MLPs) that can handle both regression and classification tasks with configurable architectures and real-time training visualization."
+    },
+    "howTheyWork": {
+      "title": "How Neural Networks Work",
+      "step1": {
+        "title": "Input Layer",
+        "description": "The network receives input features (your data columns) through the input layer. Each neuron in this layer represents one feature from your dataset."
+      },
+      "step2": {
+        "title": "Hidden Layers",
+        "description": "Hidden layers process the input through weighted connections and activation functions. These layers learn to identify patterns and relationships in your data during training."
+      },
+      "step3": {
+        "title": "Output Layer",
+        "description": "The output layer produces the final prediction. For regression, it outputs continuous values. For classification, it outputs probabilities for each class."
+      },
+      "step4": {
+        "title": "Training Process",
+        "description": "The network learns by adjusting weights through backpropagation, minimizing the difference between predicted and actual values across many training iterations."
+      }
+    },
+    "keyConcepts": {
+      "title": "Key Concepts",
+      "activationFunctions": {
+        "title": "Activation Functions",
+        "items": [
+          "ReLU: Fast, prevents vanishing gradients",
+          "Sigmoid: Smooth, outputs 0-1 range",
+          "Tanh: Symmetric, outputs -1 to 1",
+          "Linear: No transformation, for regression"
+        ]
+      },
+      "trainingParameters": {
+        "title": "Training Parameters",
+        "items": [
+          "Learning Rate: Step size for weight updates",
+          "Epochs: Number of training iterations",
+          "Batch Size: Samples processed together",
+          "Architecture: Number and size of layers"
+        ]
+      }
+    },
+    "applications": {
+      "title": "Common Applications",
+      "regression": {
+        "title": "Regression Tasks",
+        "items": [
+          "Price prediction",
+          "Sales forecasting",
+          "Risk assessment",
+          "Performance optimization"
+        ]
+      },
+      "classification": {
+        "title": "Classification Tasks",
+        "items": [
+          "Image recognition",
+          "Spam detection",
+          "Medical diagnosis",
+          "Quality control"
+        ]
+      }
+    },
+    "netcraftImplementation": {
+      "title": "NetCraft AI Neural Networks",
+      "description": "Our neural network implementation provides a complete solution for both beginners and advanced users. Built entirely in TypeScript, it runs directly in your browser with no server dependencies.",
+      "features": {
+        "title": "Features:",
+        "items": [
+          "Configurable architecture (layers & neurons)",
+          "Multiple activation functions",
+          "Real-time training progress",
+          "Comprehensive evaluation metrics",
+          "Model export and import"
+        ]
+      },
+      "supportedTasks": {
+        "title": "Supported Tasks:",
+        "items": [
+          "Regression (continuous predictions)",
+          "Binary classification (2 classes)",
+          "Multi-class classification",
+          "Custom loss functions",
+          "Cross-validation"
+        ]
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Ready to build your first neural network? Follow these simple steps:",
+      "steps": [
+        "Upload your dataset with numeric features and target values",
+        "Configure your network architecture and training parameters",
+        "Train your model and monitor progress in real-time",
+        "Evaluate performance and make predictions on new data"
+      ],
+      "tryNeuralNetworks": "Try Neural Networks",
+      "viewGuidelines": "View Guidelines"
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "dataPreparation": {
+        "title": "Data Preparation:",
+        "items": [
+          "Normalize or standardize features",
+          "Handle missing values appropriately",
+          "Ensure sufficient training data",
+          "Split data for training/validation"
+        ]
+      },
+      "modelDesign": {
+        "title": "Model Design:",
+        "items": [
+          "Start with simple architectures",
+          "Monitor for overfitting",
+          "Experiment with different activations",
+          "Adjust learning rate carefully"
+        ]
+      }
+    }
+  },
+  "randomForestInfo": {
+    "title": "Random Forest",
+    "subtitle": "Ensemble learning with decision trees for robust classification and regression",
+    "whatIs": {
+      "title": "What is Random Forest?",
+      "description1": "Random Forest is an ensemble learning method that combines multiple decision trees to create a more robust and accurate predictive model. It works by training many decision trees on different subsets of the data and features, then aggregating their predictions through voting (classification) or averaging (regression).",
+      "description2": "In NetCraft AI, our Random Forest implementation provides excellent performance for both classification and regression tasks, with built-in feature importance analysis and out-of-bag error estimation for model validation."
+    },
+    "howItWorks": {
+      "title": "How Random Forest Works",
+      "step1": {
+        "title": "Bootstrap Sampling",
+        "description": "Each tree is trained on a random subset of the training data (bootstrap sample), allowing for diversity among trees and reducing overfitting."
+      },
+      "step2": {
+        "title": "Feature Randomness",
+        "description": "At each split in each tree, only a random subset of features is considered, further increasing diversity and preventing any single feature from dominating."
+      },
+      "step3": {
+        "title": "Tree Construction",
+        "description": "Each decision tree is grown to maximum depth or until stopping criteria are met, creating diverse models that capture different patterns in the data."
+      },
+      "step4": {
+        "title": "Ensemble Prediction",
+        "description": "Final predictions are made by aggregating all tree predictions: majority voting for classification or averaging for regression tasks."
+      }
+    },
+    "keyAdvantages": {
+      "title": "Key Advantages",
+      "robustness": {
+        "title": "Robustness",
+        "items": [
+          "Reduces overfitting compared to single trees",
+          "Handles missing values gracefully",
+          "Resistant to outliers and noise",
+          "Works well with default parameters"
+        ]
+      },
+      "interpretability": {
+        "title": "Interpretability",
+        "items": [
+          "Provides feature importance rankings",
+          "Out-of-bag error estimation",
+          "No need for separate validation set",
+          "Handles both numerical and categorical data"
+        ]
+      }
+    },
+    "applications": {
+      "title": "Common Applications",
+      "classification": {
+        "title": "Classification Tasks",
+        "items": [
+          "Email spam detection",
+          "Medical diagnosis",
+          "Customer segmentation",
+          "Fraud detection"
+        ]
+      },
+      "regression": {
+        "title": "Regression Tasks",
+        "items": [
+          "Stock price prediction",
+          "Real estate valuation",
+          "Sales forecasting",
+          "Risk assessment"
+        ]
+      }
+    },
+    "netcraftImplementation": {
+      "title": "NetCraft AI Random Forest",
+      "description": "Our Random Forest implementation is built from scratch in TypeScript, providing transparency and educational value while delivering professional-grade performance. It runs entirely in your browser with no external dependencies.",
+      "features": {
+        "title": "Features:",
+        "items": [
+          "Configurable number of trees",
+          "Adjustable tree depth limits",
+          "Feature sampling ratio control",
+          "Out-of-bag score calculation",
+          "Feature importance analysis"
+        ]
+      },
+      "capabilities": {
+        "title": "Capabilities:",
+        "items": [
+          "Binary and multi-class classification",
+          "Regression with continuous outputs",
+          "Automatic handling of mixed data types",
+          "Model serialization and export",
+          "Real-time training progress"
+        ]
+      }
+    },
+    "configurationParameters": {
+      "title": "Configuration Parameters",
+      "modelStructure": {
+        "title": "Model Structure:",
+        "items": [
+          "Number of Trees: More trees = better performance but slower training",
+          "Max Depth: Controls individual tree complexity",
+          "Min Samples Split: Minimum samples required to split a node"
+        ]
+      },
+      "randomnessControl": {
+        "title": "Randomness Control:",
+        "items": [
+          "Feature Sampling: Fraction of features considered per split",
+          "Bootstrap Sampling: Whether to use bootstrap samples",
+          "Random Seed: For reproducible results"
+        ]
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Ready to build your first Random Forest model? Follow these simple steps:",
+      "steps": [
+        "Upload your dataset with features and target variable",
+        "Choose classification or regression task type",
+        "Configure forest parameters (trees, depth, feature sampling)",
+        "Train your model and analyze feature importance"
+      ],
+      "tryRandomForest": "Try Random Forest",
+      "viewGuidelines": "View Guidelines"
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "dataPreparation": {
+        "title": "Data Preparation:",
+        "items": [
+          "Handle missing values appropriately",
+          "Encode categorical variables properly",
+          "Consider feature scaling for mixed data types",
+          "Ensure balanced classes for classification"
+        ]
+      },
+      "modelTuning": {
+        "title": "Model Tuning:",
+        "items": [
+          "Start with default parameters",
+          "Increase trees for better performance",
+          "Use OOB score for model validation",
+          "Analyze feature importance for insights"
+        ]
+      }
+    }
+  },
+  "clusteringInfo": {
+    "title": "Clustering Analysis",
+    "subtitle": "Discover hidden patterns and group similar data points automatically",
+    "whatIs": {
+      "title": "What is Clustering?",
+      "description1": "Clustering is an unsupervised machine learning technique that groups similar data points together based on their characteristics. Unlike supervised learning, clustering doesn't require labeled data - it automatically discovers hidden patterns and structures within your dataset.",
+      "description2": "In NetCraft AI, we implement two powerful clustering algorithms: K-means for partitional clustering and Self-Organizing Maps (SOM) for topological clustering, both with interactive visualizations to help you understand your data's structure."
+    },
+    "howItWorks": {
+      "title": "How Clustering Works",
+      "step1": {
+        "title": "Feature Selection",
+        "description": "Choose relevant numeric features that define similarity between data points. The algorithm will use these features to calculate distances and group similar items."
+      },
+      "step2": {
+        "title": "Distance Calculation",
+        "description": "The algorithm measures similarity between data points using distance metrics (typically Euclidean distance), where closer points are considered more similar."
+      },
+      "step3": {
+        "title": "Group Formation",
+        "description": "Based on the distance calculations, the algorithm groups data points into clusters, ensuring points within clusters are similar and points between clusters are different."
+      },
+      "step4": {
+        "title": "Optimization",
+        "description": "The algorithm iteratively refines cluster assignments to minimize within-cluster distances and maximize between-cluster separation."
+      }
+    },
+    "algorithms": {
+      "title": "Clustering Algorithms",
+      "kmeans": {
+        "title": "K-Means Clustering",
+        "description": "Partitions data into k clusters by minimizing within-cluster sum of squares. Uses k-means++ initialization for better results.",
+        "advantages": [
+          "Fast and efficient for large datasets",
+          "Works well with spherical clusters",
+          "Simple to understand and interpret",
+          "Guaranteed convergence"
+        ]
+      },
+      "som": {
+        "title": "Self-Organizing Maps (SOM)",
+        "description": "Creates a topological map that preserves the structure of high-dimensional data in a lower-dimensional grid representation.",
+        "advantages": [
+          "Preserves topological relationships",
+          "Handles complex cluster shapes",
+          "Provides intuitive visualization",
+          "Dimensionality reduction capability"
+        ]
+      }
+    },
+    "applications": {
+      "title": "Common Applications",
+      "business": {
+        "title": "Business & Marketing",
+        "items": [
+          "Customer segmentation",
+          "Market research",
+          "Product categorization",
+          "Recommendation systems"
+        ]
+      },
+      "science": {
+        "title": "Science & Research",
+        "items": [
+          "Gene expression analysis",
+          "Image segmentation",
+          "Document clustering",
+          "Social network analysis"
+        ]
+      }
+    },
+    "netcraftImplementation": {
+      "title": "NetCraft AI Clustering",
+      "description": "Our clustering implementation provides both K-means and SOM algorithms with interactive visualizations and comprehensive analysis tools. Built entirely in TypeScript for transparency and educational value.",
+      "features": {
+        "title": "Features:",
+        "items": [
+          "K-means with k-means++ initialization",
+          "Self-Organizing Maps with customizable grids",
+          "Interactive 2D and 3D visualizations",
+          "Cluster quality metrics (inertia, silhouette)",
+          "Export results and visualizations"
+        ]
+      },
+      "visualization": {
+        "title": "Visualization:",
+        "items": [
+          "Scatter plots with cluster coloring",
+          "SOM grid topology visualization",
+          "Cluster centroids and boundaries",
+          "Feature importance heatmaps",
+          "Interactive data exploration"
+        ]
+      }
+    },
+    "evaluation": {
+      "title": "Cluster Evaluation",
+      "metrics": {
+        "title": "Quality Metrics:",
+        "inertia": "Inertia: Sum of squared distances to centroids (lower is better)",
+        "silhouette": "Silhouette Score: Measure of cluster separation (-1 to 1, higher is better)",
+        "cohesion": "Cohesion: How tightly grouped clusters are",
+        "separation": "Separation: How distinct clusters are from each other"
+      },
+      "validation": {
+        "title": "Validation Methods:",
+        "items": [
+          "Elbow method for optimal k selection",
+          "Silhouette analysis for cluster quality",
+          "Visual inspection of cluster plots",
+          "Domain knowledge validation"
+        ]
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Ready to discover patterns in your data? Follow these steps:",
+      "steps": [
+        "Upload your dataset with numeric features for clustering",
+        "Select relevant features that define similarity",
+        "Choose clustering algorithm and configure parameters",
+        "Analyze results and visualize discovered clusters"
+      ],
+      "tryClustering": "Try Clustering Analysis",
+      "viewGuidelines": "View Guidelines"
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "dataPreparation": {
+        "title": "Data Preparation:",
+        "items": [
+          "Use numeric features only",
+          "Consider feature scaling/normalization",
+          "Remove irrelevant or redundant features",
+          "Handle outliers appropriately"
+        ]
+      },
+      "parameterSelection": {
+        "title": "Parameter Selection:",
+        "items": [
+          "Use elbow method for k selection",
+          "Start with 2-5 clusters for exploration",
+          "Experiment with different feature combinations",
+          "Validate results with domain knowledge"
+        ]
+      }
+    }
+  },
+  "timeSeriesInfo": {
+    "title": "Time Series Forecasting",
+    "subtitle": "Predict future values from historical time-ordered data patterns",
+    "whatIs": {
+      "title": "What is Time Series Forecasting?",
+      "description1": "Time series forecasting is the process of analyzing historical data points collected over time to predict future values. Unlike traditional machine learning, time series data has a temporal structure where the order of observations matters, and patterns such as trends, seasonality, and cycles can be identified and leveraged for prediction.",
+      "description2": "In NetCraft AI, we implement several forecasting algorithms including moving averages, exponential smoothing, and linear trend analysis, providing comprehensive tools for time-based prediction tasks."
+    },
+    "howItWorks": {
+      "title": "How Time Series Forecasting Works",
+      "step1": {
+        "title": "Data Analysis",
+        "description": "Examine historical time series data to identify patterns, trends, seasonality, and irregular components that can inform the forecasting approach."
+      },
+      "step2": {
+        "title": "Pattern Recognition",
+        "description": "Identify underlying patterns such as linear trends, seasonal cycles, or exponential growth/decay that can be modeled mathematically."
+      },
+      "step3": {
+        "title": "Model Selection",
+        "description": "Choose appropriate forecasting algorithms based on data characteristics: moving averages for smoothing, exponential smoothing for trends, or linear models for growth."
+      },
+      "step4": {
+        "title": "Future Prediction",
+        "description": "Generate forecasts by extending identified patterns into the future, with confidence intervals to quantify prediction uncertainty."
+      }
+    },
+    "methods": {
+      "title": "Forecasting Methods",
+      "movingAverage": {
+        "title": "Moving Average",
+        "description": "Smooths short-term fluctuations by averaging recent observations. Simple moving average uses equal weights, while weighted moving average gives more importance to recent data."
+      },
+      "exponentialSmoothing": {
+        "title": "Exponential Smoothing",
+        "description": "Applies exponentially decreasing weights to historical observations, giving more weight to recent data. Excellent for data with trends and can quickly adapt to changes."
+      },
+      "linearTrend": {
+        "title": "Linear Trend Analysis",
+        "description": "Fits a linear regression model to capture underlying growth or decline trends. Ideal for data showing consistent directional movement over time."
+      }
+    },
+    "components": {
+      "title": "Time Series Components",
+      "trend": {
+        "title": "Trend",
+        "items": [
+          "Long-term directional movement",
+          "Upward, downward, or horizontal",
+          "Indicates overall growth or decline",
+          "Can be linear or non-linear"
+        ]
+      },
+      "seasonality": {
+        "title": "Seasonality",
+        "items": [
+          "Regular, predictable patterns",
+          "Repeats over fixed periods",
+          "Daily, weekly, monthly, yearly cycles",
+          "Influenced by calendar events"
+        ]
+      },
+      "cyclical": {
+        "title": "Cyclical",
+        "items": [
+          "Long-term fluctuations",
+          "No fixed period length",
+          "Business cycles, economic patterns",
+          "Often related to external factors"
+        ]
+      },
+      "irregular": {
+        "title": "Irregular/Random",
+        "items": [
+          "Unpredictable fluctuations",
+          "Random noise or one-time events",
+          "Cannot be systematically modeled",
+          "Represents forecast uncertainty"
+        ]
+      }
+    },
+    "applications": {
+      "title": "Common Applications",
+      "business": {
+        "title": "Business & Finance",
+        "items": [
+          "Sales and revenue forecasting",
+          "Stock price prediction",
+          "Budget planning and allocation",
+          "Demand forecasting"
+        ]
+      },
+      "operations": {
+        "title": "Operations & Planning",
+        "items": [
+          "Inventory management",
+          "Resource allocation",
+          "Capacity planning",
+          "Supply chain optimization"
+        ]
+      },
+      "science": {
+        "title": "Science & Engineering",
+        "items": [
+          "Weather forecasting",
+          "Energy consumption prediction",
+          "Population growth modeling",
+          "Equipment maintenance planning"
+        ]
+      },
+      "technology": {
+        "title": "Technology & Analytics",
+        "items": [
+          "Website traffic forecasting",
+          "Server load prediction",
+          "User engagement trends",
+          "Performance monitoring"
+        ]
+      }
+    },
+    "netcraftImplementation": {
+      "title": "NetCraft AI Time Series Forecasting",
+      "description": "Our time series forecasting suite provides multiple algorithms implemented in pure TypeScript, running entirely in your browser. Each method is designed for different data characteristics and forecasting scenarios.",
+      "algorithms": {
+        "title": "Available Algorithms:",
+        "items": [
+          "Simple and weighted moving averages",
+          "Single and double exponential smoothing",
+          "Linear trend analysis",
+          "Automatic algorithm selection",
+          "Custom parameter tuning"
+        ]
+      },
+      "features": {
+        "title": "Features:",
+        "items": [
+          "Interactive time series visualization",
+          "Comprehensive forecast metrics",
+          "Confidence interval estimation",
+          "Model comparison and selection",
+          "Export forecasts and charts"
+        ]
+      }
+    },
+    "evaluation": {
+      "title": "Forecast Evaluation Metrics",
+      "accuracy": {
+        "title": "Accuracy Measures:",
+        "mae": "MAE: Mean Absolute Error - average absolute differences",
+        "rmse": "RMSE: Root Mean Square Error - penalizes large errors",
+        "mape": "MAPE: Mean Absolute Percentage Error - relative accuracy"
+      },
+      "statistical": {
+        "title": "Statistical Measures:",
+        "r2": "R²: Coefficient of determination - explained variance",
+        "aic": "AIC/BIC: Information criteria for model selection",
+        "residual": "Residual analysis: Detecting patterns in errors"
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Ready to forecast your time series data? Follow these steps:",
+      "steps": [
+        "Upload time series data with date/time and value columns",
+        "Visualize your data to identify trends and patterns",
+        "Select appropriate forecasting algorithm and parameters",
+        "Generate forecasts and evaluate model performance"
+      ],
+      "tryForecasting": "Try Time Series Forecasting",
+      "viewGuidelines": "View Guidelines"
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "dataPreparation": {
+        "title": "Data Preparation:",
+        "items": [
+          "Ensure consistent time intervals",
+          "Handle missing values appropriately",
+          "Remove or account for outliers",
+          "Consider data transformations"
+        ]
+      },
+      "modelSelection": {
+        "title": "Model Selection:",
+        "items": [
+          "Start with simple methods",
+          "Consider data characteristics",
+          "Validate with out-of-sample data",
+          "Monitor forecast accuracy over time"
+        ]
+      }
+    }
+  },
+  "dataAnalysisInfo": {
+    "title": "Data Analysis",
+    "subtitle": "Comprehensive tools for exploring and understanding your datasets",
+    "description": "Learn about data upload, preprocessing, and exploratory analysis features in NetCraft AI.",
+    "whatIs": {
+      "title": "What is Data Analysis?",
+      "description1": "Data analysis is the process of examining, cleaning, transforming, and modeling data to discover useful information and support decision-making. It's the foundation of any successful machine learning project, ensuring your data is ready for training and prediction.",
+      "description2": "In NetCraft AI, data analysis includes uploading datasets, exploring data characteristics, understanding feature distributions, and preparing your data for neural networks, random forests, and clustering algorithms."
+    },
+    "process": {
+      "title": "Data Analysis Process",
+      "step1": {
+        "title": "Data Collection",
+        "description": "Upload your CSV files using our drag-and-drop interface. The system automatically detects column types and provides immediate feedback on data structure and quality."
+      },
+      "step2": {
+        "title": "Data Exploration",
+        "description": "Examine data characteristics including column types, missing values, statistical summaries, and distributions. This helps identify potential issues and opportunities."
+      },
+      "step3": {
+        "title": "Data Preparation",
+        "description": "Select relevant features, handle missing values, and ensure data quality. Proper preparation is crucial for successful machine learning outcomes."
+      },
+      "step4": {
+        "title": "Feature Selection",
+        "description": "Choose the most relevant columns for your analysis. Different algorithms may require different feature sets depending on your specific goals."
+      }
+    },
+    "dataTypes": {
+      "title": "Understanding Data Types",
+      "numeric": {
+        "title": "Numeric Data",
+        "description": "Continuous or discrete numerical values that can be used directly in mathematical operations and machine learning algorithms.",
+        "examples": [
+          "Age, height, weight",
+          "Prices, sales figures",
+          "Temperatures, measurements",
+          "Ratings, scores"
+        ]
+      },
+      "categorical": {
+        "title": "Categorical Data",
+        "description": "Non-numeric data representing categories or labels. May require encoding for use in certain algorithms.",
+        "examples": [
+          "Colors, brands, categories",
+          "Yes/No, True/False",
+          "Countries, cities",
+          "Product types, classifications"
+        ]
+      }
+    },
+    "features": {
+      "title": "Data Analysis Features",
+      "upload": {
+        "title": "Upload & Import",
+        "items": [
+          "Drag-and-drop CSV upload",
+          "Automatic column type detection",
+          "Data validation and error checking",
+          "Sample datasets for learning"
+        ]
+      },
+      "exploration": {
+        "title": "Data Exploration",
+        "items": [
+          "Statistical summaries",
+          "Missing value detection",
+          "Data type identification",
+          "Column selection tools"
+        ]
+      }
+    },
+    "issues": {
+      "title": "Common Data Issues",
+      "quality": {
+        "title": "Data Quality Issues:",
+        "items": [
+          "Missing or null values",
+          "Inconsistent formatting",
+          "Outliers and anomalies",
+          "Duplicate records"
+        ]
+      },
+      "solutions": {
+        "title": "Solutions:",
+        "items": [
+          "Remove or impute missing values",
+          "Standardize data formats",
+          "Identify and handle outliers",
+          "Remove duplicate entries"
+        ]
+      }
+    },
+    "netcraftImplementation": {
+      "title": "NetCraft AI Data Analysis",
+      "description": "Our data analysis tools provide everything you need to prepare your data for machine learning. Built with privacy in mind, all processing happens locally in your browser.",
+      "features": {
+        "title": "Features:",
+        "items": [
+          "Intuitive drag-and-drop interface",
+          "Automatic data type detection",
+          "Real-time data preview",
+          "Statistical summaries",
+          "Column selection tools"
+        ]
+      },
+      "privacy": {
+        "title": "Privacy & Security:",
+        "items": [
+          "100% client-side processing",
+          "No data transmission to servers",
+          "Local storage only",
+          "Complete data ownership",
+          "Export capabilities"
+        ]
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Ready to analyze your data? Follow these simple steps:",
+      "steps": [
+        "Prepare your data in CSV format with clear column headers",
+        "Upload your file using the drag-and-drop interface",
+        "Review the data preview and column type detection",
+        "Select relevant columns and proceed to analysis"
+      ],
+      "tryDataAnalysis": "Try Data Analysis",
+      "viewGuidelines": "View Guidelines"
+    },
+    "bestPractices": {
+      "title": "Best Practices",
+      "dataPreparation": {
+        "title": "Data Preparation:",
+        "items": [
+          "Use clear, descriptive column names",
+          "Ensure consistent data formats",
+          "Handle missing values appropriately",
+          "Remove unnecessary columns"
+        ]
+      },
+      "qualityChecks": {
+        "title": "Quality Checks:",
+        "items": [
+          "Verify data types are correct",
+          "Check for outliers and anomalies",
+          "Ensure sufficient sample size",
+          "Validate data integrity"
+        ]
+      }
+    }
+  },
+  "dataManagement": {
+    "title": "Data Management",
+    "description": "Upload and manage your datasets for analysis"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist.",
+    "backToHome": "Back to Home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try again.",
+    "retry": "Try Again",
+    "backToHome": "Back to Home"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with questions, feedback, or collaboration opportunities",
+    "form": {
+      "title": "Send us a Message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "Your full name",
+      "emailPlaceholder": "your.email@example.com",
+      "messagePlaceholder": "Tell us about your inquiry, feedback, or how we can help...",
+      "selectSubject": "Select a subject",
+      "subjects": {
+        "general": "General Inquiry",
+        "bug": "Bug Report",
+        "feature": "Feature Request",
+        "collaboration": "Collaboration",
+        "support": "Technical Support",
+        "other": "Other"
+      },
+      "sendMessage": "Send Message",
+      "success": {
+        "title": "Message Sent!",
+        "description": "Thank you for your message. We'll get back to you soon."
+      }
+    },
+    "quickContact": {
+      "title": "Quick Contact",
+      "email": "Email",
+      "community": "Community",
+      "communityDescription": "GitHub Discussions",
+      "status": "Status",
+      "statusDescription": "All systems operational"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "dataSecure": {
+        "question": "Is my data secure?",
+        "answer": "Yes! All processing happens in your browser with complete client-side execution. Your data never leaves your device, ensuring maximum privacy and security."
+      },
+      "commercial": {
+        "question": "Can I use this for commercial projects?",
+        "answer": "Yes, NetCraft AI is available under the MIT license for both personal and commercial use. You have full freedom to integrate it into your projects."
+      },
+      "bugs": {
+        "question": "How do I report bugs?",
+        "answer": "Use the contact form above or create an issue on our GitHub repository. We welcome detailed bug reports and feature suggestions from the community."
+      }
+    },
+    "resources": {
+      "title": "Resources",
+      "usageGuidelines": "Usage Guidelines",
+      "aboutProject": "About the Project",
+      "githubRepository": "GitHub Repository",
+      "termsOfUse": "Terms of Use"
+    }
+  }
+}

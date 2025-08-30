@@ -144,6 +144,38 @@ export function getWithFallback(newKey: string, oldKey: string): string | null {
 }
 
 /**
+ * Recursively converts date strings back to Date objects in an object
+ */
+function deserializeDates(obj: any): any {
+  if (obj === null || obj === undefined) {
+    return obj;
+  }
+  
+  if (typeof obj === 'string') {
+    // Check if string looks like an ISO date
+    if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(obj)) {
+      const date = new Date(obj);
+      return isNaN(date.getTime()) ? obj : date;
+    }
+    return obj;
+  }
+  
+  if (Array.isArray(obj)) {
+    return obj.map(deserializeDates);
+  }
+  
+  if (typeof obj === 'object') {
+    const result: any = {};
+    for (const [key, value] of Object.entries(obj)) {
+      result[key] = deserializeDates(value);
+    }
+    return result;
+  }
+  
+  return obj;
+}
+
+/**
  * Convenience functions for specific data types with backward compatibility
  */
 export const storageUtils = {
@@ -152,6 +184,22 @@ export const storageUtils = {
    */
   getProjectState(): string | null {
     return getWithFallback('netcraft-project-state', 'neuroxl-project-state');
+  },
+  
+  /**
+   * Get project state with date deserialization
+   */
+  getProjectStateWithDates(): any | null {
+    const stateStr = this.getProjectState();
+    if (!stateStr) return null;
+    
+    try {
+      const parsed = JSON.parse(stateStr);
+      return deserializeDates(parsed);
+    } catch (error) {
+      console.error('Failed to parse project state:', error);
+      return null;
+    }
   },
   
   /**

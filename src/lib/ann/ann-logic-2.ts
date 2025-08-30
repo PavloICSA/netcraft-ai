@@ -57,13 +57,31 @@ export function backwardPass(
     for (let neuronIndex = 0; neuronIndex < layerWeights.length; neuronIndex++) {
       const error = currentError[neuronIndex];
       
-      // Update bias
-      biases[layerIndex][neuronIndex] -= config.learningRate * error;
+      // Update bias with gradient clipping
+      const clippedError = Math.max(-5, Math.min(5, error));
       
-      // Update weights
+      // Check for NaN bias updates
+      if (isNaN(clippedError)) {
+        console.warn('NaN bias gradient detected, skipping update');
+        continue;
+      }
+      
+      biases[layerIndex][neuronIndex] -= config.learningRate * clippedError;
+      
+      // Update weights with gradient clipping
       for (let inputIndex = 0; inputIndex < layerWeights[neuronIndex].length; inputIndex++) {
         const gradient = error * layerActivations[inputIndex];
-        weights[layerIndex][neuronIndex][inputIndex] -= config.learningRate * gradient;
+        
+        // Clip gradients to prevent exploding gradients
+        const clippedGradient = Math.max(-5, Math.min(5, gradient));
+        
+        // Check for NaN gradients
+        if (isNaN(clippedGradient)) {
+          console.warn('NaN gradient detected, skipping update');
+          continue;
+        }
+        
+        weights[layerIndex][neuronIndex][inputIndex] -= config.learningRate * clippedGradient;
       }
     }
     
@@ -164,6 +182,13 @@ export async function trainModel(
         
         // Calculate loss
         const loss = calculateLoss(forwardResult.output, target, config.taskType);
+        
+        // Check for invalid loss values
+        if (isNaN(loss) || !isFinite(loss)) {
+          console.warn('Invalid loss detected:', loss, 'Output:', forwardResult.output, 'Target:', target);
+          continue; // Skip this sample
+        }
+        
         totalLoss += loss;
         
         // Calculate accuracy for classification

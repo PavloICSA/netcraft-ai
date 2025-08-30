@@ -1,0 +1,35 @@
+{
+  "general": {
+    "somethingWentWrong": "Something went wrong",
+    "tryAgain": "Please try again",
+    "contactSupport": "If the problem persists, please contact support"
+  },
+  "upload": {
+    "fileTooLarge": "File is too large. Maximum size is 10MB",
+    "invalidFileType": "Invalid file type. Please upload a CSV file",
+    "uploadFailed": "Upload failed. Please try again",
+    "corruptedFile": "File appears to be corrupted"
+  },
+  "training": {
+    "trainingFailed": "Model training failed",
+    "insufficientData": "Insufficient data for training",
+    "invalidConfiguration": "Invalid model configuration",
+    "convergenceFailed": "Training failed to converge"
+  },
+  "data": {
+    "noDataAvailable": "No data available",
+    "invalidDataFormat": "Invalid data format",
+    "missingColumns": "Required columns are missing",
+    "emptyDataset": "Dataset is empty"
+  },
+  "network": {
+    "connectionError": "Connection error",
+    "timeout": "Request timed out",
+    "serverError": "Server error occurred"
+  },
+  "validation": {
+    "invalidInput": "Invalid input provided",
+    "outOfRange": "Value is out of valid range",
+    "formatError": "Format error in input data"
+  }
+}

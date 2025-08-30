@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { ProjectState, Dataset } from '../../types';
+import LanguageToggle from '../Common/LanguageToggle';
+import ThemeToggle from '../Common/ThemeToggle';
 
 interface TopbarProps {
   projectState: ProjectState;
@@ -11,6 +14,7 @@ interface TopbarProps {
  * Top navigation bar with project info and quick actions
  */
 const Topbar: React.FC<TopbarProps> = ({ projectState, onDatasetUpdate }) => {
+  const { t } = useTranslation('common');
   const [showExportMenu, setShowExportMenu] = useState(false);
 
   /**
@@ -40,7 +44,7 @@ const Topbar: React.FC<TopbarProps> = ({ projectState, onDatasetUpdate }) => {
       setShowExportMenu(false);
     } catch (error) {
       console.error('Export failed:', error);
-      alert('Export failed. Please try again.');
+      alert(t('layout.topbar.exportFailed'));
     }
   };
 
@@ -83,18 +87,18 @@ const Topbar: React.FC<TopbarProps> = ({ projectState, onDatasetUpdate }) => {
     <motion.header
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="bg-white border-b border-secondary-200 px-6 py-4"
+      className="bg-white dark:bg-gray-800 border-b border-secondary-200 dark:border-gray-700 px-6 py-4"
     >
       <div className="flex justify-between items-center">
         {/* Project Info */}
         <div className="flex items-center space-x-4">
           <div>
-            <h1 className="text-lg font-semibold text-secondary-900">
-              {projectState.currentDataset?.name || 'No Data Uploaded'}
+            <h1 className="text-lg font-semibold text-secondary-900 dark:text-gray-100">
+              {projectState.currentDataset?.name || t('layout.topbar.noDataUploaded')}
             </h1>
             {projectState.currentDataset && (
-              <p className="text-sm text-secondary-600">
-                {projectState.currentDataset.data.length} rows • {projectState.currentDataset.columns.length} columns
+              <p className="text-sm text-secondary-600 dark:text-gray-400">
+                {projectState.currentDataset.data.length} {t('units.rows')} • {projectState.currentDataset.columns.length} {t('units.columns')}
               </p>
             )}
           </div>
@@ -103,12 +107,12 @@ const Topbar: React.FC<TopbarProps> = ({ projectState, onDatasetUpdate }) => {
           <div className="flex items-center space-x-2">
             {projectState.models.ann?.trained && (
               <span className="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
-                ANN Trained
+                {t('status.annTrained')}
               </span>
             )}
             {projectState.results.clusters && (
               <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
-                Clustered
+                {t('status.clustered')}
               </span>
             )}
           </div>
@@ -116,6 +120,10 @@ const Topbar: React.FC<TopbarProps> = ({ projectState, onDatasetUpdate }) => {
 
         {/* Quick Actions */}
         <div className="flex items-center space-x-3">
+          {/* Theme Toggle */}
+          <ThemeToggle variant="topbar" />
+          {/* Language Toggle */}
+          <LanguageToggle variant="topbar" showLabel={false} />
           {/* Quick Upload */}
           <div className="relative">
             <input
@@ -130,32 +138,32 @@ const Topbar: React.FC<TopbarProps> = ({ projectState, onDatasetUpdate }) => {
           <div className="relative">
             <button
               onClick={() => setShowExportMenu(!showExportMenu)}
-              className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-secondary-600 hover:text-secondary-900 hover:bg-secondary-100 rounded-lg transition-colors duration-200"
+              className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-secondary-600 dark:text-gray-400 hover:text-secondary-900 dark:text-gray-100 hover:bg-secondary-100 dark:text-gray-400 dark:hover:text-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <span>Export</span>
+              <span>{t('buttons.export')}</span>
             </button>
 
             {showExportMenu && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-secondary-200 py-1 z-50"
+                className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-secondary-200 dark:border-gray-700 py-1 z-50"
               >
                 <button
                   onClick={() => exportProject('json')}
-                  className="w-full text-left px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-100"
+                  className="w-full text-left px-4 py-2 text-sm text-secondary-700 dark:text-gray-300 hover:bg-secondary-100 dark:hover:bg-gray-700"
                 >
-                  Export Project (JSON)
+                  {t('layout.topbar.exportProject')}
                 </button>
                 {projectState.currentDataset && (
                   <button
                     onClick={() => exportProject('csv')}
-                    className="w-full text-left px-4 py-2 text-sm text-secondary-700 hover:bg-secondary-100"
+                    className="w-full text-left px-4 py-2 text-sm text-secondary-700 dark:text-gray-300 hover:bg-secondary-100 dark:hover:bg-gray-700"
                   >
-                    Export Data (CSV)
+                    {t('layout.topbar.exportData')}
                   </button>
                 )}
               </motion.div>

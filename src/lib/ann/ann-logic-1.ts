@@ -12,7 +12,11 @@ export const activationFunctions = {
   relu: (x: number): number => Math.max(0, x),
   reluDerivative: (x: number): number => x > 0 ? 1 : 0,
   
-  sigmoid: (x: number): number => 1 / (1 + Math.exp(-Math.max(-500, Math.min(500, x)))),
+  sigmoid: (x: number): number => {
+    // Clamp input to prevent overflow
+    const clampedX = Math.max(-500, Math.min(500, x));
+    return 1 / (1 + Math.exp(-clampedX));
+  },
   sigmoidDerivative: (x: number): number => {
     const s = activationFunctions.sigmoid(x);
     return s * (1 - s);
@@ -144,8 +148,17 @@ export function forwardPass(
  */
 export function applySoftmax(values: number[]): number[] {
   const maxVal = Math.max(...values);
-  const expValues = values.map(v => Math.exp(v - maxVal)); // Subtract max for numerical stability
+  const expValues = values.map(v => {
+    const clampedValue = Math.max(-500, Math.min(500, v - maxVal));
+    return Math.exp(clampedValue);
+  });
   const sumExp = expValues.reduce((sum, val) => sum + val, 0);
+  
+  // Prevent division by zero
+  if (sumExp === 0 || !isFinite(sumExp)) {
+    return values.map(() => 1 / values.length);
+  }
+  
   return expValues.map(val => val / sumExp);
 }
 

@@ -1,0 +1,97 @@
+{
+  "upload": {
+    "title": "Upload Data"
+  },
+  "uploader": {
+    "title": "Upload CSV File",
+    "subtitle": "Drag and drop your CSV file here, or click to browse",
+    "supportedFormats": "Supports CSV files with headers",
+    "processing": "Processing...",
+    "dragAndDrop": "Drag and drop your CSV file here, or click to browse",
+    "dropHere": "Drop CSV file here",
+    "uploadFailed": "Upload failed. Please try again.",
+    "exportFailed": "Export failed. Please try again.",
+    "pleaseUploadCSV": "Please upload a CSV file",
+    "csvEmpty": "CSV file is empty",
+    "errorProcessingCSV": "Error processing CSV",
+    "errorParsingCSV": "Error parsing CSV",
+    "errorProcessingDemo": "Error processing demo data",
+    "errorLoadingDemo": "Error loading demo dataset"
+  },
+  "demo": {
+    "title": "Try Demo Datasets",
+    "iris": {
+      "title": "Iris Dataset",
+      "description": "Classic classification dataset with flower measurements and species",
+      "stats": "30 samples • 4 features • 3 classes"
+    },
+    "timeSeries": {
+      "title": "Sales Time Series",
+      "description": "Sales data with temperature and promotion features for regression",
+      "stats": "20 samples • 3 features • Regression"
+    }
+  },
+  "preview": {
+    "title": "Data Preview",
+    "noData": "No data to preview",
+    "rowsAndColumns": "{{rows}} rows • {{columns}} columns",
+    "processed": "{{filename}} processed",
+    "uploaded": "Uploaded",
+    "id": "ID",
+    "columnInformation": "Column Information",
+    "select": "Select",
+    "column": "Column",
+    "type": "Type",
+    "unique": "Unique",
+    "null": "Null",
+    "statistics": "Statistics",
+    "nonNumeric": "Non-numeric",
+    "showing": "Showing {{start}}-{{end}} of {{total}} rows",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page {{current}} of {{total}}",
+    "columnsSelected": "{{count}} columns selected",
+    "readyForAnalysis": "Ready to use for prediction, clustering, or forecasting analysis",
+    "useForPrediction": "Use for Prediction",
+    "useForClustering": "Use for Clustering",
+    "useForForecasting": "Use for Forecasting"
+  },
+  "statistics": {
+    "min": "Min",
+    "max": "Max",
+    "mean": "Mean",
+    "std": "Std Dev",
+    "unique": "Unique",
+    "nullCount": "Null Count",
+    "numericColumns": "Numeric Columns",
+    "categoricalColumns": "Categorical Columns",
+    "datetimeColumns": "DateTime Columns",
+    "selectedColumns": "Selected Columns"
+  },
+  "types": {
+    "numeric": "numeric",
+    "categorical": "categorical",
+    "datetime": "datetime"
+  },
+  "page": {
+    "title": "Data Management",
+    "description": "Upload and manage your datasets for analysis",
+    "recentDatasets": "Recent Datasets",
+    "clearAll": "Clear All",
+    "noSavedDatasets": "No saved datasets yet. Upload a CSV file to get started.",
+    "confirmClearAll": "Are you sure you want to clear all datasets? This action cannot be undone.",
+    "rows": "rows",
+    "columns": "columns"
+  },
+  "validation": {
+    "noColumnsSelected": "Please select at least one column",
+    "invalidColumnType": "Invalid column type detected",
+    "insufficientData": "Insufficient data for analysis",
+    "tooManyColumns": "Too many columns selected (maximum {{max}})",
+    "columnNameTooLong": "Column name is too long (maximum {{max}} characters)",
+    "duplicateColumnNames": "Duplicate column names detected",
+    "emptyColumnValues": "Column '{{column}}' contains only empty values",
+    "mixedDataTypes": "Column '{{column}}' contains mixed data types",
+    "tooManyRows": "Large dataset detected ({{count}} rows). Processing may take longer."
+  }
+}

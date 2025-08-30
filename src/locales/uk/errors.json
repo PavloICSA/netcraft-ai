@@ -1,0 +1,49 @@
+{
+  "general": {
+    "somethingWentWrong": "Щось пішло не так",
+    "tryAgain": "Спробуйте ще раз",
+    "contactSupport": "Зв'яжіться з підтримкою",
+    "unexpectedError": "Неочікувана помилка"
+  },
+  "data": {
+    "uploadFailed": "Завантаження не вдалося",
+    "invalidFormat": "Недійсний формат файлу",
+    "fileTooLarge": "Файл занадто великий",
+    "emptyFile": "Порожній файл",
+    "processingFailed": "Обробка не вдалася",
+    "noDataAvailable": "Дані недоступні"
+  },
+  "model": {
+    "trainingFailed": "Навчання не вдалося",
+    "predictionFailed": "Прогнозування не вдалося",
+    "invalidConfiguration": "Недійсна конфігурація",
+    "insufficientData": "Недостатньо даних",
+    "convergenceFailed": "Збіжність не досягнута"
+  },
+  "export": {
+    "exportFailed": "Експорт не вдався",
+    "invalidData": "Недійсні дані для експорту",
+    "permissionDenied": "Доступ заборонено"
+  },
+  "validation": {
+    "required": "Це поле є обов'язковим",
+    "invalidValue": "Недійсне значення",
+    "outOfRange": "Значення поза межами діапазону",
+    "invalidFormat": "Недійсний формат"
+  },
+  "network": {
+    "connectionFailed": "З'єднання не вдалося",
+    "timeout": "Час очікування вичерпано",
+    "serverError": "Помилка сервера"
+  },
+  "404": {
+    "title": "Сторінка не знайдена",
+    "message": "Сторінка, яку ви шукаєте, не існує.",
+    "goHome": "Повернутися на головну"
+  },
+  "500": {
+    "title": "Внутрішня помилка сервера",
+    "message": "Виникла неочікувана помилка. Спробуйте ще раз пізніше.",
+    "reload": "Перезавантажити сторінку"
+  }
+}

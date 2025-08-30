@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import Papa from 'papaparse';
 import { Dataset, DataColumn } from '../../types';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface DataUploaderProps {
   onDatasetLoaded: (dataset: Dataset) => void;
@@ -11,6 +12,7 @@ interface DataUploaderProps {
  * CSV file uploader with drag-and-drop support and demo data loading
  */
 const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
+  const { t } = useTranslation(['data', 'errors']);
   const [isUploading, setIsUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
 
@@ -19,11 +21,28 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
    */
   const processCSVData = useCallback((csvData: any[], fileName: string) => {
     if (csvData.length === 0) {
-      throw new Error('CSV file is empty');
+      throw new Error(t('uploader.csvEmpty'));
+    }
+
+    // Validate file size (approximate check)
+    if (csvData.length > 10000) {
+      console.warn(t('validation.tooManyRows', { count: csvData.length }));
     }
 
     // Get column names from first row
     const columnNames = Object.keys(csvData[0]);
+    
+    // Validate column names
+    const duplicateNames = columnNames.filter((name, index) => columnNames.indexOf(name) !== index);
+    if (duplicateNames.length > 0) {
+      throw new Error(t('validation.duplicateColumnNames'));
+    }
+
+    // Check for excessively long column names
+    const longNames = columnNames.filter(name => name.length > 100);
+    if (longNames.length > 0) {
+      console.warn(t('validation.columnNameTooLong', { max: 100 }));
+    }
     
     // Analyze columns and infer types
     const columns: DataColumn[] = columnNames.map(name => {
@@ -85,7 +104,7 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
     };
 
     return dataset;
-  }, []);
+  }, [t]);
 
   /**
    * Handle file upload
@@ -104,14 +123,14 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
           onDatasetLoaded(dataset);
         } catch (error) {
           console.error('Error processing CSV:', error);
-          alert(`Error processing CSV: ${error instanceof Error ? error.message : 'Unknown error'}`);
+          alert(`${t('uploader.errorProcessingCSV')}: ${error instanceof Error ? error.message : t('errors.general.somethingWentWrong')}`);
         } finally {
           setIsUploading(false);
         }
       },
       error: (error) => {
         console.error('CSV parsing error:', error);
-        alert(`Error parsing CSV: ${error.message}`);
+        alert(`${t('uploader.errorParsingCSV')}: ${error.message}`);
         setIsUploading(false);
       },
       header: true,
@@ -197,7 +216,7 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
             onDatasetLoaded(dataset);
           } catch (error) {
             console.error('Error processing demo data:', error);
-            alert(`Error processing demo data: ${error instanceof Error ? error.message : 'Unknown error'}`);
+            alert(`${t('uploader.errorProcessingDemo')}: ${error instanceof Error ? error.message : t('errors.general.somethingWentWrong')}`);
           } finally {
             setIsUploading(false);
           }
@@ -208,7 +227,7 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
       });
     } catch (error) {
       console.error('Error loading demo dataset:', error);
-      alert('Error loading demo dataset');
+      alert(t('uploader.errorLoadingDemo'));
       setIsUploading(false);
     }
   }, [processCSVData, onDatasetLoaded]);
@@ -239,7 +258,7 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
       if (file.type === 'text/csv' || file.name.endsWith('.csv')) {
         handleFileUpload(file);
       } else {
-        alert('Please upload a CSV file');
+        alert(t('uploader.pleaseUploadCSV'));
       }
     }
   }, [handleFileUpload]);
@@ -285,14 +304,14 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold text-secondary-900 mb-2">
-              {isUploading ? 'Processing...' : 'Upload CSV File'}
+            <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">
+              {isUploading ? t('uploader.processing') : t('uploader.title')}
             </h3>
-            <p className="text-secondary-600">
-              Drag and drop your CSV file here, or click to browse
+            <p className="text-secondary-600 dark:text-gray-400">
+              {t('uploader.dragAndDrop')}
             </p>
             <p className="text-sm text-secondary-500 mt-2">
-              Supports CSV files with headers
+              {t('uploader.supportedFormats')}
             </p>
           </div>
         </div>
@@ -305,8 +324,8 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
         transition={{ delay: 0.1 }}
         className="card"
       >
-        <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-          Try Demo Datasets
+        <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+          {t('demo.title')}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button
@@ -314,12 +333,12 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
             disabled={isUploading}
             className="p-4 border border-secondary-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors duration-200 text-left disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <h4 className="font-medium text-secondary-900 mb-2">Iris Dataset</h4>
-            <p className="text-sm text-secondary-600">
-              Classic classification dataset with flower measurements and species
+            <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('demo.iris.title')}</h4>
+            <p className="text-sm text-secondary-600 dark:text-gray-400">
+              {t('demo.iris.description')}
             </p>
             <div className="mt-2 text-xs text-secondary-500">
-              30 samples • 4 features • 3 classes
+              {t('demo.iris.stats')}
             </div>
           </button>
 
@@ -328,12 +347,12 @@ const DataUploader: React.FC<DataUploaderProps> = ({ onDatasetLoaded }) => {
             disabled={isUploading}
             className="p-4 border border-secondary-200 rounded-lg hover:border-primary-300 hover:bg-primary-50 transition-colors duration-200 text-left disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <h4 className="font-medium text-secondary-900 mb-2">Sales Time Series</h4>
-            <p className="text-sm text-secondary-600">
-              Sales data with temperature and promotion features for regression
+            <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('demo.timeSeries.title')}</h4>
+            <p className="text-sm text-secondary-600 dark:text-gray-400">
+              {t('demo.timeSeries.description')}
             </p>
             <div className="mt-2 text-xs text-secondary-500">
-              20 samples • 3 features • Regression
+              {t('demo.timeSeries.stats')}
             </div>
           </button>
         </div>

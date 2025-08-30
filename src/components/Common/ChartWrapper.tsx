@@ -17,7 +17,7 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
   return (
     <div className={`bg-white rounded-lg border border-secondary-200 p-4 ${className}`}>
       {title && (
-        <h3 className="text-lg font-medium text-secondary-900 mb-4">
+        <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">
           {title}
         </h3>
       )}

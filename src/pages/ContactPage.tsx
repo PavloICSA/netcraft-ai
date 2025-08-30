@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { storageUtils } from '../lib/data/migration-utils';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Contact page with form and information
  */
 const ContactPage: React.FC = () => {
+  const { t } = useTranslation('pages');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -58,11 +60,11 @@ const ContactPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center"
       >
-        <h1 className="text-4xl font-bold text-secondary-900 mb-4">
-          Contact Us
+        <h1 className="text-4xl font-bold text-secondary-900 dark:text-gray-100 mb-4">
+          {t('contact.title')}
         </h1>
-        <p className="text-xl text-secondary-600">
-          Get in touch with questions, feedback, or collaboration opportunities
+        <p className="text-xl text-secondary-600 dark:text-gray-300">
+          {t('contact.subtitle')}
         </p>
       </motion.div>
 
@@ -74,8 +76,8 @@ const ContactPage: React.FC = () => {
           transition={{ delay: 0.1 }}
           className="card"
         >
-          <h2 className="text-2xl font-semibold text-secondary-900 mb-6">
-            Send us a Message
+          <h2 className="text-2xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">
+            {t('contact.form.title')}
           </h2>
 
           {isSubmitted ? (
@@ -85,19 +87,19 @@ const ContactPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-secondary-900 mb-2">
-                Message Sent!
+              <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">
+                {t('contact.form.success.title')}
               </h3>
-              <p className="text-secondary-600">
-                Thank you for your message. We'll get back to you soon.
+              <p className="text-secondary-600 dark:text-gray-300">
+                {t('contact.form.success.description')}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-secondary-700 mb-2">
-                    Name *
+                  <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                    {t('contact.form.name')} *
                   </label>
                   <input
                     type="text"
@@ -106,12 +108,12 @@ const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="input-field"
-                    placeholder="Your full name"
+                    placeholder={t('contact.form.namePlaceholder')}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-secondary-700 mb-2">
-                    Email *
+                  <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                    {t('contact.form.email')} *
                   </label>
                   <input
                     type="email"
@@ -120,14 +122,14 @@ const ContactPage: React.FC = () => {
                     onChange={handleChange}
                     required
                     className="input-field"
-                    placeholder="your.email@example.com"
+                    placeholder={t('contact.form.emailPlaceholder')}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-2">
-                  Subject *
+                <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                  {t('contact.form.subject')} *
                 </label>
                 <select
                   name="subject"
@@ -136,19 +138,19 @@ const ContactPage: React.FC = () => {
                   required
                   className="input-field"
                 >
-                  <option value="">Select a subject</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="bug">Bug Report</option>
-                  <option value="feature">Feature Request</option>
-                  <option value="collaboration">Collaboration</option>
-                  <option value="support">Technical Support</option>
-                  <option value="other">Other</option>
+                  <option value="">{t('contact.form.selectSubject')}</option>
+                  <option value="general">{t('contact.form.subjects.general')}</option>
+                  <option value="bug">{t('contact.form.subjects.bug')}</option>
+                  <option value="feature">{t('contact.form.subjects.feature')}</option>
+                  <option value="collaboration">{t('contact.form.subjects.collaboration')}</option>
+                  <option value="support">{t('contact.form.subjects.support')}</option>
+                  <option value="other">{t('contact.form.subjects.other')}</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-2">
-                  Message *
+                <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                  {t('contact.form.message')} *
                 </label>
                 <textarea
                   name="message"
@@ -157,7 +159,7 @@ const ContactPage: React.FC = () => {
                   required
                   rows={6}
                   className="input-field resize-none"
-                  placeholder="Tell us about your inquiry, feedback, or how we can help..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                 />
               </div>
 
@@ -165,7 +167,7 @@ const ContactPage: React.FC = () => {
                 type="submit"
                 className="w-full btn-primary"
               >
-                Send Message
+                {t('contact.form.sendMessage')}
               </button>
             </form>
           )}
@@ -180,8 +182,8 @@ const ContactPage: React.FC = () => {
         >
           {/* Quick Contact */}
           <div className="card">
-            <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-              Quick Contact
+            <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+              {t('contact.quickContact.title')}
             </h3>
             <div className="space-y-4">
               <div className="flex items-center">
@@ -191,8 +193,8 @@ const ContactPage: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-medium text-secondary-900">Email</div>
-                  <div className="text-secondary-600">support@netcraft-ai.com</div>
+                  <div className="font-medium text-secondary-900 dark:text-gray-100">{t('contact.quickContact.email')}</div>
+                  <div className="text-secondary-600 dark:text-gray-400">pavel.likhovid@gmail.com</div>
                 </div>
               </div>
 
@@ -203,8 +205,8 @@ const ContactPage: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-medium text-secondary-900">Community</div>
-                  <div className="text-secondary-600">GitHub Discussions</div>
+                  <div className="font-medium text-secondary-900 dark:text-gray-100">{t('contact.quickContact.community')}</div>
+                  <div className="text-secondary-600 dark:text-gray-400">{t('contact.quickContact.communityDescription')}</div>
                 </div>
               </div>
 
@@ -215,8 +217,8 @@ const ContactPage: React.FC = () => {
                   </svg>
                 </div>
                 <div>
-                  <div className="font-medium text-secondary-900">Status</div>
-                  <div className="text-secondary-600">All systems operational</div>
+                  <div className="font-medium text-secondary-900 dark:text-gray-100">{t('contact.quickContact.status')}</div>
+                  <div className="text-secondary-600 dark:text-gray-400">{t('contact.quickContact.statusDescription')}</div>
                 </div>
               </div>
             </div>
@@ -224,32 +226,32 @@ const ContactPage: React.FC = () => {
 
           {/* FAQ */}
           <div className="card">
-            <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-              Frequently Asked Questions
+            <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+              {t('contact.faq.title')}
             </h3>
             <div className="space-y-4">
               <div>
-                <h4 className="font-medium text-secondary-900 mb-1">
-                  Is my data secure?
+                <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-1">
+                  {t('contact.faq.dataSecure.question')}
                 </h4>
-                <p className="text-sm text-secondary-600 text-justify leading-relaxed">
-                  Yes! All processing happens in your browser with complete client-side execution. Your data never leaves your device, ensuring maximum privacy and security.
+                <p className="text-sm text-secondary-600 dark:text-gray-400 text-justify leading-relaxed">
+                  {t('contact.faq.dataSecure.answer')}
                 </p>
               </div>
               <div>
-                <h4 className="font-medium text-secondary-900 mb-1">
-                  Can I use this for commercial projects?
+                <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-1">
+                  {t('contact.faq.commercial.question')}
                 </h4>
-                <p className="text-sm text-secondary-600 text-justify leading-relaxed">
-                  Yes, NetCraft AI is available under the MIT license for both personal and commercial use. You have full freedom to integrate it into your projects.
+                <p className="text-sm text-secondary-600 dark:text-gray-400 text-justify leading-relaxed">
+                  {t('contact.faq.commercial.answer')}
                 </p>
               </div>
               <div>
-                <h4 className="font-medium text-secondary-900 mb-1">
-                  How do I report bugs?
+                <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-1">
+                  {t('contact.faq.bugs.question')}
                 </h4>
-                <p className="text-sm text-secondary-600 text-justify leading-relaxed">
-                  Use the contact form above or create an issue on our GitHub repository. We welcome detailed bug reports and feature suggestions from the community.
+                <p className="text-sm text-secondary-600 dark:text-gray-400 text-justify leading-relaxed">
+                  {t('contact.faq.bugs.answer')}
                 </p>
               </div>
             </div>
@@ -257,21 +259,21 @@ const ContactPage: React.FC = () => {
 
           {/* Resources */}
           <div className="card">
-            <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-              Resources
+            <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+              {t('contact.resources.title')}
             </h3>
             <div className="space-y-2">
               <Link to="/guidelines" className="block text-primary-600 hover:text-primary-700">
-                → Usage Guidelines
+                → {t('contact.resources.usageGuidelines')}
               </Link>
               <Link to="/about" className="block text-primary-600 hover:text-primary-700">
-                → About the Project
+                → {t('contact.resources.aboutProject')}
               </Link>
-              <a href="https://github.com/netcraft-ai" className="block text-primary-600 hover:text-primary-700" target="_blank" rel="noopener noreferrer">
-                → GitHub Repository
+              <a href="https://github.com/PavloICSA/netcraft-ai" className="block text-primary-600 hover:text-primary-700" target="_blank" rel="noopener noreferrer">
+                → {t('contact.resources.githubRepository')}
               </a>
               <Link to="/terms" className="block text-primary-600 hover:text-primary-700">
-                → Terms of Use
+                → {t('contact.resources.termsOfUse')}
               </Link>
             </div>
           </div>

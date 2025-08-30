@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Dataset, ClusterConfig } from '../../types';
+import LocaleNumber from '../Common/LocaleNumber';
 
 interface ClusterizerFormProps {
   dataset: Dataset;
@@ -18,6 +20,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
   isProcessing,
   processingProgress
 }) => {
+  const { t } = useTranslation('clusterizer');
   const [selectedColumns, setSelectedColumns] = useState<string[]>([]);
   const [method, setMethod] = useState<'kmeans' | 'som'>('kmeans');
   const [k, setK] = useState(3);
@@ -42,7 +45,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
     e.preventDefault();
 
     if (selectedColumns.length === 0) {
-      alert('Please select at least one column for clustering');
+      alert(t('form.selectAtLeastOne'));
       return;
     }
 
@@ -80,18 +83,18 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
 
   return (
     <div className="card">
-      <h2 className="text-xl font-semibold text-secondary-900 mb-6">
-        Clustering Configuration
+      <h2 className="text-xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">
+        {t('form.title')}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Feature Selection */}
         <div>
-          <h3 className="text-lg font-medium text-secondary-900 mb-4">Feature Selection</h3>
+          <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">{t('form.featureSelection')}</h3>
           
           <div className="mb-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Select Features for Clustering
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.selectFeatures')}
             </label>
             <div className="space-y-2 max-h-32 overflow-y-auto border border-secondary-200 rounded-lg p-3">
               {numericColumns.map(column => (
@@ -102,24 +105,24 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                     onChange={() => toggleColumn(column.name)}
                     className="rounded border-secondary-300 text-primary-600 focus:ring-primary-500"
                   />
-                  <span className="ml-2 text-sm text-secondary-700">{column.name}</span>
+                  <span className="ml-2 text-sm text-secondary-700 dark:text-gray-300">{column.name}</span>
                   {column.stats && (
                     <span className="ml-auto text-xs text-secondary-500">
-                      {column.stats.min?.toFixed(2)} - {column.stats.max?.toFixed(2)}
+                      <LocaleNumber value={column.stats.min || 0} options={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }} /> - <LocaleNumber value={column.stats.max || 0} options={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }} />
                     </span>
                   )}
                 </label>
               ))}
             </div>
             <p className="text-xs text-secondary-500 mt-1">
-              Selected: {selectedColumns.length} features
+              {t('form.selectedFeatures', { count: selectedColumns.length })}
             </p>
           </div>
         </div>
 
         {/* Method Selection */}
         <div>
-          <h3 className="text-lg font-medium text-secondary-900 mb-4">Clustering Method</h3>
+          <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">{t('form.clusteringMethod')}</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <label className={`p-4 border-2 rounded-lg cursor-pointer transition-colors ${
@@ -133,9 +136,9 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                 className="sr-only"
               />
               <div className="text-center">
-                <div className="text-lg font-semibold text-secondary-900 mb-2">K-Means</div>
-                <div className="text-sm text-secondary-600">
-                  Partitions data into k clusters by minimizing within-cluster variance
+                <div className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">{t('form.kmeans')}</div>
+                <div className="text-sm text-secondary-600 dark:text-gray-400">
+                  {t('form.kmeansDescription')}
                 </div>
               </div>
             </label>
@@ -151,9 +154,9 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                 className="sr-only"
               />
               <div className="text-center">
-                <div className="text-lg font-semibold text-secondary-900 mb-2">Self-Organizing Map</div>
-                <div className="text-sm text-secondary-600">
-                  Neural network that creates a topology-preserving map of the data
+                <div className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">{t('form.som')}</div>
+                <div className="text-sm text-secondary-600 dark:text-gray-400">
+                  {t('form.somDescription')}
                 </div>
               </div>
             </label>
@@ -162,12 +165,12 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
 
         {/* Method-specific Parameters */}
         <div>
-          <h3 className="text-lg font-medium text-secondary-900 mb-4">Parameters</h3>
+          <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">{t('form.parameters.title')}</h3>
           
           {method === 'kmeans' ? (
             <div>
-              <label className="block text-sm font-medium text-secondary-700 mb-2">
-                Number of Clusters (k)
+              <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                {t('form.parameters.numberOfClusters')}
               </label>
               <input
                 type="number"
@@ -178,7 +181,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                 className="input-field"
                 onInvalid={(e) => {
                   const target = e.target as HTMLInputElement;
-                  target.setCustomValidity('Please enter a number between 2 and 20');
+                  target.setCustomValidity(t('form.validation.numberBetween2And20'));
                 }}
                 onInput={(e) => {
                   const target = e.target as HTMLInputElement;
@@ -186,15 +189,15 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                 }}
               />
               <p className="text-xs text-secondary-500 mt-1">
-                Choose the number of clusters to create (2-20)
+                {t('form.parameters.numberOfClustersHelp')}
               </p>
             </div>
           ) : (
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-secondary-700 mb-2">
-                    Grid Width
+                  <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                    {t('form.parameters.gridWidth')}
                   </label>
                   <input
                     type="number"
@@ -205,7 +208,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                     className="input-field"
                     onInvalid={(e) => {
                       const target = e.target as HTMLInputElement;
-                      target.setCustomValidity('Please enter a number between 2 and 20');
+                      target.setCustomValidity(t('form.validation.numberBetween2And20'));
                     }}
                     onInput={(e) => {
                       const target = e.target as HTMLInputElement;
@@ -214,8 +217,8 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-secondary-700 mb-2">
-                    Grid Height
+                  <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                    {t('form.parameters.gridHeight')}
                   </label>
                   <input
                     type="number"
@@ -226,7 +229,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                     className="input-field"
                     onInvalid={(e) => {
                       const target = e.target as HTMLInputElement;
-                      target.setCustomValidity('Please enter a number between 2 and 20');
+                      target.setCustomValidity(t('form.validation.numberBetween2And20'));
                     }}
                     onInput={(e) => {
                       const target = e.target as HTMLInputElement;
@@ -237,8 +240,8 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-2">
-                  Learning Rate
+                <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                  {t('form.parameters.learningRate')}
                 </label>
                 <input
                   type="number"
@@ -251,13 +254,13 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                   onInvalid={(e) => {
                     const target = e.target as HTMLInputElement;
                     if (target.validity.rangeUnderflow) {
-                      target.setCustomValidity('Please enter a value between 0.001 and 1');
+                      target.setCustomValidity(t('form.validation.valueBetween0001And1'));
                     } else if (target.validity.rangeOverflow) {
-                      target.setCustomValidity('Please enter a value between 0.001 and 1');
+                      target.setCustomValidity(t('form.validation.valueBetween0001And1'));
                     } else if (target.validity.stepMismatch) {
-                      target.setCustomValidity('Please enter a valid decimal number');
+                      target.setCustomValidity(t('form.validation.validDecimalNumber'));
                     } else {
-                      target.setCustomValidity('Please enter a valid learning rate between 0.001 and 1');
+                      target.setCustomValidity(t('form.validation.validLearningRate'));
                     }
                   }}
                   onInput={(e) => {
@@ -266,15 +269,15 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
                   }}
                 />
                 <p className="text-xs text-secondary-500 mt-1">
-                  Controls how quickly the network adapts (0.001-1.0)
+                  {t('form.parameters.learningRateHelp')}
                 </p>
               </div>
             </div>
           )}
 
           <div className="mt-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Training Epochs
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.parameters.trainingEpochs')}
             </label>
             <input
               type="number"
@@ -285,7 +288,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
               className="input-field"
               onInvalid={(e) => {
                 const target = e.target as HTMLInputElement;
-                target.setCustomValidity('Please enter a number between 10 and 1000');
+                target.setCustomValidity(t('form.validation.numberBetween10And1000'));
               }}
               onInput={(e) => {
                 const target = e.target as HTMLInputElement;
@@ -293,7 +296,7 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
               }}
             />
             <p className="text-xs text-secondary-500 mt-1">
-              Number of training iterations (10-1000)
+              {t('form.parameters.trainingEpochsHelp')}
             </p>
           </div>
         </div>
@@ -328,21 +331,21 @@ const ClusterizerForm: React.FC<ClusterizerFormProps> = ({
           disabled={isProcessing || selectedColumns.length === 0}
           className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isProcessing ? 'Processing...' : `Run ${method === 'kmeans' ? 'K-Means' : 'SOM'} Clustering`}
+          {isProcessing ? t('form.processing') : t('form.runClustering', { method: method === 'kmeans' ? t('form.kmeans') : t('form.som') })}
         </button>
       </form>
 
       {/* Data Summary */}
       <div className="mt-6 p-4 bg-secondary-50 rounded-lg">
-        <h4 className="font-medium text-secondary-900 mb-2">Data Summary</h4>
-        <div className="text-sm text-secondary-600 space-y-1">
-          <div>Total samples: {dataset.data.length}</div>
-          <div>Selected features: {selectedColumns.length}</div>
-          <div>Method: {method === 'kmeans' ? 'K-Means' : 'Self-Organizing Map'}</div>
+        <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('form.dataSummary.title')}</h4>
+        <div className="text-sm text-secondary-600 dark:text-gray-400 space-y-1">
+          <div>{t('form.dataSummary.totalSamples', { count: dataset.data.length })}</div>
+          <div>{t('form.dataSummary.selectedFeatures', { count: selectedColumns.length })}</div>
+          <div>{t('form.dataSummary.method', { method: method === 'kmeans' ? t('form.kmeans') : t('form.som') })}</div>
           {method === 'kmeans' ? (
-            <div>Target clusters: {k}</div>
+            <div>{t('form.dataSummary.targetClusters', { count: k })}</div>
           ) : (
-            <div>SOM grid: {gridWidth} × {gridHeight} = {gridWidth * gridHeight} nodes</div>
+            <div>{t('form.dataSummary.somGrid', { width: gridWidth, height: gridHeight, total: gridWidth * gridHeight })}</div>
           )}
         </div>
       </div>

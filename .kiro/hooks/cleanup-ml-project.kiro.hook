@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "name": "ML Project Cleanup",
+  "description": "Removes unnecessary files like tests, verification scripts, temporary logs, documentation summaries, and scaffolding code that are not needed for the functioning of the deployed web application while preserving core functionality",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "**/*.md",
+      "scripts/**",
+      "temp/**",
+      "**/*test*",
+      "**/*spec*",
+      "**/*summary*",
+      "**/*report*",
+      "**/*completion*",
+      "**/*verification*",
+      "**/*coverage*",
+      "**/*optimize*",
+      "translation-export-*.csv"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Analyze the ML Studio project and safely remove unnecessary files that are not required for the deployed web application. Focus on removing: 1) Documentation summary files (*.md files except core docs like README.md, API.md, DEPLOYMENT.md), 2) Test and verification scripts in the scripts/ folder, 3) Temporary files in temp/ folder, 4) Translation export CSV files, 5) Development reports and completion summaries. Preserve all core application files in src/, essential config files (package.json, vite.config.ts, tsconfig.json, etc.), and critical documentation. DO NOT remove anything that would break the web application functionality."
+  }
+}

@@ -14,7 +14,6 @@
 - **Package Manager**: npm with package-lock.json
 - **Linting**: ESLint with TypeScript and React hooks plugins
 - **Formatting**: Prettier (single quotes, 100 char width, 2 spaces)
-- **Testing**: Jest with jsdom environment, React Testing Library
 - **Type Checking**: TypeScript 5.2+ with strict configuration
 
 ## Data Processing
@@ -33,8 +32,6 @@ npm run preview      # Preview production build
 # Code Quality
 npm run lint         # ESLint check
 npm run format       # Prettier formatting
-npm test             # Jest test suite
-npm test -- --coverage  # Test with coverage
 
 # Production
 npm run build        # Build for deployment

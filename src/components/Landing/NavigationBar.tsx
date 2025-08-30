@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import ThemeToggle from '../Common/ThemeToggle';
+import LanguageToggle from '../Common/LanguageToggle';
 
 /**
  * Beautiful navigation bar with animated buttons for About, Guidelines, and Contact
  */
 const NavigationBar: React.FC = () => {
+  const { t } = useTranslation('common');
+  
   const navItems = [
     {
-      name: 'About',
+      name: t('navigation.about'),
       path: '/about',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -20,7 +25,7 @@ const NavigationBar: React.FC = () => {
       shadowColor: 'blue-500/25'
     },
     {
-      name: 'Guidelines',
+      name: t('navigation.guidelines'),
       path: '/guidelines',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -32,7 +37,7 @@ const NavigationBar: React.FC = () => {
       shadowColor: 'emerald-500/25'
     },
     {
-      name: 'Contact',
+      name: t('navigation.contact'),
       path: '/contact',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,7 +58,27 @@ const NavigationBar: React.FC = () => {
       className="relative py-6"
     >
       <div className="max-w-4xl mx-auto px-6">
+        {/* Theme Toggle at the top */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex justify-center mb-6"
+        >
+          <ThemeToggle variant="landing" />
+        </motion.div>
+
         <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+          {/* Language toggle */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-4 md:mb-0"
+          >
+            <LanguageToggle variant="landing" showLabel={false} />
+          </motion.div>
+          
           {navItems.map((item, index) => (
             <motion.div
               key={item.name}
@@ -89,8 +114,8 @@ const NavigationBar: React.FC = () => {
         </div>
         
         {/* Decorative elements */}
-        <div className="absolute top-0 left-1/4 w-24 h-0.5 bg-gradient-to-r from-transparent via-primary-400/60 to-transparent"></div>
-        <div className="absolute bottom-0 right-1/4 w-24 h-0.5 bg-gradient-to-r from-transparent via-accent-400/60 to-transparent"></div>
+        <div className="absolute top-0 left-1/4 w-24 h-0.5 bg-gradient-to-r from-transparent via-primary-400/60 dark:via-primary-500/40 to-transparent"></div>
+        <div className="absolute bottom-0 right-1/4 w-24 h-0.5 bg-gradient-to-r from-transparent via-accent-400/60 dark:via-accent-500/40 to-transparent"></div>
       </div>
     </motion.nav>
   );

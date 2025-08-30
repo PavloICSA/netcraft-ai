@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Dataset, ANNConfig } from '../../types';
+import { normalizeData } from '../../lib/data/csv-utils';
 
 interface PredictorFormProps {
   dataset: Dataset;
-  onTrain: (config: ANNConfig, data: { inputs: number[][]; targets: number[][] }) => void;
+  onTrain: (config: ANNConfig, data: { 
+    inputs: number[][]; 
+    targets: number[][]; 
+    inputNormalizationStats?: { mean: number; std: number }[];
+    targetNormalizationStats?: { mean: number; std: number }[];
+  }) => void;
   isTraining: boolean;
   trainingProgress: { epoch: number; loss: number; accuracy?: number } | null;
 }
@@ -18,12 +25,13 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
   isTraining,
   trainingProgress
 }) => {
+  const { t } = useTranslation('predictor');
   const [inputColumns, setInputColumns] = useState<string[]>([]);
   const [targetColumn, setTargetColumn] = useState<string>('');
   const [taskType, setTaskType] = useState<'regression' | 'classification'>('regression');
   const [hiddenLayers, setHiddenLayers] = useState<number[]>([10, 5]);
   const [activationFunction, setActivationFunction] = useState<'relu' | 'sigmoid' | 'tanh'>('relu');
-  const [learningRate, setLearningRate] = useState(0.01);
+  const [learningRate, setLearningRate] = useState(0.001); // Lower default learning rate
   const [epochs, setEpochs] = useState(100);
   const [batchSize, setBatchSize] = useState(32);
 
@@ -38,7 +46,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
         setTargetColumn(numericColumns[numericColumns.length - 1].name);
       }
     }
-  }, [dataset]);
+  }, [numericColumns.length, inputColumns.length]);
 
   // Auto-detect task type based on target column
   useEffect(() => {
@@ -50,7 +58,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
         setTaskType(uniqueRatio < 0.1 ? 'classification' : 'regression');
       }
     }
-  }, [targetColumn, dataset]);
+  }, [targetColumn, dataset.data.length]);
 
   /**
    * Handle form submission
@@ -59,7 +67,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
     e.preventDefault();
 
     if (inputColumns.length === 0 || !targetColumn) {
-      alert('Please select input columns and target column');
+      alert(t('form.validation.selectInputAndTarget'));
       return;
     }
 
@@ -92,6 +100,28 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
       targets.push(targetRow);
     });
 
+    // Validate data for NaN values
+    const hasNaNInputs = inputs.some(row => row.some(val => isNaN(val)));
+    const hasNaNTargets = targets.some(row => row.some(val => isNaN(val)));
+    
+    if (hasNaNInputs || hasNaNTargets) {
+      alert(t('form.validation.invalidData'));
+      return;
+    }
+
+    // Normalize input data for better training stability
+    const { normalizedData: normalizedInputs, normalizationStats: inputNormalizationStats } = normalizeData(inputs);
+    
+    // Normalize target data for regression tasks
+    let normalizedTargets = targets;
+    let targetNormalizationStats: { mean: number; std: number }[] | undefined;
+    
+    if (taskType === 'regression') {
+      const { normalizedData, normalizationStats } = normalizeData(targets);
+      normalizedTargets = normalizedData;
+      targetNormalizationStats = normalizationStats;
+    }
+
     // Create configuration
     const config: ANNConfig = {
       inputSize: inputColumns.length,
@@ -106,7 +136,12 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
       taskType
     };
 
-    onTrain(config, { inputs, targets });
+    onTrain(config, { 
+      inputs: normalizedInputs, 
+      targets: normalizedTargets,
+      inputNormalizationStats,
+      targetNormalizationStats
+    });
   };
 
   /**
@@ -136,19 +171,19 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
 
   return (
     <div className="card">
-      <h2 className="text-xl font-semibold text-secondary-900 mb-6">
-        Neural Network Configuration
+      <h2 className="text-xl font-semibold text-secondary-900 dark:text-gray-100 mb-6">
+        {t('form.title')}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Data Selection */}
         <div>
-          <h3 className="text-lg font-medium text-secondary-900 mb-4">Data Selection</h3>
+          <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">{t('form.dataSelection.title')}</h3>
           
           {/* Input Columns */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Input Features
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.dataSelection.inputFeatures')}
             </label>
             <div className="space-y-2 max-h-32 overflow-y-auto border border-secondary-200 rounded-lg p-3">
               {numericColumns.map(column => (
@@ -165,26 +200,26 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                     }}
                     className="rounded border-secondary-300 text-primary-600 focus:ring-primary-500"
                   />
-                  <span className="ml-2 text-sm text-secondary-700">{column.name}</span>
+                  <span className="ml-2 text-sm text-secondary-700 dark:text-gray-300">{column.name}</span>
                 </label>
               ))}
             </div>
             <p className="text-xs text-secondary-500 mt-1">
-              Selected: {inputColumns.length} columns
+              {t('form.dataSelection.selectedColumns', { count: inputColumns.length })}
             </p>
           </div>
 
           {/* Target Column */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Target Variable
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.dataSelection.targetVariable')}
             </label>
             <select
               value={targetColumn}
               onChange={(e) => setTargetColumn(e.target.value)}
               className="input-field"
             >
-              <option value="">Select target column</option>
+              <option value="">{t('form.dataSelection.selectTargetColumn')}</option>
               {allColumns.map(column => (
                 <option key={column.name} value={column.name}>
                   {column.name} ({column.type})
@@ -195,8 +230,8 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
 
           {/* Task Type */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Task Type
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.dataSelection.taskType')}
             </label>
             <div className="flex gap-4">
               <label className="flex items-center">
@@ -207,7 +242,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                   onChange={(e) => setTaskType(e.target.value as 'regression')}
                   className="text-primary-600 focus:ring-primary-500"
                 />
-                <span className="ml-2 text-sm text-secondary-700">Regression</span>
+                <span className="ml-2 text-sm text-secondary-700 dark:text-gray-300">{t('form.dataSelection.regression')}</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -217,7 +252,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                   onChange={(e) => setTaskType(e.target.value as 'classification')}
                   className="text-primary-600 focus:ring-primary-500"
                 />
-                <span className="ml-2 text-sm text-secondary-700">Classification</span>
+                <span className="ml-2 text-sm text-secondary-700 dark:text-gray-300">{t('form.dataSelection.classification')}</span>
               </label>
             </div>
           </div>
@@ -225,17 +260,17 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
 
         {/* Network Architecture */}
         <div>
-          <h3 className="text-lg font-medium text-secondary-900 mb-4">Network Architecture</h3>
+          <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">{t('form.architecture.title')}</h3>
           
           {/* Hidden Layers */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Hidden Layers
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.architecture.hiddenLayers')}
             </label>
             <div className="space-y-2">
               {hiddenLayers.map((neurons, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <span className="text-sm text-secondary-600 w-16">Layer {index + 1}:</span>
+                  <span className="text-sm text-secondary-600 dark:text-gray-400 w-16">{t('form.architecture.layer', { number: index + 1 })}:</span>
                   <input
                     type="number"
                     value={neurons}
@@ -245,14 +280,14 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                     className="input-field flex-1"
                     onInvalid={(e) => {
                       const target = e.target as HTMLInputElement;
-                      target.setCustomValidity('Please enter a number between 1 and 1000');
+                      target.setCustomValidity(t('form.validation.neuronsRange'));
                     }}
                     onInput={(e) => {
                       const target = e.target as HTMLInputElement;
                       target.setCustomValidity('');
                     }}
                   />
-                  <span className="text-sm text-secondary-600">neurons</span>
+                  <span className="text-sm text-secondary-600 dark:text-gray-400">{t('form.architecture.neurons')}</span>
                   {hiddenLayers.length > 1 && (
                     <button
                       type="button"
@@ -271,36 +306,36 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                 onClick={addHiddenLayer}
                 className="text-sm text-primary-600 hover:text-primary-700"
               >
-                + Add Layer
+                {t('form.architecture.addLayer')}
               </button>
             </div>
           </div>
 
           {/* Activation Function */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-secondary-700 mb-2">
-              Activation Function
+            <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+              {t('form.architecture.activationFunction')}
             </label>
             <select
               value={activationFunction}
               onChange={(e) => setActivationFunction(e.target.value as 'relu' | 'sigmoid' | 'tanh')}
               className="input-field"
             >
-              <option value="relu">ReLU</option>
-              <option value="sigmoid">Sigmoid</option>
-              <option value="tanh">Tanh</option>
+              <option value="relu">{t('form.architecture.relu')}</option>
+              <option value="sigmoid">{t('form.architecture.sigmoid')}</option>
+              <option value="tanh">{t('form.architecture.tanh')}</option>
             </select>
           </div>
         </div>
 
         {/* Training Parameters */}
         <div>
-          <h3 className="text-lg font-medium text-secondary-900 mb-4">Training Parameters</h3>
+          <h3 className="text-lg font-medium text-secondary-900 dark:text-gray-100 mb-4">{t('form.training.title')}</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-secondary-700 mb-2">
-                Learning Rate
+              <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                {t('form.training.learningRate')}
               </label>
               <input
                 type="number"
@@ -313,13 +348,13 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                 onInvalid={(e) => {
                   const target = e.target as HTMLInputElement;
                   if (target.validity.rangeUnderflow) {
-                    target.setCustomValidity('Please enter a value between 0.0001 and 1');
+                    target.setCustomValidity(t('form.validation.learningRateRange'));
                   } else if (target.validity.rangeOverflow) {
-                    target.setCustomValidity('Please enter a value between 0.0001 and 1');
+                    target.setCustomValidity(t('form.validation.learningRateRange'));
                   } else if (target.validity.stepMismatch) {
-                    target.setCustomValidity('Please enter a valid decimal number');
+                    target.setCustomValidity(t('form.validation.validDecimal'));
                   } else {
-                    target.setCustomValidity('Please enter a valid learning rate between 0.0001 and 1');
+                    target.setCustomValidity(t('form.validation.validLearningRate'));
                   }
                 }}
                 onInput={(e) => {
@@ -330,8 +365,8 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 mb-2">
-                Epochs
+              <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                {t('form.training.epochs')}
               </label>
               <input
                 type="number"
@@ -342,7 +377,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                 className="input-field"
                 onInvalid={(e) => {
                   const target = e.target as HTMLInputElement;
-                  target.setCustomValidity('Please enter a number between 1 and 10000');
+                  target.setCustomValidity(t('form.validation.epochsRange'));
                 }}
                 onInput={(e) => {
                   const target = e.target as HTMLInputElement;
@@ -352,8 +387,8 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-secondary-700 mb-2">
-                Batch Size
+              <label className="block text-sm font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                {t('form.training.batchSize')}
               </label>
               <input
                 type="number"
@@ -364,7 +399,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
                 className="input-field"
                 onInvalid={(e) => {
                   const target = e.target as HTMLInputElement;
-                  target.setCustomValidity('Please enter a number between 1 and 1000');
+                  target.setCustomValidity(t('form.validation.batchSizeRange'));
                 }}
                 onInput={(e) => {
                   const target = e.target as HTMLInputElement;
@@ -383,9 +418,9 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
             className="bg-primary-50 border border-primary-200 rounded-lg p-4"
           >
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-primary-900">Training Progress</span>
+              <span className="text-sm font-medium text-primary-900">{t('form.progress.title')}</span>
               <span className="text-sm text-primary-700">
-                Epoch {trainingProgress.epoch} / {epochs}
+                {t('form.progress.epoch', { current: trainingProgress.epoch, total: epochs })}
               </span>
             </div>
             <div className="w-full bg-primary-200 rounded-full h-2 mb-2">
@@ -395,9 +430,9 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
               />
             </div>
             <div className="flex justify-between text-xs text-primary-700">
-              <span>Loss: {trainingProgress.loss.toFixed(6)}</span>
+              <span>{t('form.progress.loss', { value: trainingProgress.loss.toFixed(6) })}</span>
               {trainingProgress.accuracy !== undefined && (
-                <span>Accuracy: {(trainingProgress.accuracy * 100).toFixed(2)}%</span>
+                <span>{t('form.progress.accuracy', { value: (trainingProgress.accuracy * 100).toFixed(2) })}</span>
               )}
             </div>
           </motion.div>
@@ -409,7 +444,7 @@ const PredictorForm: React.FC<PredictorFormProps> = ({
           disabled={isTraining || inputColumns.length === 0 || !targetColumn}
           className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isTraining ? 'Training...' : 'Train Model'}
+          {isTraining ? t('form.buttons.training') : t('form.buttons.trainModel')}
         </button>
       </form>
     </div>

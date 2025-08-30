@@ -1,0 +1,160 @@
+{
+  "footer": {
+    "copyright": "© 2025 NetCraft AI. All rights reserved.",
+    "developer": "Developed by Pavlo LYKHOVYD. From a scientist for scientists.",
+    "version": "Version 1.0.0"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "effectiveDate": "Effective Date: August 1, 2025",
+    "lastUpdated": "Last Updated: August 1, 2025",
+    "acceptance": {
+      "title": "1. Acceptance of Terms",
+      "content": "By accessing and using NetCraft AI (\"the Service\"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+    },
+    "description": {
+      "title": "2. Service Description",
+      "content": "NetCraft AI is a client-side machine learning web application that provides neural network prediction, random forest classification, clustering analysis, and time series forecasting capabilities with a modern, accessible UI. Crafting artificial neural networks, ensemble methods, clustering, and forecasts in the browser."
+    },
+    "productInfo": {
+      "title": "2.1. Core Features",
+      "content": "NetCraft AI offers the following capabilities:",
+      "items": [
+        "Neural Network Predictor: Custom multilayer perceptron implementation with configurable architecture, real-time training progress, and comprehensive evaluation metrics",
+        "Random Forest Classifier: Ensemble learning with decision trees, feature importance analysis, and robust prediction capabilities",
+        "Clustering Analysis: K-means clustering and Self-Organizing Maps (SOM) with interactive visualizations",
+        "Time Series Forecasting: Multiple forecasting algorithms including moving averages, exponential smoothing, and linear trend analysis",
+        "Data Management: CSV upload with drag-and-drop, automatic column type inference, and demo datasets",
+        "Export & Persistence: Save/load models as JSON, export results to CSV, local storage for project state"
+      ]
+    },
+    "targetUsers": {
+      "title": "2.2. Target Users",
+      "content": "This application is designed for data scientists, researchers, and students who need accessible machine learning tools for classification, forecasting, and clustering that run entirely in the browser without server dependencies."
+    },
+    "keyDifferentiators": {
+      "title": "2.3. Key Differentiators",
+      "content": "NetCraft AI distinguishes itself through:",
+      "items": [
+        "Pure client-side implementation (no server required)",
+        "Educational transparency with TypeScript implementations",
+        "Professional UI/UX with accessibility support",
+        "Real-time training visualization and progress tracking"
+      ]
+    },
+    "userResponsibilities": {
+      "title": "3. User Responsibilities",
+      "content": "You are responsible for:",
+      "items": [
+        "Ensuring you have the right to use any data you upload to the Service",
+        "Complying with all applicable laws and regulations when using the Service",
+        "Not using the Service for any illegal, harmful, or malicious purposes",
+        "Not attempting to reverse engineer, modify, or distribute the Service's code without permission"
+      ]
+    },
+    "dataPrivacy": {
+      "title": "4. Data Privacy and Security",
+      "content": "NetCraft AI is designed with privacy by design principles:",
+      "items": [
+        "All data processing occurs locally in your browser",
+        "No personal data is transmitted to external servers",
+        "Data is stored locally on your device using browser storage",
+        "You maintain full control over your data and can delete it at any time"
+      ]
+    },
+    "intellectualProperty": {
+      "title": "5. Intellectual Property",
+      "content": "NetCraft AI is open source software released under the MIT License. While the software is freely available, you retain ownership of any data you process using the Service. The NetCraft AI name and branding remain the property of the project maintainers."
+    },
+    "disclaimers": {
+      "title": "6. Disclaimers and Limitations",
+      "content": "The Service is provided \"as is\" without warranties of any kind:",
+      "items": [
+        "We make no guarantees about the accuracy of machine learning predictions",
+        "The Service may contain bugs or may not function as expected",
+        "We are not liable for any decisions made based on the Service's output",
+        "Use of the Service for critical applications is at your own risk"
+      ]
+    },
+    "limitation": {
+      "title": "7. Limitation of Liability",
+      "content": "In no event shall NetCraft AI or its contributors be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of the Service."
+    },
+    "modifications": {
+      "title": "8. Modifications to Terms",
+      "content": "We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the Service after any such changes constitutes your acceptance of the new terms."
+    },
+    "termination": {
+      "title": "9. Termination",
+      "content": "You may discontinue use of the Service at any time. We reserve the right to terminate or suspend access to the Service for violations of these terms or for any other reason at our sole discretion."
+    },
+    "governingLaw": {
+      "title": "10. Governing Law",
+      "content": "These terms shall be governed by and construed in accordance with applicable international laws and regulations for open source software projects."
+    },
+    "contact": {
+      "title": "11. Contact Information",
+      "content": "If you have any questions about these Terms of Service, please contact us through our GitHub repository or project documentation."
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "placeholder": "NetCraft AI is built with privacy as a core principle. All data processing happens entirely in your browser, ensuring your data never leaves your device.",
+    "effectiveDate": "Effective Date: August 1, 2025",
+    "lastUpdated": "Last Updated: August 29, 2025",
+    "introduction": "This Privacy Policy describes how NetCraft AI handles your information when you use our machine learning web application.",
+    "privacyByDesign": {
+      "title": "Privacy by Design",
+      "clientSide": {
+        "title": "100% Client-Side Processing:",
+        "content": "All data processing happens in your browser. Your data never leaves your device, ensuring complete privacy and security."
+      },
+      "noServer": {
+        "title": "No Server Dependencies:",
+        "content": "The application runs entirely in your browser without requiring external servers or cloud services."
+      },
+      "localStorage": {
+        "title": "Local Storage Only:",
+        "content": "Models and results are stored locally on your device with full user control. You can export your data at any time."
+      }
+    },
+    "dataCollection": {
+      "title": "Data Collection",
+      "content": "NetCraft AI operates on a privacy-by-design principle. We do not collect, store, or transmit any personal data or uploaded datasets to external servers. All processing occurs locally in your browser."
+    },
+    "localProcessing": {
+      "title": "Local Processing",
+      "content": "All machine learning computations, data analysis, and model training happen entirely within your browser. Your data never leaves your device, ensuring complete privacy and security."
+    },
+    "browserStorage": {
+      "title": "Browser Storage",
+      "content": "The application may use your browser's local storage to save your preferences, trained models, and analysis results. This data remains on your device and can be cleared at any time through your browser settings."
+    },
+    "thirdParty": {
+      "title": "Third-Party Services",
+      "content": "NetCraft AI does not integrate with any third-party analytics, tracking, or data collection services. No cookies are used for tracking purposes."
+    },
+    "dataRetention": {
+      "title": "Data Retention",
+      "content": "Since all data processing is local, we do not retain any of your data. Any information stored is kept locally on your device under your control."
+    },
+    "whatWeDoNotCollect": {
+      "title": "What Data We Don't Collect",
+      "items": [
+        "We don't collect your uploaded datasets",
+        "We don't track your analysis results",
+        "We don't store your trained models",
+        "We don't use cookies for tracking",
+        "We don't share data with third parties"
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "If you have questions about this Privacy Policy, please contact us through our GitHub repository."
+    }
+  },
+  "license": {
+    "title": "License",
+    "openSource": "Open Source License"
+  }
+}

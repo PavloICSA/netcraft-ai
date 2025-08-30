@@ -1,0 +1,188 @@
+{
+  "form": {
+    "title": "Neural Network Configuration",
+    "dataSelection": {
+      "title": "Data Selection",
+      "inputFeatures": "Input Features",
+      "targetVariable": "Target Variable",
+      "selectTargetColumn": "Select target column",
+      "taskType": "Task Type",
+      "regression": "Regression",
+      "classification": "Classification",
+      "selectedColumns": "Selected: {{count}} columns"
+    },
+    "architecture": {
+      "title": "Network Architecture",
+      "hiddenLayers": "Hidden Layers",
+      "layer": "Layer {{number}}",
+      "neurons": "neurons",
+      "addLayer": "+ Add Layer",
+      "activationFunction": "Activation Function",
+      "relu": "ReLU",
+      "sigmoid": "Sigmoid",
+      "tanh": "Tanh"
+    },
+    "training": {
+      "title": "Training Parameters",
+      "learningRate": "Learning Rate",
+      "epochs": "Epochs",
+      "batchSize": "Batch Size"
+    },
+    "progress": {
+      "title": "Training Progress",
+      "epoch": "Epoch {{current}} / {{total}}",
+      "loss": "Loss: {{value}}",
+      "accuracy": "Accuracy: {{value}}%"
+    },
+    "buttons": {
+      "trainModel": "Train Model",
+      "training": "Training..."
+    },
+    "validation": {
+      "selectInputAndTarget": "Please select input columns and target column",
+      "invalidData": "Data contains invalid values (NaN). Please check your dataset for missing or invalid entries.",
+      "learningRateRange": "Please enter a value between 0.0001 and 1",
+      "epochsRange": "Please enter a number between 1 and 10000",
+      "batchSizeRange": "Please enter a number between 1 and 1000",
+      "neuronsRange": "Please enter a number between 1 and 1000",
+      "validDecimal": "Please enter a valid decimal number",
+      "validLearningRate": "Please enter a valid learning rate between 0.0001 and 1"
+    }
+  },
+  "randomForest": {
+    "title": "Random Forest Configuration",
+    "forestConfig": {
+      "title": "Forest Configuration",
+      "numberOfTrees": "Number of Trees",
+      "maxDepth": "Maximum Depth",
+      "auto": "Auto",
+      "minSamplesLeaf": "Min Samples per Leaf",
+      "featureSampling": "Feature Sampling",
+      "sqrtFeatures": "√(features) - Recommended",
+      "log2Features": "log₂(features)",
+      "allFeatures": "All features",
+      "bootstrapSampleRatio": "Bootstrap Sample Ratio",
+      "randomSeed": "Random Seed (Optional)"
+    },
+    "helpText": {
+      "treesRecommended": "Recommended: 100-200",
+      "autoDepth": "Auto adjusts based on forest size",
+      "minSamplesHelp": "Higher values prevent overfitting",
+      "featureSamplingHelp": "Controls randomness in feature selection",
+      "bootstrapHelp": "Fraction of data used per tree",
+      "seedHelp": "For reproducible results"
+    },
+    "progress": {
+      "title": "Training Progress",
+      "tree": "Tree {{current}} / {{total}}",
+      "complete": "{{percent}}% Complete"
+    },
+    "buttons": {
+      "trainForest": "Train Random Forest",
+      "trainingForest": "Training Forest..."
+    },
+    "validation": {
+      "configErrors": "Configuration errors:\n{{errors}}"
+    }
+  },
+  "results": {
+    "ann": {
+      "title": "Trained Model",
+      "noModel": "No Model Trained",
+      "noModelDescription": "Configure and train a neural network to see results here.",
+      "trainingModel": "Training Model",
+      "trainingDescription": "Please wait while the neural network is being trained...",
+      "architecture": "Architecture: {{input}} → {{hidden}} → {{output}}",
+      "activation": "Activation: {{function}}",
+      "learningRate": "Learning Rate: {{rate}}",
+      "task": "Task: {{type}}",
+      "trainingHistory": "Training History",
+      "epochs": "Epochs:",
+      "finalLoss": "Final Loss:",
+      "finalAccuracy": "Final Accuracy:"
+    },
+    "randomForest": {
+      "title": "Trained Random Forest",
+      "noModel": "No Random Forest Trained",
+      "noModelDescription": "Configure and train a Random Forest to see results here.",
+      "trainingModel": "Training Random Forest",
+      "trainingDescription": "Building decision trees and calculating feature importance...",
+      "trees": "Trees: {{count}}",
+      "maxDepth": "Max Depth: {{depth}}",
+      "minSamplesLeaf": "Min Samples/Leaf: {{samples}}",
+      "featureSampling": "Feature Sampling: {{ratio}}",
+      "trainingSummary": "Training Summary",
+      "trainingTime": "Training Time:",
+      "oobScore": "OOB Score:"
+    },
+    "metrics": {
+      "title": "Performance Metrics",
+      "accuracy": "Accuracy",
+      "precision": "Precision",
+      "recall": "Recall",
+      "f1Score": "F1 Score",
+      "rmse": "Root Mean Square Error (RMSE)",
+      "mae": "Mean Absolute Error (MAE)",
+      "r2": "R-squared (R²)",
+      "mse": "Mean Squared Error (MSE)",
+      "meanSquaredError": "Mean Squared Error",
+      "meanAbsoluteError": "Mean Absolute Error",
+      "rSquaredScore": "R² Score",
+      "oobAccuracy": "OOB Accuracy"
+    },
+    "confusionMatrix": {
+      "title": "Confusion Matrix",
+      "predicted": "Predicted",
+      "actual": "Actual",
+      "class": "Class {{number}}",
+      "downloadImage": "Download Image"
+    },
+    "featureImportance": {
+      "title": "Feature Importance",
+      "showingTop": "Showing top {{count}} of {{total}} features"
+    },
+    "performance": {
+      "title": "Performance Overview",
+      "predictionsMade": "Predictions Made",
+      "highConfidence": "High Confidence (>80%)"
+    },
+    "predictions": {
+      "title": "Predictions Preview",
+      "sample": "Sample",
+      "prediction": "Prediction",
+      "confidence": "Confidence",
+      "class": "Class {{number}}",
+      "showingFirst": "Showing first {{count}} of {{total}} predictions"
+    },
+    "newPrediction": {
+      "title": "Make New Prediction",
+      "enterValue": "Enter value",
+      "predict": "Predict",
+      "predictionResult": "Prediction: ",
+      "confidenceResult": "(Confidence: {{confidence}}%)"
+    },
+    "batchPrediction": {
+      "title": "Batch Predictions from CSV",
+      "uploadFile": "Upload CSV File",
+      "csvRequirement": "CSV must contain columns: {{columns}}",
+      "process": "Process",
+      "processing": "Processing...",
+      "batchResults": "Batch Results ({{count}} predictions)",
+      "exportResults": "Export Results",
+      "totalPredictions": "Total Predictions:",
+      "avgConfidence": "Avg Confidence:"
+    },
+    "export": {
+      "exportModel": "Export Model",
+      "exportPredictions": "Export Predictions",
+      "exportFailed": "Export failed. Please try again.",
+      "predictionFailed": "Prediction failed: {{error}}",
+      "batchPredictionFailed": "Batch prediction failed: {{error}}",
+      "csvValidation": "Please select a valid CSV file",
+      "csvRequiredRows": "CSV file must have at least a header row and one data row",
+      "missingFeatures": "Missing required features: {{features}}",
+      "invalidValue": "Invalid value for {{feature}}",
+      "confusionMatrixExportFailed": "Failed to export confusion matrix. Please try again."
+    }
+  }
+}

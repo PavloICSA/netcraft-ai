@@ -91,14 +91,142 @@ export interface ChartData {
   }[];
 }
 
+// Random Forest Types
+export interface RandomForestConfig {
+  numTrees: number;
+  maxDepth: number | 'auto';
+  minSamplesLeaf: number;
+  featureSamplingRatio: 'sqrt' | 'log2' | 'all' | number;
+  taskType: 'regression' | 'classification';
+  randomSeed?: number;
+  bootstrapSampleRatio: number;
+}
+
+export interface DecisionTreeNode {
+  isLeaf: boolean;
+  prediction?: number | number[];
+  featureIndex?: number;
+  threshold?: number;
+  left?: DecisionTreeNode;
+  right?: DecisionTreeNode;
+  samples: number;
+  impurity: number;
+}
+
+export interface DecisionTree {
+  root: DecisionTreeNode;
+  config: {
+    maxDepth: number;
+    minSamplesLeaf: number;
+    taskType: 'regression' | 'classification';
+  };
+  featureIndices: number[];
+  oobIndices: number[];
+}
+
+export interface RandomForestModel {
+  config: RandomForestConfig;
+  trees: DecisionTree[];
+  featureImportance: number[];
+  oobScore: number;
+  trained: boolean;
+  trainingHistory: {
+    treesCompleted: number[];
+    oobScores: number[];
+    trainingTime: number;
+  };
+}
+
+export interface FeatureImportance {
+  featureIndex: number;
+  featureName: string;
+  importance: number;
+  rank: number;
+}
+
+export interface RandomForestPrediction {
+  prediction: number | number[];
+  confidence?: number;
+  treeVotes?: number[];
+  featureContributions?: number[];
+}
+
+// Time Series Forecasting Types
+export interface TimeSeriesPoint {
+  timestamp: Date;
+  value: number;
+}
+
+export interface TimeSeriesData {
+  timestamps: Date[];
+  values: number[];
+  metadata: {
+    frequency: 'daily' | 'weekly' | 'monthly' | 'irregular';
+    hasGaps: boolean;
+    totalPoints: number;
+  };
+}
+
+export interface ForecastConfig {
+  method: 'moving-average' | 'exponential-smoothing' | 'linear-trend';
+  parameters: {
+    // Moving Average
+    windowSize?: number;
+    
+    // Exponential Smoothing
+    alpha?: number;
+    beta?: number;
+    gamma?: number;
+    seasonalPeriods?: number;
+    
+    // Linear Trend
+    polynomialDegree?: number;
+  };
+  forecastHorizon: number;
+  trainTestSplit: number;
+  confidenceLevel: number;
+}
+
+export interface ForecastResult {
+  method: string;
+  fittedValues: number[];
+  predictions: number[];
+  confidenceIntervals: {
+    lower: number[];
+    upper: number[];
+  };
+  metrics: {
+    mae: number;
+    rmse: number;
+    mape: number;
+    r2?: number;
+  };
+  timestamps: {
+    historical: Date[];
+    forecast: Date[];
+  };
+}
+
+export interface ForecastModel {
+  config: ForecastConfig;
+  result: ForecastResult;
+  trained: boolean;
+  trainingData: TimeSeriesData;
+  createdAt: Date;
+}
+
 export interface ProjectState {
   currentDataset?: Dataset;
   models: {
     ann?: ANNModel;
     cluster?: ClusterResult;
+    randomForest?: RandomForestModel;
+    forecast?: ForecastModel;
   };
   results: {
     predictions?: PredictionResult;
     clusters?: ClusterResult;
+    randomForest?: RandomForestPrediction[];
+    forecast?: ForecastResult;
   };
 }

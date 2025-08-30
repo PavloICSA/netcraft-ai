@@ -1,0 +1,135 @@
+{
+  "_comments": {
+    "technical_terms": "Технічні терміни як Neural Networks, Random Forest, K-means, SOM, RMSE, MAE, MAPE, R², CSV, JSON, API, URL, HTTP залишаються незмінними",
+    "interpolation": "Токени інтерполяції {{variable}} використовуються для динамічного контенту",
+    "pluralization": "Українська мова має складні правила множини - використовуйте відповідні форми для 1, 2-4, 5+ елементів"
+  },
+  "buttons": {
+    "save": "Зберегти",
+    "cancel": "Скасувати",
+    "delete": "Видалити",
+    "export": "Експортувати",
+    "upload": "Завантажити",
+    "browse": "Огляд",
+    "tryThisFeature": "Спробувати цю функцію",
+    "getStarted": "Почати",
+    "addLayer": "Додати шар",
+    "trainModel": "Навчити модель",
+    "generateForecast": "Створити прогноз",
+    "viewOnGitHub": "Переглянути на GitHub",
+    "contributionGuidelines": "Керівництво з внеску",
+    "nextDemo": "Наступна демонстрація",
+    "previousDemo": "Попередня демонстрація"
+  },
+  "navigation": {
+    "home": "Головна",
+    "data": "Дані",
+    "predictor": "Предиктор",
+    "clusterizer": "Кластеризатор",
+    "forecasting": "Прогнозування",
+    "results": "Результати",
+    "guidelines": "Керівництво",
+    "about": "Про нас",
+    "contact": "Контакти",
+    "terms": "Умови використання",
+    "privacy": "Політика конфіденційності",
+    "analysis": "Аналіз",
+    "information": "Інформація",
+    "legal": "Правові питання",
+    "neuralNetworks": "Neural Networks",
+    "randomForest": "Random Forest", 
+    "clustering": "Clustering",
+    "timeSeriesForecasting": "Time Series Forecasting",
+    "dataAnalysis": "Аналіз даних",
+    "termsOfUse": "Умови використання",
+    "privacyPolicy": "Політика конфіденційності"
+  },
+  "status": {
+    "training": "Навчання",
+    "processing": "Обробка",
+    "complete": "Завершено",
+    "analyzing": "Аналіз",
+    "forecasting": "Прогнозування",
+    "building": "Побудова",
+    "annTrained": "ANN навчена",
+    "clustered": "Кластеризовано"
+  },
+  "units": {
+    "rows": "рядків",
+    "rows_one": "рядок",
+    "rows_few": "рядки", 
+    "rows_many": "рядків",
+    "columns": "стовпців",
+    "columns_one": "стовпець",
+    "columns_few": "стовпці",
+    "columns_many": "стовпців",
+    "samples": "зразків",
+    "samples_one": "зразок",
+    "samples_few": "зразки",
+    "samples_many": "зразків",
+    "features": "ознак",
+    "features_one": "ознака",
+    "features_few": "ознаки",
+    "features_many": "ознак",
+    "classes": "класів",
+    "classes_one": "клас",
+    "classes_few": "класи",
+    "classes_many": "класів",
+    "neurons": "нейронів",
+    "neurons_one": "нейрон",
+    "neurons_few": "нейрони",
+    "neurons_many": "нейронів",
+    "epochs": "епох",
+    "epochs_one": "епоха",
+    "epochs_few": "епохи",
+    "epochs_many": "епох",
+    "points": "точок",
+    "points_one": "точка",
+    "points_few": "точки",
+    "points_many": "точок",
+    "trees": "дерев",
+    "trees_one": "дерево",
+    "trees_few": "дерева",
+    "trees_many": "дерев"
+  },
+  "actions": {
+    "expandSidebar": "Розгорнути бічну панель",
+    "collapseSidebar": "Згорнути бічну панель",
+    "clickOutsideToClose": "Клацніть поза межами, щоб закрити",
+    "goToSlide": "Перейти до слайду {{number}}"
+  },
+  "language": {
+    "label": "Мова",
+    "toggleGroup": "Вибір мови",
+    "switchToEnglish": "Перемкнути на англійську",
+    "switchToUkrainian": "Перемкнути на українську"
+  },
+  "accessibility": {
+    "languageChanged": "Мову змінено на {{language}}"
+  },
+  "theme": {
+    "light": "Світла",
+    "dark": "Темна",
+    "system": "Системна",
+    "switchToLight": "Перемкнути на світлу тему",
+    "switchToDark": "Перемкнути на темну тему",
+    "switchToSystem": "Перемкнути на системну тему"
+  },
+  "layout": {
+    "topbar": {
+      "noDataUploaded": "Дані не завантажені",
+      "exportProject": "Експортувати проект (JSON)",
+      "exportData": "Експортувати дані (CSV)",
+      "exportFailed": "Експорт не вдався. Спробуйте ще раз."
+    },
+    "footer": {
+      "copyright": "© 2025 NetCraft AI. Всі права захищені.",
+      "developedBy": "Розроблено Павлом ЛИХОВИДОМ. Від науковця для науковців.",
+      "version": "Версія 1.0.0",
+      "description": "Створення штучних нейронних мереж, ансамблевих методів, кластеризації та прогнозів у браузері",
+      "features": "Функції",
+      "resources": "Ресурси",
+      "legal": "Правові питання"
+    }
+  }
+}

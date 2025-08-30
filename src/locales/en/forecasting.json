@@ -1,0 +1,137 @@
+{
+  "form": {
+    "title": "Forecasting Configuration",
+    "noTimeSeriesData": {
+      "title": "No Time Series Data",
+      "message": "Please upload a dataset with datetime columns to enable forecasting."
+    },
+    "method": {
+      "title": "Forecasting Method",
+      "movingAverage": "Simple Moving Average",
+      "exponentialSmoothing": "Exponential Smoothing",
+      "linearTrend": "Linear Trend",
+      "descriptions": {
+        "movingAverage": "Simple moving average smooths data by averaging values over a sliding window. Good for data with no clear trend or seasonality.",
+        "exponentialSmoothing": "Exponential smoothing gives more weight to recent observations. Can handle trend and seasonality. Good for most time series data.",
+        "linearTrend": "Linear trend fits a straight line through the data. Best for data with a clear linear trend and minimal seasonality."
+      }
+    },
+    "parameters": {
+      "title": "Method Parameters",
+      "windowSize": "Window Size",
+      "windowSizeHelp": "Number of previous values to average. Larger values create smoother forecasts.",
+      "alpha": "Alpha (Level Smoothing)",
+      "alphaHelp": "Controls how much weight is given to recent observations (0.1-0.9).",
+      "beta": "Beta (Trend Smoothing)",
+      "betaHelp": "Controls trend component. Set to 0 to disable trend.",
+      "gamma": "Gamma (Seasonal Smoothing)",
+      "gammaHelp": "Controls seasonal component. Set to 0 to disable seasonality.",
+      "seasonalPeriods": "Seasonal Periods",
+      "seasonalPeriodsHelp": "Length of seasonal cycle (e.g., 12 for monthly data, 7 for daily).",
+      "polynomialDegree": "Polynomial Degree",
+      "polynomialDegreeHelp": "Higher degrees can capture more complex trends but may overfit.",
+      "linear": "Linear (1st degree)",
+      "quadratic": "Quadratic (2nd degree)",
+      "cubic": "Cubic (3rd degree)"
+    },
+    "configuration": {
+      "title": "Forecast Configuration",
+      "forecastHorizon": "Forecast Horizon",
+      "forecastHorizonHelp": "Number of future periods to forecast.",
+      "trainTestSplit": "Train/Test Split",
+      "trainTestSplitHelp": "Fraction of data used for training (0.1-0.95).",
+      "confidenceLevel": "Confidence Level",
+      "confidenceLevelHelp": "Confidence level for prediction intervals."
+    },
+    "dataSummary": {
+      "title": "Data Summary",
+      "totalPoints": "Total Points",
+      "frequency": "Frequency",
+      "hasGaps": "Has Gaps",
+      "trainingSize": "Training Size",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "validation": {
+      "noTimeSeriesData": "No time series data available. Please upload data with datetime columns.",
+      "insufficientData": "Insufficient data for forecasting. Please provide at least 10 data points.",
+      "windowSizeTooLarge": "Window size must be smaller than the data length.",
+      "invalidForecastHorizon": "Forecast horizon must be greater than 0.",
+      "invalidTrainTestSplit": "Train/test split must be between 0 and 1."
+    }
+  },
+  "results": {
+    "title": "Forecast Results",
+    "chart": {
+      "title": "Time Series Forecast",
+      "historical": "Historical Data",
+      "forecast": "Forecast",
+      "fitted": "{{method}} (Fitted)",
+      "forecastLabel": "{{method}} (Forecast)",
+      "upperCI": "{{method}} (Upper CI)",
+      "lowerCI": "{{method}} (Lower CI)",
+      "confidenceInterval": "95% Confidence Interval: ±{{value}}",
+      "dateLabel": "Date: {{date}}",
+      "valueLabel": "{{label}}: {{value}}",
+      "xAxisTitle": "Time",
+      "yAxisTitle": "Value"
+    },
+    "metrics": {
+      "title": "Forecast Accuracy Metrics",
+      "description": "Lower values indicate better forecast accuracy. Best performing methods are highlighted.",
+      "noResults": "No forecast results available. Run a forecast to see accuracy metrics.",
+      "mape": "Mean Absolute Percentage Error (MAPE)",
+      "mae": "Mean Absolute Error (MAE)",
+      "rmse": "Root Mean Square Error (RMSE)",
+      "r2": "R² (Coefficient of Determination)",
+      "trend": "Trend",
+      "comparison": {
+        "title": "Method Comparison Summary",
+        "bestMAE": "Best MAE",
+        "bestRMSE": "Best RMSE",
+        "bestMAPE": "Best MAPE"
+      }
+    },
+    "export": {
+      "title": "Export Forecast Results",
+      "format": {
+        "title": "Export Format",
+        "csv": "CSV (Comma Separated Values)",
+        "csvDescription": "Spreadsheet-friendly format with timestamps, predictions, and confidence intervals",
+        "json": "JSON (JavaScript Object Notation)",
+        "jsonDescription": "Complete model data including configuration and training parameters"
+      },
+      "methods": {
+        "title": "Methods to Export ({{count}} selected)",
+        "selectAll": "Select All",
+        "clearAll": "Clear All",
+        "selectAtLeastOne": "Please select at least one method to export."
+      },
+      "options": {
+        "title": "Export Options",
+        "includeMetadata": "Include metadata and accuracy metrics",
+        "includeConfidenceIntervals": "Include confidence intervals"
+      },
+      "summary": {
+        "title": "Export Summary",
+        "format": "Format: {{format}}",
+        "methods": "Methods: {{count}} selected",
+        "dataPoints": "Data points: {{count}}",
+        "includesMetadata": "Includes: Metadata and metrics",
+        "includesConfidenceIntervals": "Includes: Confidence intervals"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "export": "Export {{format}}"
+      },
+      "errors": {
+        "csvFailed": "CSV export failed. Please try again.",
+        "jsonFailed": "JSON export failed. Please try again."
+      }
+    }
+  },
+  "buttons": {
+    "generateForecast": "Generate Forecast",
+    "generating": "Generating Forecast..."
+  }
+}

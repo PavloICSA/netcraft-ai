@@ -1,0 +1,184 @@
+{
+  "title": "Usage Guidelines",
+  "subtitle": "Best practices for effective machine learning with NetCraft AI",
+  "gettingStarted": {
+    "title": "Getting Started",
+    "steps": {
+      "uploadData": {
+        "title": "Upload Your Data",
+        "description": "Start by uploading a CSV file with your dataset. The system will automatically detect column types and provide data statistics."
+      },
+      "exploreData": {
+        "title": "Explore Your Data",
+        "description": "Review the data preview, column statistics, and select relevant features for your analysis."
+      },
+      "chooseAnalysis": {
+        "title": "Choose Your Analysis",
+        "description": "Select from neural networks, random forest, clustering, or time series forecasting based on your data and objectives."
+      }
+    }
+  },
+  "neuralNetwork": {
+    "title": "Neural Network Best Practices",
+    "dataPreparation": {
+      "title": "Data Preparation",
+      "cleanData": "Clean Data: Remove or handle missing values before upload",
+      "numericFeatures": "Numeric Features: Ensure input features are numeric for best results",
+      "scaleConsideration": "Scale Consideration: Features with similar scales often work better",
+      "sampleSize": "Sample Size: Aim for at least 100+ samples for reliable training"
+    },
+    "architectureSelection": {
+      "title": "Architecture Selection",
+      "startSimple": "Start Simple: Begin with 1-2 hidden layers",
+      "layerSize": "Layer Size: Use 5-50 neurons per layer initially",
+      "activationFunctions": "Activation Functions: ReLU works well for most cases",
+      "outputLayer": "Output Layer: 1 neuron for regression, multiple for classification"
+    },
+    "trainingParameters": {
+      "title": "Training Parameters",
+      "learningRate": "Learning Rate: Start with 0.01, adjust if needed (0.001-0.1)",
+      "epochs": "Epochs: Begin with 100-500 epochs",
+      "batchSize": "Batch Size: Use 16-64 for small datasets, 32 is often good",
+      "monitorTraining": "Monitor Training: Watch for overfitting in loss curves"
+    }
+  },
+  "randomForest": {
+    "title": "Random Forest Best Practices",
+    "dataPreparation": {
+      "title": "Data Preparation",
+      "mixedDataTypes": "Mixed Data Types: Handles both numeric and categorical features well",
+      "missingValues": "Missing Values: Can handle some missing data, but clean data is better",
+      "featureSelection": "Feature Selection: Include all potentially relevant features initially",
+      "sampleSize": "Sample Size: Works well with 200+ samples for reliable results"
+    },
+    "modelConfiguration": {
+      "title": "Model Configuration",
+      "numberOfTrees": "Number of Trees: Start with 50-100 trees, increase if needed",
+      "maxDepth": "Max Depth: Use 5-15 levels to balance complexity and overfitting",
+      "minSamplesSplit": "Min Samples Split: 2-10 samples to control tree growth",
+      "featureSampling": "Feature Sampling: Use sqrt(features) for classification tasks"
+    },
+    "performanceOptimization": {
+      "title": "Performance Optimization",
+      "featureImportance": "Feature Importance: Use built-in feature ranking to identify key variables",
+      "crossValidation": "Cross-Validation: Monitor out-of-bag error for model validation",
+      "ensembleSize": "Ensemble Size: More trees generally improve accuracy but increase computation",
+      "interpretability": "Interpretability: Analyze feature importance and decision paths"
+    }
+  },
+  "clustering": {
+    "title": "Clustering Best Practices",
+    "featureSelection": {
+      "title": "Feature Selection",
+      "relevantFeatures": "Relevant Features: Choose features that define similarity",
+      "numericOnly": "Numeric Only: Use numeric features for distance calculations",
+      "featureScaling": "Feature Scaling: Consider if features have very different scales",
+      "dimensionality": "Dimensionality: 2-10 features often work well for visualization"
+    },
+    "kmeansGuidelines": {
+      "title": "K-Means Guidelines",
+      "numberOfClusters": "Number of Clusters: Start with 2-5 clusters",
+      "dataShape": "Data Shape: Works best with spherical cluster shapes",
+      "initialization": "Initialization: K-means++ initialization is recommended",
+      "evaluation": "Evaluation: Lower inertia generally indicates better clustering"
+    },
+    "som": {
+      "title": "Self-Organizing Maps",
+      "gridSize": "Grid Size: Start with 5x5 or 10x10 grids",
+      "trainingEpochs": "Training Epochs: Use 100-1000 epochs for convergence",
+      "learningRate": "Learning Rate: 0.1-0.5 works well for most cases",
+      "topology": "Topology: Rectangular topology is simpler to interpret"
+    }
+  },
+  "timeSeries": {
+    "title": "Time Series Forecasting Best Practices",
+    "dataRequirements": {
+      "title": "Data Requirements",
+      "timeColumn": "Time Column: Include a datetime column for proper time ordering",
+      "regularIntervals": "Regular Intervals: Data should have consistent time intervals (daily, weekly, etc.)",
+      "sufficientHistory": "Sufficient History: Use at least 20-50 time points for reliable forecasts",
+      "dataQuality": "Data Quality: Handle missing values and outliers before forecasting"
+    },
+    "algorithmSelection": {
+      "title": "Algorithm Selection",
+      "movingAverage": "Moving Average: Good for stable data with minimal trend",
+      "exponentialSmoothing": "Exponential Smoothing: Handles trends and seasonal patterns well",
+      "linearTrend": "Linear Trend: Suitable for data with clear linear progression",
+      "combination": "Combination: Compare multiple methods for best results"
+    },
+    "validationAndTuning": {
+      "title": "Validation and Tuning",
+      "trainTestSplit": "Train-Test Split: Use 70-80% for training, rest for validation",
+      "forecastHorizon": "Forecast Horizon: Start with short-term forecasts (1-10 periods)",
+      "errorMetrics": "Error Metrics: Monitor MAE, RMSE, and MAPE for accuracy assessment",
+      "seasonality": "Seasonality: Consider seasonal patterns in your data and algorithm choice"
+    }
+  },
+  "dataRequirements": {
+    "title": "Data Requirements",
+    "fileFormat": {
+      "title": "File Format",
+      "csvWithHeaders": "CSV files with headers",
+      "utf8Encoding": "UTF-8 encoding recommended",
+      "commaSeparated": "Comma-separated values",
+      "maxFileSize": "Maximum file size: 10MB"
+    },
+    "dataQuality": {
+      "title": "Data Quality",
+      "consistentDataTypes": "Consistent data types per column",
+      "minimalMissingValues": "Minimal missing values",
+      "meaningfulColumnNames": "Meaningful column names",
+      "sufficientSampleSize": "Sufficient sample size"
+    }
+  },
+  "troubleshooting": {
+    "title": "Troubleshooting",
+    "trainingIssues": {
+      "title": "Training Issues",
+      "lossNotDecreasing": "Loss not decreasing: Try lower learning rate or more epochs",
+      "trainingTooSlow": "Training too slow: Reduce network size or batch size",
+      "poorAccuracy": "Poor accuracy: Check data quality and feature selection"
+    },
+    "randomForestIssues": {
+      "title": "Random Forest Issues",
+      "overfitting": "Overfitting: Reduce max depth or increase min samples split",
+      "poorPerformance": "Poor performance: Increase number of trees or check feature quality",
+      "slowTraining": "Slow training: Reduce number of trees or max depth"
+    },
+    "clusteringIssues": {
+      "title": "Clustering Issues",
+      "poorClusters": "Poor clusters: Try different number of clusters or features",
+      "noClearPatterns": "No clear patterns: Data might not have natural clusters",
+      "somNotConverging": "SOM not converging: Increase epochs or adjust learning rate"
+    },
+    "forecastingIssues": {
+      "title": "Forecasting Issues",
+      "poorAccuracy": "Poor accuracy: Try different algorithms or increase historical data",
+      "unstableForecasts": "Unstable forecasts: Check for outliers and data quality",
+      "noTrendCaptured": "No trend captured: Use exponential smoothing or linear trend methods"
+    },
+    "dataIssues": {
+      "title": "Data Issues",
+      "uploadFails": "Upload fails: Check file format and size",
+      "wrongDataTypes": "Wrong data types: Manually verify column types",
+      "missingValues": "Missing values: Clean data before upload"
+    }
+  },
+  "performanceTips": {
+    "title": "Performance Tips",
+    "browserPerformance": {
+      "title": "Browser Performance",
+      "modernBrowsers": "Use modern browsers (Chrome, Firefox, Safari)",
+      "closeUnnecessaryTabs": "Close unnecessary tabs",
+      "sufficientRAM": "Ensure sufficient RAM available",
+      "useDesktop": "Use desktop for large datasets"
+    },
+    "modelOptimization": {
+      "title": "Model Optimization",
+      "startSmaller": "Start with smaller models",
+      "appropriateBatchSizes": "Use appropriate batch sizes",
+      "monitorProgress": "Monitor training progress",
+      "saveRegularly": "Save models regularly"
+    }
+  }
+}

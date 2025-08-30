@@ -1,0 +1,28 @@
+{
+  "title": "Результати аналізу",
+  "noResults": "Результати аналізу недоступні",
+  "export": {
+    "title": "Експорт результатів",
+    "exportProject": "Експорт проекту (JSON)",
+    "exportData": "Експорт даних (CSV)",
+    "exportResults": "Експорт результатів",
+    "exportOptions": "Параметри експорту",
+    "format": "Формат",
+    "json": "JSON",
+    "csv": "CSV"
+  },
+  "summary": {
+    "title": "Підсумок результатів",
+    "modelType": "Тип моделі",
+    "accuracy": "Точність",
+    "performance": "Продуктивність",
+    "dataPoints": "Точки даних",
+    "features": "Ознаки"
+  },
+  "visualization": {
+    "title": "Візуалізація результатів",
+    "chart": "Графік",
+    "table": "Таблиця",
+    "metrics": "Метрики"
+  }
+}

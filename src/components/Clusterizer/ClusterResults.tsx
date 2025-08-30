@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { ClusterResult, Dataset } from '../../types';
 import SOMVisualization from './SOMVisualization';
 import { SOMResult } from '../../lib/cluster/som';
+import LocaleNumber from '../Common/LocaleNumber';
 
 interface ClusterResultsProps {
   results: ClusterResult | null;
@@ -20,6 +22,7 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
   isProcessing,
   processingProgress
 }) => {
+  const { t } = useTranslation('clusterizer');
   /**
    * Export cluster assignments as CSV
    */
@@ -41,7 +44,7 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Export failed:', error);
-      alert('Export failed. Please try again.');
+      alert(t('results.exportFailed'));
     }
   };
 
@@ -69,7 +72,7 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Export failed:', error);
-      alert('Export failed. Please try again.');
+      alert(t('results.exportFailed'));
     }
   };
 
@@ -80,9 +83,9 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
           <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <div className="w-8 h-8 border-4 border-primary-600 border-t-transparent rounded-full animate-spin" />
           </div>
-          <h3 className="text-lg font-semibold text-secondary-900 mb-2">Processing Clusters</h3>
-          <p className="text-secondary-600">
-            Please wait while the clustering algorithm is running...
+          <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">{t('results.processing')}</h3>
+          <p className="text-secondary-600 dark:text-gray-400">
+            {t('results.processingMessage')}
           </p>
           {processingProgress && (
             <div className="mt-4">
@@ -111,9 +114,9 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-secondary-900 mb-2">No Clusters Generated</h3>
-          <p className="text-secondary-600">
-            Configure and run clustering to see results here.
+          <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">{t('results.noClusters')}</h3>
+          <p className="text-secondary-600 dark:text-gray-400">
+            {t('results.noClustersMessage')}
           </p>
         </div>
       </div>
@@ -136,14 +139,14 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
       >
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h3 className="text-lg font-semibold text-secondary-900 mb-2">
-              Clustering Results
+            <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-2">
+              {t('results.title')}
             </h3>
-            <div className="text-sm text-secondary-600 space-y-1">
-              <div>Total samples: {results.clusters.length}</div>
-              <div>Number of clusters: {uniqueClusters.length}</div>
+            <div className="text-sm text-secondary-600 dark:text-gray-400 space-y-1">
+              <div>{t('results.totalSamples', { count: results.clusters.length })}</div>
+              <div>{t('results.numberOfClusters', { count: uniqueClusters.length })}</div>
               {results.inertia && (
-                <div>Inertia: {results.inertia.toFixed(4)}</div>
+                <div>{t('results.inertia')}: <LocaleNumber value={results.inertia} options={{ minimumFractionDigits: 4, maximumFractionDigits: 4 }} /></div>
               )}
             </div>
           </div>
@@ -152,14 +155,14 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
               onClick={exportClusters}
               className="btn-secondary text-sm"
             >
-              Export Clusters
+              {t('results.exportClusters')}
             </button>
             {results.centroids && (
               <button
                 onClick={exportCentroids}
                 className="btn-secondary text-sm"
               >
-                Export Centroids
+                {t('results.exportCentroids')}
               </button>
             )}
           </div>
@@ -169,14 +172,14 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {clusterCounts.map(({ cluster, count }) => (
             <div key={cluster} className="bg-secondary-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-bold text-secondary-900">
+              <div className="text-lg font-bold text-secondary-900 dark:text-gray-100">
                 {count}
               </div>
-              <div className="text-sm text-secondary-600">
-                Cluster {cluster}
+              <div className="text-sm text-secondary-600 dark:text-gray-400">
+                {t('results.cluster', { number: cluster })}
               </div>
               <div className="text-xs text-secondary-500">
-                {((count / results.clusters.length) * 100).toFixed(1)}%
+                <LocaleNumber value={(count / results.clusters.length) * 100} options={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }} />%
               </div>
             </div>
           ))}
@@ -191,17 +194,17 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
           transition={{ delay: 0.1 }}
           className="card"
         >
-          <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-            Cluster Centroids
+          <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+            {t('results.clusterCentroids')}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-secondary-200">
-                  <th className="text-left py-2 px-3">Cluster</th>
+                  <th className="text-left py-2 px-3">{t('results.cluster', { number: '' }).replace(' ', '')}</th>
                   {results.centroids[0].map((_, index) => (
                     <th key={index} className="text-left py-2 px-3">
-                      Feature {index + 1}
+                      {t('results.feature', { number: index + 1 })}
                     </th>
                   ))}
                 </tr>
@@ -210,11 +213,11 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
                 {results.centroids.map((centroid, clusterIndex) => (
                   <tr key={clusterIndex} className="border-b border-secondary-100">
                     <td className="py-2 px-3 font-medium">
-                      Cluster {clusterIndex}
+                      {t('results.cluster', { number: clusterIndex })}
                     </td>
                     {centroid.map((value, featureIndex) => (
                       <td key={featureIndex} className="py-2 px-3">
-                        {value.toFixed(4)}
+                        <LocaleNumber value={value} options={{ minimumFractionDigits: 4, maximumFractionDigits: 4 }} />
                       </td>
                     ))}
                   </tr>
@@ -232,16 +235,16 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
         transition={{ delay: 0.2 }}
         className="card"
       >
-        <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-          Sample Assignments (First 20)
+        <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+          {t('results.sampleAssignments')}
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-secondary-200">
-                <th className="text-left py-2 px-3">Sample</th>
-                <th className="text-left py-2 px-3">Cluster</th>
-                <th className="text-left py-2 px-3">Original Data</th>
+                <th className="text-left py-2 px-3">{t('results.sample')}</th>
+                <th className="text-left py-2 px-3">{t('results.cluster', { number: '' }).replace(' ', '')}</th>
+                <th className="text-left py-2 px-3">{t('results.originalData')}</th>
               </tr>
             </thead>
             <tbody>
@@ -256,10 +259,10 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
                       cluster === 3 ? 'bg-orange-100 text-orange-800' :
                       'bg-gray-100 text-gray-800'
                     }`}>
-                      Cluster {cluster}
+                      {t('results.cluster', { number: cluster })}
                     </span>
                   </td>
-                  <td className="py-2 px-3 text-xs text-secondary-600">
+                  <td className="py-2 px-3 text-xs text-secondary-600 dark:text-gray-400">
                     {dataset.data[index] ? 
                       Object.entries(dataset.data[index])
                         .slice(0, 3)
@@ -275,7 +278,7 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
         </div>
         {results.clusters.length > 20 && (
           <p className="text-sm text-secondary-500 mt-2">
-            Showing first 20 of {results.clusters.length} samples
+            {t('results.showingFirst', { shown: 20, total: results.clusters.length })}
           </p>
         )}
       </motion.div>
@@ -288,8 +291,8 @@ const ClusterResults: React.FC<ClusterResultsProps> = ({
           transition={{ delay: 0.3 }}
           className="card"
         >
-          <h3 className="text-lg font-semibold text-secondary-900 mb-4">
-            Self-Organizing Map
+          <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100 mb-4">
+            {t('results.selfOrganizingMap')}
           </h3>
           <SOMVisualization
             somResult={results as SOMResult}

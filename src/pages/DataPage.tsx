@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import DataUploader from '../components/Data/DataUploader';
 import DataPreview from '../components/Data/DataPreview';
 import { Dataset } from '../types';
 import { storageUtils } from '../lib/data/migration-utils';
+import { useProject } from '../contexts/ProjectContext';
 
 /**
  * Data management page for uploading and previewing datasets
  */
 const DataPage: React.FC = () => {
-  const [currentDataset, setCurrentDataset] = useState<Dataset | null>(null);
+  const { t } = useTranslation('data');
+  const { projectState, updateDataset } = useProject();
   const [savedDatasets, setSavedDatasets] = useState<Dataset[]>([]);
+  
+  const currentDataset = projectState.currentDataset || null;
 
   // Load saved datasets from localStorage on mount
   useEffect(() => {
@@ -36,7 +41,8 @@ const DataPage: React.FC = () => {
    * Handle new dataset upload
    */
   const handleDatasetLoaded = (dataset: Dataset) => {
-    setCurrentDataset(dataset);
+    // Update project state through context
+    updateDataset(dataset);
     
     // Add to saved datasets if not already present
     setSavedDatasets(prev => {
@@ -46,29 +52,14 @@ const DataPage: React.FC = () => {
       }
       return prev;
     });
-
-    // Save to project state
-    const projectState = JSON.parse(storageUtils.getProjectState() || '{"models":{},"results":{}}');
-    projectState.currentDataset = dataset;
-    storageUtils.setProjectState(JSON.stringify(projectState));
-    
-    // Notify App component of storage update
-    window.dispatchEvent(new CustomEvent('netcraft-storage-update'));
   };
 
   /**
    * Load a saved dataset
    */
   const loadSavedDataset = (dataset: Dataset) => {
-    setCurrentDataset(dataset);
-    
-    // Save to project state
-    const projectState = JSON.parse(storageUtils.getProjectState() || '{"models":{},"results":{}}');
-    projectState.currentDataset = dataset;
-    storageUtils.setProjectState(JSON.stringify(projectState));
-    
-    // Notify App component of storage update
-    window.dispatchEvent(new CustomEvent('netcraft-storage-update'));
+    // Update project state through context
+    updateDataset(dataset);
   };
 
   /**
@@ -78,15 +69,8 @@ const DataPage: React.FC = () => {
     setSavedDatasets(prev => prev.filter(d => d.id !== datasetId));
     
     if (currentDataset?.id === datasetId) {
-      setCurrentDataset(null);
-      
-      // Clear from project state as well
-      const projectState = JSON.parse(storageUtils.getProjectState() || '{"models":{},"results":{}}');
-      delete projectState.currentDataset;
-      storageUtils.setProjectState(JSON.stringify(projectState));
-      
-      // Notify App component of storage update
-      window.dispatchEvent(new CustomEvent('netcraft-storage-update'));
+      // Clear from project state through context
+      updateDataset(null);
     }
   };
 
@@ -94,20 +78,14 @@ const DataPage: React.FC = () => {
    * Clear all datasets
    */
   const clearAllDatasets = () => {
-    if (window.confirm('Are you sure you want to clear all datasets? This action cannot be undone.')) {
+    if (window.confirm(t('page.confirmClearAll'))) {
       setSavedDatasets([]);
-      setCurrentDataset(null);
       
-      // Clear from project state as well
-      const projectState = JSON.parse(storageUtils.getProjectState() || '{"models":{},"results":{}}');
-      delete projectState.currentDataset;
-      storageUtils.setProjectState(JSON.stringify(projectState));
+      // Clear from project state through context
+      updateDataset(null);
       
       // Clear saved datasets from localStorage
       storageUtils.setDatasets('[]');
-      
-      // Notify App component of storage update
-      window.dispatchEvent(new CustomEvent('netcraft-storage-update'));
     }
   };
 
@@ -118,11 +96,11 @@ const DataPage: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold text-secondary-900 mb-2">
-          Data Management
+        <h1 className="text-3xl font-bold text-secondary-900 dark:text-gray-100 mb-2">
+          {t('page.title')}
         </h1>
-        <p className="text-secondary-600">
-          Upload and manage your datasets for analysis
+        <p className="text-secondary-600 dark:text-gray-400">
+          {t('page.description')}
         </p>
       </motion.div>
 
@@ -140,22 +118,22 @@ const DataPage: React.FC = () => {
           className="card"
         >
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold text-secondary-900">
-              Recent Datasets
+            <h3 className="text-lg font-semibold text-secondary-900 dark:text-gray-100">
+              {t('page.recentDatasets')}
             </h3>
             {savedDatasets.length > 0 && (
               <button
                 onClick={clearAllDatasets}
                 className="text-xs text-secondary-500 hover:text-red-500 transition-colors duration-200"
               >
-                Clear All
+                {t('page.clearAll')}
               </button>
             )}
           </div>
           
           {savedDatasets.length === 0 ? (
             <p className="text-secondary-500 text-sm">
-              No saved datasets yet. Upload a CSV file to get started.
+              {t('page.noSavedDatasets')}
             </p>
           ) : (
             <div className="space-y-3">
@@ -171,11 +149,11 @@ const DataPage: React.FC = () => {
                 >
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-medium text-secondary-900 truncate">
+                      <h4 className="font-medium text-secondary-900 dark:text-gray-100 truncate">
                         {dataset.name}
                       </h4>
                       <p className="text-xs text-secondary-500 mt-1">
-                        {dataset.data.length} rows • {dataset.columns.length} columns
+                        {dataset.data.length} {t('page.rows')} • {dataset.columns.length} {t('page.columns')}
                       </p>
                       <p className="text-xs text-secondary-400 mt-1">
                         {new Date(dataset.createdAt).toLocaleDateString()}

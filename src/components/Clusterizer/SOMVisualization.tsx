@@ -1,9 +1,11 @@
 import React, { useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { SOMResult } from '../../lib/cluster/som';
 import { calculateUMatrix, getComponentPlanes, mapDataToGrid } from '../../lib/cluster/som';
 import { downloadElementAsImage } from '../../utils';
 import Button from '../Common/Button';
+import LocaleNumber from '../Common/LocaleNumber';
 
 interface SOMVisualizationProps {
   somResult: SOMResult;
@@ -23,6 +25,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
   showComponentPlanes = false,
   showDataMapping = true
 }) => {
+  const { t } = useTranslation('clusterizer');
   const { nodes, gridSize, quantizationError, topographicError } = somResult;
   const [gridWidth, gridHeight] = gridSize;
   
@@ -100,15 +103,19 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
     <div className="space-y-6">
       {/* SOM Metrics */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-medium text-blue-900 mb-1">Quantization Error</h4>
-          <p className="text-2xl font-bold text-blue-700">{quantizationError.toFixed(4)}</p>
-          <p className="text-sm text-blue-600">Average distance to BMU</p>
+        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+          <h4 className="font-medium text-blue-900 mb-1">{t('visualization.quantizationError')}</h4>
+          <p className="text-2xl font-bold text-blue-700">
+            <LocaleNumber value={quantizationError} options={{ minimumFractionDigits: 4, maximumFractionDigits: 4 }} />
+          </p>
+          <p className="text-sm text-blue-600">{t('visualization.averageDistanceToBMU')}</p>
         </div>
-        <div className="bg-purple-50 p-4 rounded-lg">
-          <h4 className="font-medium text-purple-900 mb-1">Topographic Error</h4>
-          <p className="text-2xl font-bold text-purple-700">{(topographicError * 100).toFixed(2)}%</p>
-          <p className="text-sm text-purple-600">Non-adjacent BMU pairs</p>
+        <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+          <h4 className="font-medium text-purple-900 mb-1">{t('visualization.topographicError')}</h4>
+          <p className="text-2xl font-bold text-purple-700">
+            <LocaleNumber value={topographicError * 100} options={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }} />%
+          </p>
+          <p className="text-sm text-purple-600">{t('visualization.nonAdjacentBMUPairs')}</p>
         </div>
       </div>
 
@@ -120,7 +127,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
           className="bg-white p-6 rounded-lg border border-secondary-200"
         >
           <div className="flex justify-between items-center mb-4">
-            <h4 className="font-medium text-secondary-900">U-Matrix (Distance Map)</h4>
+            <h4 className="font-medium text-secondary-900 dark:text-gray-100">{t('visualization.uMatrix')}</h4>
             <div className="flex gap-2">
               <Button
                 variant="outline"
@@ -132,7 +139,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                PNG
+                {t('visualization.downloadPNG')}
               </Button>
               <Button
                 variant="outline"
@@ -144,7 +151,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                SVG
+                {t('visualization.downloadSVG')}
               </Button>
             </div>
           </div>
@@ -173,8 +180,8 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 ))
               )}
             </div>
-            <p className="text-sm text-secondary-600 mt-2">
-              Darker cells indicate higher distances between neighboring nodes
+            <p className="text-sm text-secondary-600 dark:text-gray-400 mt-2">
+              {t('visualization.darkerCells')}
             </p>
           </div>
         </motion.div>
@@ -189,7 +196,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
           className="bg-white p-6 rounded-lg border border-secondary-200"
         >
           <div className="flex justify-between items-center mb-4">
-            <h4 className="font-medium text-secondary-900">Data Point Distribution</h4>
+            <h4 className="font-medium text-secondary-900 dark:text-gray-100">{t('visualization.dataDistribution')}</h4>
             <div className="flex gap-2">
               <Button
                 variant="outline"
@@ -201,7 +208,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                PNG
+                {t('visualization.downloadPNG')}
               </Button>
               <Button
                 variant="outline"
@@ -213,7 +220,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                SVG
+                {t('visualization.downloadSVG')}
               </Button>
             </div>
           </div>
@@ -248,10 +255,10 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                           ? getDataPointColor(parseInt(dominantCluster)) + '40'
                           : '#f8f9fa'
                       }}
-                      title={`Cell (${x}, ${y}): ${pointsInCell.length} points`}
+                      title={`Cell (${x}, ${y}): ${t('results.pointsInCell', { count: pointsInCell.length })}`}
                     >
                       {pointsInCell.length > 0 && (
-                        <span className="text-secondary-700">
+                        <span className="text-secondary-700 dark:text-gray-300">
                           {pointsInCell.length}
                         </span>
                       )}
@@ -260,8 +267,8 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 })
               )}
             </div>
-            <p className="text-sm text-secondary-600 mt-2">
-              Numbers show data points per cell, colors indicate dominant cluster
+            <p className="text-sm text-secondary-600 dark:text-gray-400 mt-2">
+              {t('visualization.dataPointsPerCell')}
             </p>
           </div>
         </motion.div>
@@ -276,7 +283,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
           className="bg-white p-6 rounded-lg border border-secondary-200"
         >
           <div className="flex justify-between items-center mb-4">
-            <h4 className="font-medium text-secondary-900">Component Planes</h4>
+            <h4 className="font-medium text-secondary-900 dark:text-gray-100">{t('visualization.componentPlanes')}</h4>
             <div className="flex gap-2">
               <Button
                 variant="outline"
@@ -288,7 +295,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                PNG
+                {t('visualization.downloadPNG')}
               </Button>
               <Button
                 variant="outline"
@@ -300,7 +307,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                SVG
+                {t('visualization.downloadSVG')}
               </Button>
             </div>
           </div>
@@ -312,8 +319,8 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
               
               return (
                 <div key={dimIndex} className="text-center">
-                  <h5 className="font-medium text-secondary-700 mb-2">
-                    Feature {dimIndex + 1}
+                  <h5 className="font-medium text-secondary-700 dark:text-gray-300 mb-2">
+                    {t('results.feature', { number: dimIndex + 1 })}
                   </h5>
                   <div 
                     className="grid gap-1 p-2 bg-secondary-50 rounded-lg mx-auto"
@@ -330,13 +337,16 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
                           style={{
                             backgroundColor: getComponentColor(value, planeMin, planeMax)
                           }}
-                          title={`Feature ${dimIndex + 1} at (${x}, ${y}): ${value.toFixed(3)}`}
+                          title={`${t('results.feature', { number: dimIndex + 1 })} at (${x}, ${y}): ${value.toFixed(3)}`}
                         />
                       ))
                     )}
                   </div>
                   <p className="text-xs text-secondary-500 mt-1">
-                    Range: {planeMin.toFixed(2)} - {planeMax.toFixed(2)}
+                    {t('visualization.range', { 
+                      min: planeMin.toFixed(2), 
+                      max: planeMax.toFixed(2) 
+                    })}
                   </p>
                 </div>
               );
@@ -344,7 +354,7 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
           </div>
           {componentPlanes.length > 6 && (
             <p className="text-sm text-secondary-500 mt-4 text-center">
-              Showing first 6 of {componentPlanes.length} features
+              {t('visualization.showingFirstFeatures', { shown: 6, total: componentPlanes.length })}
             </p>
           )}
         </motion.div>
@@ -352,20 +362,17 @@ const SOMVisualization: React.FC<SOMVisualizationProps> = ({
 
       {/* Legend */}
       <div className="bg-secondary-50 p-4 rounded-lg">
-        <h4 className="font-medium text-secondary-900 mb-2">Legend</h4>
+        <h4 className="font-medium text-secondary-900 dark:text-gray-100 mb-2">{t('visualization.legend')}</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div>
-            <strong>U-Matrix:</strong> Shows distances between neighboring nodes. 
-            Darker areas indicate cluster boundaries.
+            <strong>{t('visualization.uMatrix')}:</strong> {t('visualization.uMatrixDescription')}
           </div>
           <div>
-            <strong>Data Distribution:</strong> Shows how many data points map to each grid cell.
-            Colors indicate the dominant cluster in each cell.
+            <strong>{t('visualization.dataDistribution')}:</strong> {t('visualization.dataDistributionDescription')}
           </div>
           {showComponentPlanes && (
             <div className="md:col-span-2">
-              <strong>Component Planes:</strong> Show the weight values for each input feature across the grid.
-              Red indicates high values, blue indicates low values.
+              <strong>{t('visualization.componentPlanes')}:</strong> {t('visualization.componentPlanesDescription')}
             </div>
           )}
         </div>

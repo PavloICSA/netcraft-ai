@@ -7,14 +7,24 @@ src/
 ├── components/           # Reusable UI components
 │   ├── Common/          # Shared components (Button, Modal)
 │   ├── Data/            # Data upload and preview components
-│   ├── Predictor/       # Neural network UI components
+│   ├── Predictor/       # Neural network and Random Forest UI components
 │   ├── Clusterizer/     # Clustering UI components
+│   ├── Forecasting/     # Time series forecasting UI components
 │   ├── Landing/         # Landing page components
 │   └── Layout/          # Layout components (Topbar, Sidebar)
 ├── lib/                 # Core logic libraries
 │   ├── ann/             # Neural network implementation
 │   │   ├── ann-logic-1.ts   # Model definition, forward pass
 │   │   └── ann-logic-2.ts   # Training, metrics, serialization
+│   ├── random-forest/   # Random Forest implementation
+│   │   ├── RandomForest.ts  # Random Forest classifier
+│   │   ├── DecisionTree.ts  # Decision tree implementation
+│   │   ├── feature-importance.ts # Feature importance analysis
+│   │   └── rf-utils.ts      # Random Forest utilities
+│   ├── forecasting/     # Time series forecasting algorithms
+│   │   ├── algorithms/      # Forecasting algorithm implementations
+│   │   ├── metrics/         # Forecasting evaluation metrics
+│   │   └── base-forecaster.ts # Base forecasting interface
 │   ├── cluster/         # Clustering algorithms
 │   │   ├── kmeans.ts        # K-means implementation
 │   │   ├── som.ts           # Self-Organizing Map
@@ -30,7 +40,7 @@ src/
 
 ### Component Organization
 - **Pages**: Top-level route components in `src/pages/`
-- **Feature Components**: Grouped by domain (Data, Predictor, Clusterizer)
+- **Feature Components**: Grouped by domain (Data, Predictor, Clusterizer, Forecasting)
 - **Common Components**: Reusable UI elements with consistent props interface
 - **Layout Components**: App shell components (navigation, sidebars)
 

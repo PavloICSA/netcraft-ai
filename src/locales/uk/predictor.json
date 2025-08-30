@@ -1,0 +1,193 @@
+{
+  "_comments": {
+    "ml_terms": "Random Forest, Neural Networks, ANN - назви алгоритмів залишаються англійською",
+    "metrics": "RMSE, MAE, R², F1 Score, Precision, Recall - метрики можуть мати пояснення українською",
+    "activation_functions": "ReLU, Sigmoid, Tanh - назви функцій активації залишаються незмінними"
+  },
+  "form": {
+    "title": "Конфігурація нейронної мережі",
+    "dataSelection": {
+      "title": "Вибір даних",
+      "inputFeatures": "Вхідні ознаки",
+      "targetVariable": "Цільова змінна",
+      "selectTargetColumn": "Виберіть цільовий стовпець",
+      "taskType": "Тип задачі",
+      "regression": "Регресія",
+      "classification": "Класифікація",
+      "selectedColumns": "Вибрано: {{count}} стовпців"
+    },
+    "architecture": {
+      "title": "Архітектура мережі",
+      "hiddenLayers": "Приховані шари",
+      "layer": "Шар {{number}}",
+      "neurons": "нейронів",
+      "addLayer": "+ Додати шар",
+      "activationFunction": "Функція активації",
+      "relu": "ReLU",
+      "sigmoid": "Sigmoid",
+      "tanh": "Tanh"
+    },
+    "training": {
+      "title": "Параметри навчання",
+      "learningRate": "Швидкість навчання",
+      "epochs": "Епохи",
+      "batchSize": "Розмір батчу"
+    },
+    "progress": {
+      "title": "Прогрес навчання",
+      "epoch": "Епоха {{current}} / {{total}}",
+      "loss": "Втрати: {{value}}",
+      "accuracy": "Точність: {{value}}%"
+    },
+    "buttons": {
+      "trainModel": "Навчити модель",
+      "training": "Навчання..."
+    },
+    "validation": {
+      "selectInputAndTarget": "Будь ласка, виберіть вхідні стовпці та цільовий стовпець",
+      "invalidData": "Дані містять недійсні значення (NaN). Перевірте ваш набір даних на відсутні або недійсні записи.",
+      "learningRateRange": "Будь ласка, введіть значення між 0.0001 та 1",
+      "epochsRange": "Будь ласка, введіть число між 1 та 10000",
+      "batchSizeRange": "Будь ласка, введіть число між 1 та 1000",
+      "neuronsRange": "Будь ласка, введіть число між 1 та 1000",
+      "validDecimal": "Будь ласка, введіть дійсне десяткове число",
+      "validLearningRate": "Будь ласка, введіть дійсну швидкість навчання між 0.0001 та 1"
+    }
+  },
+  "randomForest": {
+    "title": "Конфігурація Random Forest",
+    "forestConfig": {
+      "title": "Конфігурація лісу",
+      "numberOfTrees": "Кількість дерев",
+      "maxDepth": "Максимальна глибина",
+      "auto": "Авто",
+      "minSamplesLeaf": "Мін. зразків на листі",
+      "featureSampling": "Вибірка ознак",
+      "sqrtFeatures": "√(ознаки) - Рекомендовано",
+      "log2Features": "log₂(ознаки)",
+      "allFeatures": "Всі ознаки",
+      "bootstrapSampleRatio": "Коефіцієнт bootstrap вибірки",
+      "randomSeed": "Випадкове зерно (опціонально)"
+    },
+    "helpText": {
+      "treesRecommended": "Рекомендовано: 100-200",
+      "autoDepth": "Автоматично налаштовується на основі розміру лісу",
+      "minSamplesHelp": "Вищі значення запобігають перенавчанню",
+      "featureSamplingHelp": "Контролює випадковість у виборі ознак",
+      "bootstrapHelp": "Частка даних, що використовується для кожного дерева",
+      "seedHelp": "Для відтворюваних результатів"
+    },
+    "progress": {
+      "title": "Прогрес навчання",
+      "tree": "Дерево {{current}} / {{total}}",
+      "complete": "{{percent}}% завершено"
+    },
+    "buttons": {
+      "trainForest": "Навчити Random Forest",
+      "trainingForest": "Навчання лісу..."
+    },
+    "validation": {
+      "configErrors": "Помилки конфігурації:\n{{errors}}"
+    }
+  },
+  "results": {
+    "ann": {
+      "title": "Навчена модель",
+      "noModel": "Модель не навчена",
+      "noModelDescription": "Налаштуйте та навчіть нейронну мережу, щоб побачити результати тут.",
+      "trainingModel": "Навчання моделі",
+      "trainingDescription": "Будь ласка, зачекайте, поки нейронна мережа навчається...",
+      "architecture": "Архітектура: {{input}} → {{hidden}} → {{output}}",
+      "activation": "Активація: {{function}}",
+      "learningRate": "Швидкість навчання: {{rate}}",
+      "task": "Задача: {{type}}",
+      "trainingHistory": "Історія навчання",
+      "epochs": "Епохи:",
+      "finalLoss": "Фінальні втрати:",
+      "finalAccuracy": "Фінальна точність:"
+    },
+    "randomForest": {
+      "title": "Навчений Random Forest",
+      "noModel": "Random Forest не навчений",
+      "noModelDescription": "Налаштуйте та навчіть Random Forest, щоб побачити результати тут.",
+      "trainingModel": "Навчання Random Forest",
+      "trainingDescription": "Побудова дерев рішень та обчислення важливості ознак...",
+      "trees": "Дерева: {{count}}",
+      "maxDepth": "Макс. глибина: {{depth}}",
+      "minSamplesLeaf": "Мін. зразків/лист: {{samples}}",
+      "featureSampling": "Вибірка ознак: {{ratio}}",
+      "trainingSummary": "Підсумок навчання",
+      "trainingTime": "Час навчання:",
+      "oobScore": "OOB Score:"
+    },
+    "metrics": {
+      "title": "Метрики продуктивності",
+      "accuracy": "Точність",
+      "precision": "Precision",
+      "recall": "Recall",
+      "f1Score": "F1 Score",
+      "rmse": "Квадратний корінь середнього квадратичного відхилення (RMSE)",
+      "mae": "Середнє абсолютне відхилення (MAE)",
+      "r2": "R-квадрат (R²)",
+      "mse": "Середнє квадратичне відхилення (MSE)",
+      "meanSquaredError": "Середнє квадратичне відхилення",
+      "meanAbsoluteError": "Середнє абсолютне відхилення",
+      "rSquaredScore": "R² Score",
+      "oobAccuracy": "OOB точність"
+    },
+    "confusionMatrix": {
+      "title": "Матриця плутанини",
+      "predicted": "Прогнозовано",
+      "actual": "Фактично",
+      "class": "Клас {{number}}",
+      "downloadImage": "Завантажити зображення"
+    },
+    "featureImportance": {
+      "title": "Важливість ознак",
+      "showingTop": "Показано топ {{count}} з {{total}} ознак"
+    },
+    "performance": {
+      "title": "Огляд продуктивності",
+      "predictionsMade": "Зроблено прогнозів",
+      "highConfidence": "Висока впевненість (>80%)"
+    },
+    "predictions": {
+      "title": "Попередній перегляд прогнозів",
+      "sample": "Зразок",
+      "prediction": "Прогноз",
+      "confidence": "Впевненість",
+      "class": "Клас {{number}}",
+      "showingFirst": "Показано перші {{count}} з {{total}} прогнозів"
+    },
+    "newPrediction": {
+      "title": "Зробити новий прогноз",
+      "enterValue": "Введіть значення",
+      "predict": "Прогнозувати",
+      "predictionResult": "Прогноз: ",
+      "confidenceResult": "(Впевненість: {{confidence}}%)"
+    },
+    "batchPrediction": {
+      "title": "Пакетні прогнози з CSV",
+      "uploadFile": "Завантажити CSV файл",
+      "csvRequirement": "CSV повинен містити стовпці: {{columns}}",
+      "process": "Обробити",
+      "processing": "Обробка...",
+      "batchResults": "Пакетні результати ({{count}} прогнозів)",
+      "exportResults": "Експортувати результати",
+      "totalPredictions": "Всього прогнозів:",
+      "avgConfidence": "Середня впевненість:"
+    },
+    "export": {
+      "exportModel": "Експортувати модель",
+      "exportPredictions": "Експортувати прогнози",
+      "exportFailed": "Експорт не вдався. Спробуйте ще раз.",
+      "predictionFailed": "Прогнозування не вдалося: {{error}}",
+      "batchPredictionFailed": "Пакетне прогнозування не вдалося: {{error}}",
+      "csvValidation": "Будь ласка, виберіть дійсний CSV файл",
+      "csvRequiredRows": "CSV файл повинен мати принаймні рядок заголовка та один рядок даних",
+      "missingFeatures": "Відсутні необхідні ознаки: {{features}}",
+      "invalidValue": "Недійсне значення для {{feature}}",
+      "confusionMatrixExportFailed": "Не вдалося експортувати матрицю плутанини. Спробуйте ще раз."
+    }
+  }
+}

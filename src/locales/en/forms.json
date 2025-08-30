@@ -1,0 +1,36 @@
+{
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidNumber": "Please enter a valid number",
+    "minLength": "Minimum length is {{min}} characters",
+    "maxLength": "Maximum length is {{max}} characters",
+    "minValue": "Minimum value is {{min}}",
+    "maxValue": "Maximum value is {{max}}",
+    "invalidRange": "Please enter a value between {{min}} and {{max}}",
+    "invalidDecimal": "Please enter a valid decimal number",
+    "invalidInteger": "Please enter a valid integer"
+  },
+  "placeholders": {
+    "enterValue": "Enter value",
+    "selectOption": "Select an option",
+    "searchPlaceholder": "Search...",
+    "emailPlaceholder": "Enter your email",
+    "namePlaceholder": "Enter your name"
+  },
+  "labels": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "subject": "Subject",
+    "optional": "Optional",
+    "required": "Required"
+  },
+  "actions": {
+    "submit": "Submit",
+    "reset": "Reset",
+    "clear": "Clear",
+    "apply": "Apply",
+    "confirm": "Confirm"
+  }
+}

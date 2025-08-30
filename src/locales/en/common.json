@@ -1,0 +1,95 @@
+{
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "export": "Export",
+    "upload": "Upload",
+    "browse": "Browse",
+    "tryThisFeature": "Try This Feature",
+    "getStarted": "Get Started",
+    "addLayer": "Add Layer",
+    "trainModel": "Train Model",
+    "generateForecast": "Generate Forecast",
+    "viewOnGitHub": "View on GitHub",
+    "contributionGuidelines": "Contribution Guidelines",
+    "nextDemo": "Next demo",
+    "previousDemo": "Previous demo"
+  },
+  "navigation": {
+    "home": "Home",
+    "data": "Data",
+    "predictor": "Predictor",
+    "clusterizer": "Clusterizer",
+    "forecasting": "Forecasting",
+    "results": "Results",
+    "guidelines": "Guidelines",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "analysis": "Analysis",
+    "information": "Information",
+    "legal": "Legal",
+    "dataAnalysis": "Data Analysis",
+    "termsOfUse": "Terms of Use",
+    "privacyPolicy": "Privacy Policy"
+  },
+  "status": {
+    "training": "Training",
+    "processing": "Processing",
+    "complete": "Complete",
+    "analyzing": "Analyzing",
+    "forecasting": "Forecasting",
+    "building": "Building",
+    "annTrained": "ANN Trained",
+    "clustered": "Clustered"
+  },
+  "units": {
+    "rows": "rows",
+    "columns": "columns",
+    "samples": "samples",
+    "features": "features",
+    "classes": "classes",
+    "neurons": "neurons",
+    "epochs": "epochs",
+    "points": "points",
+    "trees": "trees"
+  },
+  "actions": {
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar",
+    "clickOutsideToClose": "Click outside to close",
+    "goToSlide": "Go to slide {{number}}"
+  },
+  "language": {
+    "label": "Language",
+    "toggleGroup": "Language selection",
+    "switchToEnglish": "Switch to English",
+    "switchToUkrainian": "Switch to Ukrainian"
+  },
+  "accessibility": {
+    "languageChanged": "Language changed to {{language}}"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "switchToSystem": "Switch to system mode"
+  },
+  "layout": {
+    "topbar": {
+      "noDataUploaded": "No Data Uploaded",
+      "exportProject": "Export Project (JSON)",
+      "exportData": "Export Data (CSV)",
+      "exportFailed": "Export failed. Please try again."
+    },
+    "footer": {
+      "copyright": "© 2025 NetCraft AI. All rights reserved.",
+      "developedBy": "Developed by Pavlo LYKHOVYD. From a scientist for scientists.",
+      "version": "Version 1.0.0"
+    }
+  }
+}

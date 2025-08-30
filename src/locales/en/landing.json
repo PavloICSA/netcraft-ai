@@ -1,0 +1,209 @@
+{
+  "title": "NetCraft AI",
+  "hero": {
+    "tagline": "Neural networks, ensemble methods, clustering, and forecasting. All powered by machine learning. All in your browser.",
+    "features": {
+      "neuralNetworks": {
+        "title": "Neural Networks",
+        "description": "Build and train custom neural networks for regression and classification",
+        "ariaLabel": "Learn more about Neural Networks"
+      },
+      "clustering": {
+        "title": "Clustering",
+        "description": "Discover patterns with K-means and Self-Organizing Maps",
+        "ariaLabel": "Learn more about Clustering"
+      },
+      "randomForest": {
+        "title": "Random Forest",
+        "description": "Ensemble learning with decision trees and feature importance analysis",
+        "ariaLabel": "Learn more about Random Forest"
+      },
+      "timeSeries": {
+        "title": "Time Series Forecasting",
+        "description": "Predict future trends with moving averages and exponential smoothing",
+        "ariaLabel": "Learn more about Time Series Forecasting"
+      }
+    }
+  },
+  "features": {
+    "title": "AI-Powered Analytics Suite",
+    "subtitle": "Intelligent algorithms for neural networks, ensemble methods, clustering, and forecasting - all running in your browser",
+    "neuralNetworkPredictor": {
+      "title": "Neural Network Predictor",
+      "description": "Build custom multilayer perceptrons for regression and classification tasks with real-time training visualization and comprehensive evaluation metrics.",
+      "features": [
+        "Configurable architecture",
+        "Multiple activation functions",
+        "Real-time training progress",
+        "Comprehensive metrics"
+      ]
+    },
+    "randomForestClassifier": {
+      "title": "Random Forest Classifier",
+      "description": "Leverage ensemble learning with decision trees for robust classification and feature importance analysis with superior prediction accuracy.",
+      "features": [
+        "Ensemble decision trees",
+        "Feature importance ranking",
+        "Bootstrap aggregation",
+        "Robust predictions"
+      ]
+    },
+    "advancedClustering": {
+      "title": "Advanced Clustering",
+      "description": "Discover hidden patterns in your data using K-means clustering and Self-Organizing Maps with interactive visualizations and quality metrics.",
+      "features": [
+        "K-means clustering",
+        "Self-Organizing Maps",
+        "Quality metrics",
+        "Visual cluster analysis"
+      ]
+    },
+    "timeSeriesForecasting": {
+      "title": "Time Series Forecasting",
+      "description": "Predict future trends with multiple forecasting algorithms including moving averages, exponential smoothing, and linear trend analysis.",
+      "features": [
+        "Multiple algorithms",
+        "Trend analysis",
+        "Seasonal decomposition",
+        "Forecast evaluation"
+      ]
+    },
+    "technology": {
+      "title": "Built with Modern Technology",
+      "subtitle": "Production-ready architecture with clean code and best practices",
+      "typescript": {
+        "title": "TypeScript",
+        "description": "Type-safe development"
+      },
+      "react": {
+        "title": "React",
+        "description": "Modern UI framework"
+      },
+      "tailwind": {
+        "title": "Tailwind",
+        "description": "Utility-first CSS"
+      },
+      "pureAI": {
+        "title": "Pure AI",
+        "description": "Custom ML algorithms"
+      }
+    }
+  },
+  "demo": {
+    "tryThisFeature": "Try This Feature",
+    "previousDemo": "Previous demo",
+    "nextDemo": "Next demo",
+    "goToSlide": "Go to slide {{number}}",
+    "miniDemos": {
+      "dropCsvHere": "Drop CSV file here",
+      "uploaded": "uploaded",
+      "processed": "processed",
+      "rowsAndColumns": "{{rows}} rows • {{columns}} columns",
+      "neuralNetworkTraining": "Neural Network Training",
+      "training": "Training",
+      "epoch": "Epoch",
+      "loss": "Loss",
+      "accuracy": "Accuracy",
+      "randomForest": "Random Forest",
+      "building": "Building",
+      "treesBuilt": "Trees Built",
+      "oobScore": "OOB Score",
+      "featureImportance": "Feature Importance",
+      "timeSeriesForecast": "Time Series Forecast",
+      "analyzing": "Analyzing",
+      "forecasting": "Forecasting",
+      "complete": "Complete",
+      "algorithm": "Algorithm",
+      "historical": "Historical",
+      "forecast": "Forecast",
+      "trend": "Trend",
+      "confidenceInterval": "95% Confidence Interval",
+      "kMeansClustering": "K-Means Clustering",
+      "highValue": "High Value",
+      "mediumValue": "Medium Value",
+      "lowValue": "Low Value",
+      "points": "points"
+    },
+    "dataUpload": {
+      "title": "Data Upload & Preview",
+      "description": "Upload CSV files with automatic type inference and comprehensive data statistics for intelligent analysis preparation",
+      "features": [
+        "Drag & drop upload",
+        "Automatic type detection",
+        "Data statistics",
+        "Column selection"
+      ]
+    },
+    "neuralNetworkTraining": {
+      "title": "Neural Network Training",
+      "description": "Configure and train custom neural networks with real-time progress monitoring and comprehensive performance evaluation",
+      "features": [
+        "Custom architecture",
+        "Real-time training",
+        "Loss visualization",
+        "Performance metrics"
+      ]
+    },
+    "randomForestAnalysis": {
+      "title": "Random Forest Analysis",
+      "description": "Build ensemble models with decision trees, featuring automatic feature importance analysis and robust predictions",
+      "features": [
+        "Ensemble learning",
+        "Feature importance",
+        "Out-of-bag validation",
+        "High accuracy"
+      ]
+    },
+    "timeSeriesForecasting": {
+      "title": "Time Series Forecasting",
+      "description": "Predict future values using statistical forecasting methods including moving averages, exponential smoothing, and trend analysis",
+      "features": [
+        "Multiple algorithms",
+        "Confidence intervals",
+        "Trend detection",
+        "Interactive charts"
+      ]
+    },
+    "clusteringAnalysis": {
+      "title": "Clustering Analysis",
+      "description": "Discover hidden patterns with K-means and Self-Organizing Maps using advanced visualization and quality assessment",
+      "features": [
+        "K-means clustering",
+        "SOM visualization",
+        "Cluster quality metrics",
+        "Interactive results"
+      ]
+    },
+    "stats": {
+      "clientSideProcessing": "Client-Side Processing",
+      "externalDependencies": "External Dependencies",
+      "dataPrivacy": "Data Privacy"
+    }
+  },
+  "aiStats": {
+    "neuralLayers": "Neural Layers",
+    "mlAlgorithms": "ML Algorithms", 
+    "dataPoints": "Data Points",
+    "predictions": "Predictions"
+  },
+  "getStarted": "Get Started",
+  "seeItInAction": {
+    "title": "See It In Action",
+    "description": "Explore interactive demos showcasing neural network prediction and clustering analysis"
+  },
+  "readyToAnalyze": {
+    "title": "Ready to Analyze Your Data?",
+    "description": "Upload your dataset and start building predictive models in minutes",
+    "uploadData": "Upload Data",
+    "viewGuidelines": "View Guidelines"
+  },
+  "footer": {
+    "description": "Crafting artificial neural networks, ensemble methods, clustering, and forecasts in the browser",
+    "features": "Features",
+    "resources": "Resources",
+    "legal": "Legal",
+    "copyright": "© 2025 NetCraft AI. All rights reserved.",
+    "developedBy": "Developed by Pavlo LYKHOVYD. From a scientist for scientists."
+  },
+  "subtitle": "AI-powered data analysis platform combining neural network prediction and advanced clustering"
+}

@@ -569,7 +569,7 @@ Before deploying to production:
 
 For deployment issues:
 
-- Check the [GitHub Issues](https://github.com/netcraft-ai/issues)
+- Check the [GitHub Issues](https://github.com/PavloICSA/netcraft-ai/issues)
 - Review platform-specific documentation
 - Test locally first with `npm run preview`
 - Verify browser console for errors
